@@ -9,6 +9,7 @@ import github from '../../assets/github.svg';
 import loginBanner from '../../assets/login-banner.png';
 import { UserAuth } from '../../hooks/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { showToast } from '../../components/Toasts';
 
 /************************************************************ IMPORTS ************************************************************/
 
@@ -20,7 +21,8 @@ const Login = () => {
     try {
       await googleSignIn();
     } catch (error) {
-      console.error(error);
+      console.error(error.message);
+      showToast(error.message, 'error');
     }
   };
 
@@ -28,7 +30,8 @@ const Login = () => {
     try {
       await githubSignIn();
     } catch (error) {
-      console.error(error);
+      console.error(error.message);
+      showToast(error.message, 'error');
     }
   };
 
