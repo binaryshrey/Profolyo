@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ProtectedRoute from './utils/ProtectedRoute';
 
 const Login = React.lazy(() => import('./views/login/Login'));
+const Register = React.lazy(() => import('./views/register/Register'));
 const Onboard = React.lazy(() => import('./views/onboard/Onboard'));
 
 const App = () => {
@@ -29,6 +30,14 @@ const App = () => {
               element={
                 <React.Suspense fallback={<></>}>
                   <Login />
+                </React.Suspense>
+              }
+            />
+            <Route
+              path="/signup"
+              element={
+                <React.Suspense fallback={<></>}>
+                  <Register />
                 </React.Suspense>
               }
             />
