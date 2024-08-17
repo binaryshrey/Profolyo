@@ -29,7 +29,7 @@ const HeroSection = () => {
             <a href="/" className="-m-1.5 p-1.5">
               <img className="h-6" src={profolyo} alt="profolyo" />
             </a>
-            <h4 className="ml-2 text-gray-900 sm:text-2xl">Profolyo</h4>
+            <h4 className="ml-2 text-gray-900 sm:text-xl">Profolyo</h4>
           </div>
           <div className="flex lg:hidden">
             <button type="button" className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" onClick={() => setMobileMenuOpen(true)}>
@@ -79,7 +79,7 @@ const HeroSection = () => {
                   <a onClick={handleScroll} className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-400/10 cursor-pointer">
                     Features
                   </a>
-                  <a href={BETTERSTACK_URI} target="_blank" rel="noreferrer" className="text-sm font-semibold leading-6 text-gray-900">
+                  <a href={BETTERSTACK_URI} target="_blank" rel="noreferrer" className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-400/10">
                     Status
                   </a>
                   <a href={LINKEDIN_URI} target="_blank" rel="noreferrer" className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-400/10">

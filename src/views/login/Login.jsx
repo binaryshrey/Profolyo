@@ -44,8 +44,8 @@ const Login = () => {
           <div className="h-screen flex flex-col">
             <Link to="/">
               <div className="flex items-center">
-                <img src={logo} alt="Profolyo" className="h-6 ml-8 mt-7" />
-                <h4 className="ml-2 text-gray-900 mt-7 text-xl">Profolyo</h4>
+                <img src={logo} alt="Profolyo" className="h-6 ml-8 mt-6" />
+                <h4 className="ml-2 text-gray-900 mt-6 text-xl">Profolyo</h4>
               </div>
             </Link>
 
