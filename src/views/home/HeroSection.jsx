@@ -22,6 +22,7 @@ const HeroSection = () => {
   return (
     <div className="isolate bg-white">
       <div className="absolute inset-0 -z-10 h-full w-full bg-white [background:radial-gradient(120%_120%_at_50%_10%,#fff_30%,#0284c7_100%)]"></div>
+      <div className="absolute h-1/2 -z-10 w-full bg-[radial-gradient(#e5e7eb_1px,transparent_2px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_100%,transparent_100%)]"></div>
       <div className="px-6 pt-6 lg:px-8">
         <nav className="flex items-center justify-between" aria-label="Global">
           <div className="flex lg:flex-1 items-center">
