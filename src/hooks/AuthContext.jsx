@@ -10,42 +10,15 @@ const AuthContext = createContext();
 export const AuthContextProvider = ({ children }) => {
   const [session, setSession] = useState({});
 
-  const googleSignIn = async () => {
+  const signInFlow = async (provider) => {
     try {
       await supabase.auth.signInWithOAuth({
-        provider: 'google',
+        provider: provider,
         options: {
           redirectTo: 'http://localhost:3000/onboard',
         },
       });
-      console.log('Google sign-in successful!');
-    } catch (error) {
-      console.error('Error signing in:', error.message);
-    }
-  };
-  const githubSignIn = async () => {
-    try {
-      await supabase.auth.signInWithOAuth({
-        provider: 'github',
-        options: {
-          redirectTo: 'http://localhost:3000/onboard',
-        },
-      });
-      console.log('Github sign-in successful!');
-    } catch (error) {
-      console.error('Error signing in:', error.message);
-    }
-  };
-
-  const linkedInSignIn = async () => {
-    try {
-      await supabase.auth.signInWithOAuth({
-        provider: 'linkedin_oidc',
-        options: {
-          redirectTo: 'http://localhost:3000/onboard',
-        },
-      });
-      console.log('LinkedIn sign-in successful!');
+      console.log(`${provider} sign-in successful!`);
     } catch (error) {
       console.error('Error signing in:', error.message);
     }
@@ -66,7 +39,7 @@ export const AuthContextProvider = ({ children }) => {
     };
   }, []);
 
-  return <AuthContext.Provider value={{ googleSignIn, githubSignIn, linkedInSignIn, logOut, session }}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={{ signInFlow, logOut, session }}>{children}</AuthContext.Provider>;
 };
 
 export const UserAuth = () => {
