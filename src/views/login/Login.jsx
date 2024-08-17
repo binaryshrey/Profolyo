@@ -6,6 +6,7 @@ import logo from '../../assets/profolyo-dark.svg';
 import login from '../../assets/login.svg';
 import google from '../../assets/google.svg';
 import github from '../../assets/github.svg';
+import linkedin from '../../assets/linkedin.svg';
 import loginBanner from '../../assets/login-banner.png';
 import { UserAuth } from '../../hooks/AuthContext';
 import { useNavigate } from 'react-router-dom';
@@ -15,7 +16,7 @@ import { showToast } from '../../components/Toasts';
 
 const Login = () => {
   const navigate = useNavigate();
-  const { googleSignIn, githubSignIn, session } = UserAuth();
+  const { googleSignIn, githubSignIn, linkedInSignIn, session } = UserAuth();
 
   const handleGoogleSignIn = async () => {
     try {
@@ -29,6 +30,15 @@ const Login = () => {
   const handleGithubSignIn = async () => {
     try {
       await githubSignIn();
+    } catch (error) {
+      console.error(error.message);
+      showToast(error.message, 'error');
+    }
+  };
+
+  const handleLinkedInSignIn = async () => {
+    try {
+      await linkedInSignIn();
     } catch (error) {
       console.error(error.message);
       showToast(error.message, 'error');
@@ -64,14 +74,19 @@ const Login = () => {
               </div>
 
               <div className="flex flex-col items-center justify-center m-8 space-y-2 items-center">
-                <button onClick={handleGoogleSignIn} type="button" className="text-black bg-white focus:ring-4 font-medium rounded-full text-sm px-8 py-2.5 text-center inline-flex items-center border">
+                <button onClick={handleGoogleSignIn} type="button" className="w-64 text-black bg-white focus:ring-4 font-medium rounded-full text-sm px-8 py-2.5 text-center inline-flex items-center border">
                   <img src={google} alt="Google" className="h-6 w-6 mr-4" />
                   Sign in with Google
                 </button>
 
-                <button onClick={handleGithubSignIn} type="button" className="text-black bg-white focus:ring-4 font-medium rounded-full text-sm px-8 py-2.5 text-center inline-flex items-center border">
+                <button onClick={handleGithubSignIn} type="button" className="w-64 text-black bg-white focus:ring-4 font-medium rounded-full text-sm px-8 py-2.5 text-center inline-flex items-center border">
                   <img src={github} alt="github" className="h-6 w-6 mr-4" />
                   Sign in with Github
+                </button>
+
+                <button onClick={handleLinkedInSignIn} type="button" className="w-64 text-black bg-white focus:ring-4 font-medium rounded-full text-sm px-8 py-2.5 text-center inline-flex items-center border">
+                  <img src={linkedin} alt="linkedin" className="h-6 w-6 mr-4" />
+                  Sign in with LinkedIn
                 </button>
               </div>
 
@@ -79,7 +94,7 @@ const Login = () => {
                 <p className="text-black">
                   Don't have an account?{' '}
                   <Link to="/signup">
-                    <span className="text-black">Create one.</span>
+                    <span className="text-black hover:underline">Create one.</span>
                   </Link>
                 </p>
               </div>

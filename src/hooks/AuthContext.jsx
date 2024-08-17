@@ -37,6 +37,20 @@ export const AuthContextProvider = ({ children }) => {
     }
   };
 
+  const linkedInSignIn = async () => {
+    try {
+      await supabase.auth.signInWithOAuth({
+        provider: 'linkedin_oidc',
+        options: {
+          redirectTo: 'http://localhost:3000/onboard',
+        },
+      });
+      console.log('LinkedIn sign-in successful!');
+    } catch (error) {
+      console.error('Error signing in:', error.message);
+    }
+  };
+
   const logOut = async () => {
     await supabase.auth.signOut();
     localStorage.clear();
@@ -52,7 +66,7 @@ export const AuthContextProvider = ({ children }) => {
     };
   }, []);
 
-  return <AuthContext.Provider value={{ googleSignIn, githubSignIn, logOut, session }}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={{ googleSignIn, githubSignIn, linkedInSignIn, logOut, session }}>{children}</AuthContext.Provider>;
 };
 
 export const UserAuth = () => {
