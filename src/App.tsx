@@ -6,7 +6,7 @@ import ProtectedRoute from './utils/ProtectedRoute';
 
 const Login = React.lazy(() => import('./views/login/Login'));
 const Register = React.lazy(() => import('./views/register/Register'));
-const Onboard = React.lazy(() => import('./views/onboard/Onboard'));
+const OnboardContainer = React.lazy(() => import('./views/onboard/OnboardContainer'));
 
 const App = () => {
   return (
@@ -20,7 +20,7 @@ const App = () => {
               element={
                 <React.Suspense fallback={<></>}>
                   <ProtectedRoute>
-                    <Onboard />
+                    <OnboardContainer />
                   </ProtectedRoute>
                 </React.Suspense>
               }
