@@ -5,11 +5,15 @@ import { Link } from 'react-router-dom';
 import logo from '../../assets/profolyo-dark.svg';
 import { Progress } from '../../components/Progress';
 import { Button } from '../../components/button';
+import { UserAuth } from '../../hooks/AuthContext';
+
 import { RiArrowRightSLine } from '@remixicon/react';
+import ProfileMenu from '../../components/ProfileMenu';
 
 /************************************************************ IMPORTS ************************************************************/
 
 const OnboardProfile = ({ incrementOnboardStep }) => {
+  const { logOut, session } = UserAuth();
   const [progress, setProgress] = React.useState(0);
 
   React.useEffect(() => {
@@ -52,8 +56,11 @@ const OnboardProfile = ({ incrementOnboardStep }) => {
           </div>
         </div>
         <div className="w-3/5 h-screen">
-          <div className=" m-8">
-            <p className="text-black text-2xl font-bold">Configure and Personalize</p>
+          <div className="flex justify-end m-6">
+            <ProfileMenu />
+          </div>
+          <div className="m-8">
+            <p className="text-black text-2xl font-bold -mt-16">Configure and Personalize</p>
             <p className="text-black text-zinc-600 mt-1">Let's get your profolyo set up in less than a minute.</p>
           </div>
           <div className="fixed bottom-0 h-20 w-3/5 backdrop-blur bg-white/50 flex justify-end items-center">

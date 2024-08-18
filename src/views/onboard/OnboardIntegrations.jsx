@@ -6,6 +6,7 @@ import logo from '../../assets/profolyo-dark.svg';
 import { Progress } from '../../components/Progress';
 import { Button } from '../../components/button';
 import { RiArrowRightSLine, RiArrowLeftSLine } from '@remixicon/react';
+import ProfileMenu from '../../components/ProfileMenu';
 
 /************************************************************ IMPORTS ************************************************************/
 
@@ -52,8 +53,11 @@ const OnboardIntegrations = ({ decrementOnboardStep }) => {
           </div>
         </div>
         <div className="w-3/5 h-screen">
+          <div className="flex justify-end m-6">
+            <ProfileMenu />
+          </div>
           <div className=" m-8">
-            <p className="text-black text-2xl font-bold">Integrations and Connected Apps</p>
+            <p className="text-black text-2xl font-bold -mt-16">Integrations and Connected Apps</p>
             <p className="text-black text-zinc-600 mt-1">Supercharge your profolyo and connect the apps you use everyday.</p>
           </div>
           <div className="fixed bottom-0 h-20 w-3/5 backdrop-blur bg-white/50 flex justify-between items-center">

@@ -4,7 +4,8 @@ import OnboardProfile from './OnboardProfile';
 import { useState } from 'react';
 
 const OnboardContainer = () => {
-  // const { logOut, session } = UserAuth();
+  const { logOut, session } = UserAuth();
+  console.log(session);
 
   // const handleSignOut = async () => {
   //   try {
