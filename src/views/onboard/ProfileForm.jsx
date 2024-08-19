@@ -6,7 +6,7 @@ import linkedinwhite from '../../assets/linkedin-white.svg';
 import { splitName } from '../../utils/utils';
 import { Input } from '../../components/input';
 import { Label } from '../../components/label';
-import { RiMagicLine } from '@remixicon/react';
+import { RiMagicLine, RiCloseCircleFill, RiCheckboxCircleFill } from '@remixicon/react';
 import { Badge } from '../../components/badge';
 import { ScrollArea } from '../../components/scroll-area';
 import { UserAuth } from '../../hooks/AuthContext';
@@ -24,14 +24,18 @@ const ProfileForm = () => {
   const { session } = UserAuth();
   const avatarUploadFileRef = React.useRef(null);
   const SUPABASE_STORAGE_URL = import.meta.env.VITE_SUPABASE_STORAGE_URL;
+  const VITE_SUPABASE_PROFOLYO_USERNAMES_TABLENAME = import.meta.env.VITE_SUPABASE_PROFOLYO_USERNAMES_TABLENAME;
   const users = ['Developer', 'Designer', 'Marketer', 'Founder', 'Student', 'Indie Hacker', 'Data Scientist', 'Freelancer', 'Other'];
   const { avatarURL, avatarUploaded, firstName, lastName, userName, bio, profession, skills, updateAvatarURL, updateAvatarUploaded, updateFirstName, updateLastName, updateUserName, updateBio, updateProfession, setSkills } = UserProfile();
 
   // state
   const [loadingAIBio, setLoadingAIBio] = React.useState(false);
   const [avatarFile, setAvatarFile] = React.useState(null);
+  const [userNameCheckLoading, setUserNameCheckLoading] = React.useState(false);
+  const [showUserNameCheck, setShowUserNameCheck] = React.useState(false);
+  const [userNameAvailable, setUserNameAvailable] = React.useState(false);
 
-  // set user metadata on load
+  // set user metadata into form on load
   React.useEffect(() => {
     const name = session?.user_metadata?.name;
     if (avatarUploaded) {
@@ -98,6 +102,37 @@ const ProfileForm = () => {
     }
   };
 
+  React.useEffect(() => {
+    const handleUserNameCheck = async () => {
+      setUserNameCheckLoading(true);
+      try {
+        const { data, error } = await supabase.from(VITE_SUPABASE_PROFOLYO_USERNAMES_TABLENAME).select();
+        if (error) throw error;
+
+        console.log('Username check:', data);
+        setUserNameAvailable(true);
+        data.map((user) => {
+          if (user.endpoint === userName) {
+            setUserNameAvailable(false);
+          }
+        });
+        setShowUserNameCheck(true);
+      } catch (error) {
+        console.error('Error checking username:', error.message);
+        showToast(`Error checking username: ${error.message}`, 'error');
+      } finally {
+        setUserNameCheckLoading(false);
+      }
+    };
+
+    const timer = setTimeout(() => {
+      if (userName) {
+        handleUserNameCheck();
+      }
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [userName]);
+
   return (
     <ScrollArea className="h-4/5 overflow-hidden">
       <div className="p-8 overflow-hidden">
@@ -142,8 +177,23 @@ const ProfileForm = () => {
             <Label htmlFor="userName">
               User Name<span className="text-red-700">*</span>
             </Label>
-            <Input type="text" id="userName" placeholder="LukeSkywalker" maxLength="20" value={userName} onChange={() => updateUserName(event.target.value)} required />
-            <p className="text-xs text-zinc-400 mt-1">{`profolyo.me/${userName}`}</p>
+            <div className="relative">
+              <Input type="text" id="userName" placeholder="LukeSkywalker" maxLength="20" value={userName} onChange={() => updateUserName(event.target.value)} required />
+              <div className="absolute inset-y-0 right-3 flex items-center">
+                {userName.length > 0 && (
+                  <>
+                    {userNameCheckLoading && <Loader2 className="h-4 w-4 animate-spin" />}
+                    {!userNameCheckLoading && showUserNameCheck && userNameAvailable && <RiCheckboxCircleFill className="h-4 w-4 text-green-600" />}
+                    {!userNameCheckLoading && showUserNameCheck && !userNameAvailable && <RiCloseCircleFill className="h-4 w-4 text-red-600" />}
+                  </>
+                )}
+              </div>
+            </div>
+            <p className="text-xs text-zinc-400 mt-1">
+              {`profolyo.me/${userName}`}
+              {!userNameCheckLoading && showUserNameCheck && userNameAvailable && <span> is available!</span>}
+              {!userNameCheckLoading && showUserNameCheck && !userNameAvailable && <span> is not available!</span>}
+            </p>
           </div>
 
           <div className="w-full">
