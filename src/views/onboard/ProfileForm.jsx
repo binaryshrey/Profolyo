@@ -1,5 +1,6 @@
 import React from 'react';
 import { Loader2 } from 'lucide-react';
+import linkedinwhite from '../../assets/linkedin-white.svg';
 import { splitName } from '../../utils/utils';
 import { Input } from '../../components/input';
 import { Label } from '../../components/label';
@@ -41,16 +42,24 @@ const ProfileForm = () => {
     <ScrollArea className="h-4/5 overflow-hidden">
       <div className="p-8 overflow-hidden">
         <div className="text-center">
-          <div className="mt-4 flex justify-center">
+          <div className="flex justify-center">
             <img src={avatarURL} className="rounded-full bg-cover cursor-pointer" />
           </div>
           <Label htmlFor="upload" className="cursor-pointer">
             Upload Avatar
           </Label>
           <p className="text-xs text-zinc-400">(5MB max, 256x256 px)</p>
+          <div className="mt-2 mb-16">
+            <button class="bg-linkedin hover:linkedinHover text-white text-xs py-1 px-2 rounded-sm">
+              <div className="flex gap-1 items-center justify-center">
+                <img src={linkedinwhite} className="h-2 w-2 mr-1" />
+                Autofill with LinkedIn
+              </div>
+            </button>
+          </div>
         </div>
 
-        <div className="flex justify-between gap-8 mt-8">
+        <div className="flex justify-between gap-8">
           <div className="w-full">
             <Label htmlFor="firstName">
               First Name<span className="text-red-700">*</span>
