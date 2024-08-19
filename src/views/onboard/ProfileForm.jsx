@@ -5,6 +5,7 @@ import { Input } from '../../components/input';
 import { Label } from '../../components/label';
 import { RiMagicLine } from '@remixicon/react';
 import { Badge } from '../../components/badge';
+import { ScrollArea } from '../../components/scroll-area';
 import { UserAuth } from '../../hooks/AuthContext';
 import { Textarea } from '../../components/textarea';
 import { InputTags } from '../../components/input-tags';
@@ -37,81 +38,93 @@ const ProfileForm = () => {
   };
 
   return (
-    <div className="m-8">
-      <div className="flex justify-between gap-8">
-        <div className="w-full">
-          <Label htmlFor="firstName">
-            First Name<span className="text-red-700">*</span>
-          </Label>
-          <Input type="text" id="firstName" placeholder="Luke" maxLength="10" value={firstName} onChange={() => updateFirstName(event.target.value)} required />
-        </div>
-        <div className="w-full">
-          <Label htmlFor="lastName">
-            Last Name<span className="text-red-700">*</span>
-          </Label>
-          <Input type="text" id="lastName" placeholder="Skywalker" maxLength="10" value={lastName} onChange={() => updateLastName(event.target.value)} required />
-        </div>
-      </div>
-      <div className="flex justify-between gap-8 mt-8">
-        <div className="w-full">
-          <Label htmlFor="userName">
-            User Name<span className="text-red-700">*</span>
-          </Label>
-          <Input type="text" id="userName" placeholder="LukeSkywalker" maxLength="20" value={userName} onChange={() => updateUserName(event.target.value)} required />
-          <p className="text-xs text-zinc-400 mt-1">{`profolyo.me/${userName}`}</p>
-        </div>
-        <div className="w-full">
-          <Label htmlFor="userName">
-            What best describes you<span className="text-red-700">*</span>
-          </Label>
-          <Select>
-            <SelectTrigger>
-              <SelectValue placeholder="Developer" value={profession} onChange={() => updateProfession(event.target.value)} />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                {users.map((user) => (
-                  <SelectItem key={user} value={user}>
-                    {user}
-                  </SelectItem>
-                ))}
-              </SelectGroup>
-            </SelectContent>
-          </Select>
-        </div>
-      </div>
-
-      <div className="w-full mt-8">
-        <Label htmlFor="skills">
-          <div className="flex justify-between">
-            <span>
-              Skills<span className="text-red-700">*</span>
-            </span>
-            <span className="text-zinc-400 text-xs">Min 3, Max 10</span>
+    <ScrollArea className="h-4/5 overflow-hidden">
+      <div className="p-8 overflow-hidden">
+        <div className="text-center">
+          <div className="mt-4 flex justify-center">
+            <img src={avatarURL} className="rounded-full bg-cover cursor-pointer" />
           </div>
-        </Label>
-        <InputTags value={skills} onChange={setSkills} placeholder="Add in your skills, comma separated." required className="mt-1" />
-      </div>
-      <div className="w-full mt-8">
-        <Label htmlFor="bio">
-          Brief Bio<span className="text-red-700">*</span>
-        </Label>
-        <Textarea placeholder="" id="bio" maxLength="300" value={bio} onChange={() => updateBio(event.target.value)} required />
-        <div className="flex justify-end mt-1" onClick={handleAIBio}>
-          {!loadingAIBio && (
-            <Badge variant="outline">
-              <RiMagicLine className="h-4 w-4 mr-1" /> <span>Generate with Profolyo AI</span>
-            </Badge>
-          )}
-          {loadingAIBio && (
-            <Badge variant="outline">
-              <Loader2 className="h-4 w-4 mr-1 animate-spin" />
-              <span>Generate with Profolyo AI</span>
-            </Badge>
-          )}
+          <Label htmlFor="upload" className="cursor-pointer">
+            Upload Avatar
+          </Label>
+          <p className="text-xs text-zinc-400">(5MB max, 256x256 px)</p>
+        </div>
+
+        <div className="flex justify-between gap-8 mt-8">
+          <div className="w-full">
+            <Label htmlFor="firstName">
+              First Name<span className="text-red-700">*</span>
+            </Label>
+            <Input type="text" id="firstName" placeholder="Luke" maxLength="10" value={firstName} onChange={() => updateFirstName(event.target.value)} required />
+          </div>
+          <div className="w-full">
+            <Label htmlFor="lastName">
+              Last Name<span className="text-red-700">*</span>
+            </Label>
+            <Input type="text" id="lastName" placeholder="Skywalker" maxLength="10" value={lastName} onChange={() => updateLastName(event.target.value)} required />
+          </div>
+        </div>
+        <div className="flex justify-between gap-8 mt-8">
+          <div className="w-full">
+            <Label htmlFor="userName">
+              User Name<span className="text-red-700">*</span>
+            </Label>
+            <Input type="text" id="userName" placeholder="LukeSkywalker" maxLength="20" value={userName} onChange={() => updateUserName(event.target.value)} required />
+            <p className="text-xs text-zinc-400 mt-1">{`profolyo.me/${userName}`}</p>
+          </div>
+          <div className="w-full">
+            <Label htmlFor="userName">
+              What best describes you<span className="text-red-700">*</span>
+            </Label>
+            <Select>
+              <SelectTrigger>
+                <SelectValue placeholder="Developer" value={profession} onChange={() => updateProfession(event.target.value)} />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  {users.map((user) => (
+                    <SelectItem key={user} value={user}>
+                      {user}
+                    </SelectItem>
+                  ))}
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
+
+        <div className="w-full mt-8">
+          <Label htmlFor="skills">
+            <div className="flex justify-between">
+              <span>
+                Skills<span className="text-red-700">*</span>
+              </span>
+              <span className="text-zinc-400 text-xs">Min 3, Max 10</span>
+            </div>
+          </Label>
+          <InputTags value={skills} onChange={setSkills} placeholder="Add in your skills, comma separated." required className="mt-1" />
+        </div>
+        <div className="w-full mt-8 mb-20">
+          <Label htmlFor="bio">
+            Brief Bio<span className="text-red-700">*</span>
+          </Label>
+          <Textarea placeholder="" id="bio" maxLength="300" value={bio} onChange={() => updateBio(event.target.value)} required />
+          <div className="flex justify-end mt-1" onClick={handleAIBio}>
+            {!loadingAIBio && (
+              <Badge variant="outline">
+                <RiMagicLine className="h-4 w-4 mr-1" /> <span>Generate with Profolyo AI</span>
+              </Badge>
+            )}
+            {loadingAIBio && (
+              <Badge variant="outline">
+                <Loader2 className="h-4 w-4 mr-1 animate-spin" />
+                <span>Generate with Profolyo AI</span>
+              </Badge>
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </ScrollArea>
   );
 };
 

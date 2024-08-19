@@ -72,7 +72,7 @@ const OnboardProfile = ({ incrementOnboardStep }) => {
             <p className="text-black text-zinc-600 mt-1">Let's get your profolyo set up in less than a minute.</p>
           </div>
           <ProfileForm />
-          <div className="fixed bottom-0 h-20 w-3/5 backdrop-blur bg-white/50 flex justify-end items-center">
+          <div className="fixed bottom-0 h-20 w-3/5 backdrop-blur-sm bg-white/50 flex justify-end items-center">
             <Button className="m-8" onClick={validateProfileForm}>
               Next
               <RiArrowRightSLine className="h-6 w-6" />
