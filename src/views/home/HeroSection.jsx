@@ -17,7 +17,7 @@ const handleScroll = () => {
 const HeroSection = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const users = ['Developers', 'Designers ', 'Marketers ', 'Founders  ', 'Indie Hackers', 'Data Scientists', 'Product Managers'];
+  const users = ['Developers', 'Designers', 'Marketers', 'Founders', 'Students', 'Indie Hackers', 'Data Scientists', 'Freelancers'];
 
   return (
     <div className="isolate bg-white">

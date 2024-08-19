@@ -20,16 +20,18 @@ const ProfileMenu = () => {
     }
   };
 
+  const imgURL = session?.user_metadata?.picture !== undefined ? session?.user_metadata?.picture : session?.user_metadata?.avatar_url;
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <img className="h-8 rounded-full cursor-pointer" src={session?.user_metadata?.avatar_url} referrerPolicy="no-referrer" alt="ProfilePic" />
+        <img className="h-8 rounded-full cursor-pointer" src={imgURL} referrerPolicy="no-referrer" alt="ProfilePic" />
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <div className="flex items-center gap-2 p-2">
-          <img className="h-8 rounded-full cursor-pointer" src={session?.user_metadata?.avatar_url} referrerPolicy="no-referrer" alt="ProfilePic" />
+          <img className="h-8 rounded-full cursor-pointer" src={imgURL} referrerPolicy="no-referrer" alt="ProfilePic" />
           <div className="grid gap-0.5 leading-none">
-            <div className="font-semibold">{session?.user_metadata?.full_name}</div>
+            <div className="font-semibold">{session?.user_metadata?.name}</div>
             <div className="text-sm text-muted-foreground">{session?.user_metadata?.email}</div>
           </div>
         </div>

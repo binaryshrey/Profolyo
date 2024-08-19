@@ -9,6 +9,7 @@ import { UserAuth } from '../../hooks/AuthContext';
 
 import { RiArrowRightSLine } from '@remixicon/react';
 import ProfileMenu from '../../components/ProfileMenu';
+import ProfileForm from './ProfileForm';
 
 /************************************************************ IMPORTS ************************************************************/
 
@@ -63,6 +64,7 @@ const OnboardProfile = ({ incrementOnboardStep }) => {
             <p className="text-black text-2xl font-bold -mt-16">Configure and Personalize</p>
             <p className="text-black text-zinc-600 mt-1">Let's get your profolyo set up in less than a minute.</p>
           </div>
+          <ProfileForm />
           <div className="fixed bottom-0 h-20 w-3/5 backdrop-blur bg-white/50 flex justify-end items-center">
             <Button className="m-8" onClick={handleNextStep}>
               Next
