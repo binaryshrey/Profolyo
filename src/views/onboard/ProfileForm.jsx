@@ -10,11 +10,15 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrig
 
 const ProfileForm = () => {
   const { session } = UserAuth();
-  const { firstName, lastName, userName, bio, profession, skills, updateFirstName, updateLastName, updateUserName, updateBio, updateProfession, setSkills } = UserProfile();
+  const { avatarURL, firstName, lastName, userName, bio, profession, skills, updateAvatarURL, updateFirstName, updateLastName, updateUserName, updateBio, updateProfession, setSkills } = UserProfile();
   const users = ['Developer', 'Designer', 'Marketer', 'Founder', 'Student', 'Indie Hacker', 'Data Scientist', 'Freelancer', 'Other'];
 
   React.useEffect(() => {
     const name = session?.user_metadata?.name;
+    const imgURL = session?.user_metadata?.picture !== undefined ? session?.user_metadata?.picture : session?.user_metadata?.avatar_url;
+    if (imgURL) {
+      updateAvatarURL(imgURL);
+    }
     if (name) {
       const { fName, lName } = splitName(name);
       updateFirstName(fName);
@@ -73,7 +77,7 @@ const ProfileForm = () => {
             <span>
               Skills<span className="text-red-700">*</span>
             </span>
-            <span className="text-zinc-500 text-xs">Min 3, Max 10</span>
+            <span className="text-zinc-400 text-xs">Min 3, Max 10</span>
           </div>
         </Label>
         <InputTags value={skills} onChange={setSkills} placeholder="Add in your skills, comma separated." required className="mt-1" />
