@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import ProfileForm from './ProfileForm';
+import { Orbits } from '../../components/Orbits';
 import { Button } from '../../components/button';
 import logo from '../../assets/profolyo-dark.svg';
 import { showToast } from '../../components/Toasts';
@@ -48,6 +49,8 @@ const OnboardProfile = ({ incrementOnboardStep }) => {
                 <h4 className="ml-2 text-gray-900 mt-6 text-xl">Profolyo</h4>
               </div>
             </Link>
+
+            <Orbits />
 
             <div className="flex flex-col gap-2 m-8 mb-12">
               <p className="text-black font-semibold">Step One</p>
