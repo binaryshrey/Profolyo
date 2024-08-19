@@ -1,7 +1,10 @@
 import React from 'react';
+import { Loader2 } from 'lucide-react';
 import { splitName } from '../../utils/utils';
 import { Input } from '../../components/input';
 import { Label } from '../../components/label';
+import { RiMagicLine } from '@remixicon/react';
+import { Badge } from '../../components/badge';
 import { UserAuth } from '../../hooks/AuthContext';
 import { Textarea } from '../../components/textarea';
 import { InputTags } from '../../components/input-tags';
@@ -12,6 +15,8 @@ const ProfileForm = () => {
   const { session } = UserAuth();
   const { avatarURL, firstName, lastName, userName, bio, profession, skills, updateAvatarURL, updateFirstName, updateLastName, updateUserName, updateBio, updateProfession, setSkills } = UserProfile();
   const users = ['Developer', 'Designer', 'Marketer', 'Founder', 'Student', 'Indie Hacker', 'Data Scientist', 'Freelancer', 'Other'];
+
+  const [loadingAIBio, setLoadingAIBio] = React.useState(false);
 
   React.useEffect(() => {
     const name = session?.user_metadata?.name;
@@ -25,6 +30,11 @@ const ProfileForm = () => {
       updateLastName(lName);
     }
   }, [session]);
+
+  const handleAIBio = () => {
+    console.log('AI Bio generated');
+    setLoadingAIBio(!loadingAIBio);
+  };
 
   return (
     <div className="m-8">
@@ -87,6 +97,19 @@ const ProfileForm = () => {
           Brief Bio<span className="text-red-700">*</span>
         </Label>
         <Textarea placeholder="" id="bio" maxLength="300" value={bio} onChange={() => updateBio(event.target.value)} required />
+        <div className="flex justify-end mt-1" onClick={handleAIBio}>
+          {!loadingAIBio && (
+            <Badge variant="outline">
+              <RiMagicLine className="h-4 w-4 mr-1" /> <span>Generate with Profolyo AI</span>
+            </Badge>
+          )}
+          {loadingAIBio && (
+            <Badge variant="outline">
+              <Loader2 className="h-4 w-4 mr-1 animate-spin" />
+              <span>Generate with Profolyo AI</span>
+            </Badge>
+          )}
+        </div>
       </div>
     </div>
   );
