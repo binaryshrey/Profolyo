@@ -27,6 +27,9 @@ const OnboardProfile = ({ incrementOnboardStep }) => {
     if (!firstName || !lastName || !userName || !bio || !profession || !skills) {
       showToast('Please fill in all the fields.', 'error');
       return false;
+    } else if (skills.length < 3 || skills.length > 10) {
+      showToast('Please add between 3 to 10 skills.', 'error');
+      return false;
     } else {
       setProgress(100);
       incrementOnboardStep();
