@@ -1,39 +1,26 @@
 import React from 'react';
+import { splitName } from '../../utils/utils';
 import { Input } from '../../components/input';
 import { Label } from '../../components/label';
+import { UserAuth } from '../../hooks/AuthContext';
 import { Textarea } from '../../components/textarea';
 import { InputTags } from '../../components/input-tags';
+import { UserProfile } from '../../hooks/ProfileContext';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '../../components/select';
 
 const ProfileForm = () => {
+  const { session } = UserAuth();
+  const { firstName, lastName, userName, bio, profession, skills, updateFirstName, updateLastName, updateUserName, updateBio, updateProfession, setSkills } = UserProfile();
   const users = ['Developer', 'Designer', 'Marketer', 'Founder', 'Student', 'Indie Hacker', 'Data Scientist', 'Freelancer', 'Other'];
 
-  const [firstName, setFirstName] = React.useState('');
-  const [lastName, setLastName] = React.useState('');
-  const [userName, setUserName] = React.useState('');
-  const [bio, setBio] = React.useState('');
-  const [profession, setProfession] = React.useState('Developer');
-  const [skills, setSkills] = React.useState([]);
-
-  const handleFirstNameChange = (event) => {
-    setFirstName(event.target.value);
-  };
-
-  const handleLastNameChange = (event) => {
-    setLastName(event.target.value);
-  };
-
-  const handleUserNameChange = (event) => {
-    setUserName(event.target.value);
-  };
-
-  const handleBioChange = (event) => {
-    setBio(event.target.value);
-  };
-
-  const handleProfessionChange = (event) => {
-    setProfession(event.target.value);
-  };
+  React.useEffect(() => {
+    const name = session?.user_metadata?.name;
+    if (name) {
+      const { fName, lName } = splitName(name);
+      updateFirstName(fName);
+      updateLastName(lName);
+    }
+  }, [session]);
 
   return (
     <div className="m-8">
@@ -42,13 +29,13 @@ const ProfileForm = () => {
           <Label htmlFor="firstName">
             First Name<span className="text-red-700">*</span>
           </Label>
-          <Input type="text" id="firstName" placeholder="Luke" maxLength="10" value={firstName} onChange={handleFirstNameChange} required />
+          <Input type="text" id="firstName" placeholder="Luke" maxLength="10" value={firstName} onChange={() => updateFirstName(event.target.value)} required />
         </div>
         <div className="w-full">
           <Label htmlFor="lastName">
             Last Name<span className="text-red-700">*</span>
           </Label>
-          <Input type="text" id="lastName" placeholder="Skywalker" maxLength="10" value={lastName} onChange={handleLastNameChange} required />
+          <Input type="text" id="lastName" placeholder="Skywalker" maxLength="10" value={lastName} onChange={() => updateLastName(event.target.value)} required />
         </div>
       </div>
       <div className="flex justify-between gap-8 mt-8">
@@ -56,7 +43,7 @@ const ProfileForm = () => {
           <Label htmlFor="userName">
             User Name<span className="text-red-700">*</span>
           </Label>
-          <Input type="text" id="userName" placeholder="LukeSkywalker" maxLength="20" value={userName} onChange={handleUserNameChange} required />
+          <Input type="text" id="userName" placeholder="LukeSkywalker" maxLength="20" value={userName} onChange={() => updateUserName(event.target.value)} required />
           <p className="text-xs text-zinc-400 mt-1">{`profolyo.me/${userName}`}</p>
         </div>
         <div className="w-full">
@@ -65,7 +52,7 @@ const ProfileForm = () => {
           </Label>
           <Select>
             <SelectTrigger>
-              <SelectValue placeholder="Developer" value={profession} onChange={handleProfessionChange} />
+              <SelectValue placeholder="Developer" value={profession} onChange={() => updateProfession(event.target.value)} />
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
@@ -95,7 +82,7 @@ const ProfileForm = () => {
         <Label htmlFor="bio">
           Brief Bio<span className="text-red-700">*</span>
         </Label>
-        <Textarea placeholder="" id="bio" maxLength="300" value={bio} onChange={handleBioChange} required />
+        <Textarea placeholder="" id="bio" maxLength="300" value={bio} onChange={() => updateBio(event.target.value)} required />
       </div>
     </div>
   );

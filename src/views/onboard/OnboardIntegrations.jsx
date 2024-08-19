@@ -6,7 +6,7 @@ import logo from '../../assets/profolyo-dark.svg';
 import { Progress } from '../../components/Progress';
 import { Button } from '../../components/button';
 import { RiArrowRightSLine, RiArrowLeftSLine } from '@remixicon/react';
-import ProfileMenu from '../../components/ProfileMenu';
+import OnboardMenu from '../../components/OnboardMenu';
 
 /************************************************************ IMPORTS ************************************************************/
 
@@ -54,7 +54,7 @@ const OnboardIntegrations = ({ decrementOnboardStep }) => {
         </div>
         <div className="w-3/5 h-screen">
           <div className="flex justify-end m-6">
-            <ProfileMenu />
+            <OnboardMenu />
           </div>
           <div className=" m-8">
             <p className="text-black text-2xl font-bold -mt-16">Integrations and Connected Apps</p>

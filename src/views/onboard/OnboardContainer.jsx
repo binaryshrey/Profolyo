@@ -1,20 +1,8 @@
-import { UserAuth } from '../../hooks/AuthContext';
-import OnboardIntegrations from './OnboardIntegrations';
-import OnboardProfile from './OnboardProfile';
 import { useState } from 'react';
+import OnboardProfile from './OnboardProfile';
+import OnboardIntegrations from './OnboardIntegrations';
 
 const OnboardContainer = () => {
-  const { logOut, session } = UserAuth();
-  console.log(session);
-
-  // const handleSignOut = async () => {
-  //   try {
-  //     await logOut();
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
   const [onboardStep, setOnboardStep] = useState(1);
 
   const incrementOnboardStep = () => {
@@ -27,7 +15,6 @@ const OnboardContainer = () => {
 
   return (
     <div>
-      {/* <h1 onClick={handleSignOut}>Onboard</h1> */}
       {onboardStep === 1 && <OnboardProfile incrementOnboardStep={incrementOnboardStep} />}
       {onboardStep === 2 && <OnboardIntegrations decrementOnboardStep={decrementOnboardStep} />}
     </div>

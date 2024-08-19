@@ -1,8 +1,9 @@
 import React from 'react';
 import Home from './views/home/Home';
-import { AuthContextProvider } from './hooks/AuthContext';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ProtectedRoute from './utils/ProtectedRoute';
+import { AuthContextProvider } from './hooks/AuthContext';
+import { ProfileContextProvider } from './hooks/ProfileContext';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const Login = React.lazy(() => import('./views/login/Login'));
 const Register = React.lazy(() => import('./views/register/Register'));
@@ -13,35 +14,37 @@ const App = () => {
     <>
       <BrowserRouter>
         <AuthContextProvider>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route
-              path="/onboard"
-              element={
-                <React.Suspense fallback={<></>}>
-                  <ProtectedRoute>
-                    <OnboardContainer />
-                  </ProtectedRoute>
-                </React.Suspense>
-              }
-            />
-            <Route
-              path="/login"
-              element={
-                <React.Suspense fallback={<></>}>
-                  <Login />
-                </React.Suspense>
-              }
-            />
-            <Route
-              path="/signup"
-              element={
-                <React.Suspense fallback={<></>}>
-                  <Register />
-                </React.Suspense>
-              }
-            />
-          </Routes>
+          <ProfileContextProvider>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route
+                path="/onboard"
+                element={
+                  <React.Suspense fallback={<></>}>
+                    <ProtectedRoute>
+                      <OnboardContainer />
+                    </ProtectedRoute>
+                  </React.Suspense>
+                }
+              />
+              <Route
+                path="/login"
+                element={
+                  <React.Suspense fallback={<></>}>
+                    <Login />
+                  </React.Suspense>
+                }
+              />
+              <Route
+                path="/signup"
+                element={
+                  <React.Suspense fallback={<></>}>
+                    <Register />
+                  </React.Suspense>
+                }
+              />
+            </Routes>
+          </ProfileContextProvider>
         </AuthContextProvider>
       </BrowserRouter>
     </>

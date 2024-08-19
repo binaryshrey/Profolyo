@@ -2,19 +2,20 @@
 
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../../assets/profolyo-dark.svg';
-import { Progress } from '../../components/Progress';
-import { Button } from '../../components/button';
-import { UserAuth } from '../../hooks/AuthContext';
-
-import { RiArrowRightSLine } from '@remixicon/react';
-import ProfileMenu from '../../components/ProfileMenu';
 import ProfileForm from './ProfileForm';
+import { Button } from '../../components/button';
+import logo from '../../assets/profolyo-dark.svg';
+import { showToast } from '../../components/Toasts';
+import { Progress } from '../../components/Progress';
+import { RiArrowRightSLine } from '@remixicon/react';
+import OnboardMenu from '../../components/OnboardMenu';
+import { UserProfile } from '../../hooks/ProfileContext';
 
 /************************************************************ IMPORTS ************************************************************/
 
 const OnboardProfile = ({ incrementOnboardStep }) => {
-  const { logOut, session } = UserAuth();
+  const { firstName, lastName, userName, bio, profession, skills } = UserProfile();
+
   const [progress, setProgress] = React.useState(0);
 
   React.useEffect(() => {
@@ -22,12 +23,14 @@ const OnboardProfile = ({ incrementOnboardStep }) => {
     return () => clearTimeout(timer);
   }, []);
 
-  const handleNextStep = () => {
-    const timer = setTimeout(() => {
+  const validateProfileForm = () => {
+    if (!firstName || !lastName || !userName || !bio || !profession || !skills) {
+      showToast('Please fill in all the fields.', 'error');
+      return false;
+    } else {
       setProgress(100);
       incrementOnboardStep();
-    }, 500);
-    return () => clearTimeout(timer);
+    }
   };
 
   return (
@@ -58,7 +61,7 @@ const OnboardProfile = ({ incrementOnboardStep }) => {
         </div>
         <div className="w-3/5 h-screen">
           <div className="flex justify-end m-6">
-            <ProfileMenu />
+            <OnboardMenu />
           </div>
           <div className="m-8">
             <p className="text-black text-2xl font-bold -mt-16">Configure and Personalize</p>
@@ -66,7 +69,7 @@ const OnboardProfile = ({ incrementOnboardStep }) => {
           </div>
           <ProfileForm />
           <div className="fixed bottom-0 h-20 w-3/5 backdrop-blur bg-white/50 flex justify-end items-center">
-            <Button className="m-8" onClick={handleNextStep}>
+            <Button className="m-8" onClick={validateProfileForm}>
               Next
               <RiArrowRightSLine className="h-6 w-6" />
             </Button>

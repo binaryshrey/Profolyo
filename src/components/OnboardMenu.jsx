@@ -1,13 +1,12 @@
 /************************************************************ IMPORTS ************************************************************/
 
-import { Link } from 'react-router-dom';
 import { UserAuth } from '../hooks/AuthContext';
-import { RiHome6Line, RiUserSmileLine, RiLogoutCircleRLine } from '@remixicon/react';
-import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuSeparator, DropdownMenuItem } from '../components/dropdown-menu';
+import { RiLogoutCircleRLine } from '@remixicon/react';
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuSeparator, DropdownMenuItem } from './dropdown-menu';
 
 /************************************************************ IMPORTS ************************************************************/
 
-const ProfileMenu = () => {
+const OnboardMenu = () => {
   // global vars
   const { logOut, session } = UserAuth();
 
@@ -48,4 +47,4 @@ const ProfileMenu = () => {
   );
 };
 
-export default ProfileMenu;
+export default OnboardMenu;
