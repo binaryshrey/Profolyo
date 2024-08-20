@@ -18,7 +18,7 @@ export const ProfileContextProvider = ({ children }) => {
   const [skills, setSkills] = React.useState([]);
   const [appConnections, setAppConnections] = useState(
     integrations.reduce((acc, app) => {
-      acc[app.name] = { connected: false, username: '' };
+      acc[app.name] = { connected: false, username: '', profile_url: '' };
       return acc;
     }, {}),
   );
@@ -57,12 +57,13 @@ export const ProfileContextProvider = ({ children }) => {
       },
     }));
   };
-  const handleAppUsernameChange = (appName, username) => {
+  const handleAppUsernameChange = (appName, username, profile_url) => {
     setAppConnections((prevState) => ({
       ...prevState,
       [appName]: {
         ...prevState[appName],
         username,
+        profile_url,
       },
     }));
   };

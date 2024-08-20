@@ -14,8 +14,6 @@ const ConnectApps = () => {
   const [userName, setUserName] = React.useState('');
   const [updateUserName, setUpdateUserName] = React.useState('');
 
-  console.log(appConnections);
-
   const handleEditUserName = (val) => {
     setUserName(val);
   };
@@ -24,23 +22,23 @@ const ConnectApps = () => {
     setUpdateUserName(val);
   };
 
-  const handleAppUserNameSubmit = (appName) => {
+  const handleAppUserNameSubmit = (appName, urlPrefix) => {
     if (userName === '') {
       showToast('UserName cannot be blank!', 'error');
     } else {
       connectAppConnection(appName);
-      handleAppUsernameChange(appName, userName);
+      handleAppUsernameChange(appName, userName, `${urlPrefix}${userName}`);
       setUserName('');
       showToast(`${appName} Connected!`, 'success');
     }
   };
 
-  const handleAppUserNameUpdateSubmit = (appName) => {
+  const handleAppUserNameUpdateSubmit = (appName, urlPrefix) => {
     if (updateUserName === '') {
       showToast('UserName cannot be blank!', 'error');
     } else {
       connectAppConnection(appName);
-      handleAppUsernameChange(appName, updateUserName);
+      handleAppUsernameChange(appName, updateUserName, `${urlPrefix}${updateUserName}`);
       setUserName('');
       showToast(`${appName} Connected!`, 'success');
     }
@@ -103,7 +101,7 @@ const ConnectApps = () => {
                           <Button type="submit" variant="outline" onClick={() => handleAppDisconnect(item.name)}>
                             Disconnect
                           </Button>
-                          <Button type="submit" onClick={() => handleAppUserNameUpdateSubmit(item.name)}>
+                          <Button type="submit" onClick={() => handleAppUserNameUpdateSubmit(item.name, item.url_prefix)}>
                             Update
                           </Button>
                         </DialogFooter>
@@ -132,7 +130,7 @@ const ConnectApps = () => {
                             </p>
                           </div>
                           <DialogFooter>
-                            <Button type="submit" onClick={() => handleAppUserNameSubmit(item.name)}>
+                            <Button type="submit" onClick={() => handleAppUserNameSubmit(item.name, item.url_prefix)}>
                               Connect
                             </Button>
                           </DialogFooter>
