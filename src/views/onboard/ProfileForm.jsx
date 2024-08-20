@@ -112,7 +112,7 @@ const ProfileForm = () => {
         console.log('Username check:', data);
         setUserNameAvailable(true);
         data.map((user) => {
-          if (user.endpoint === userName) {
+          if (user.UserName === userName) {
             setUserNameAvailable(false);
           }
         });
