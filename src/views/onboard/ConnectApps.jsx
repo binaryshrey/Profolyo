@@ -6,7 +6,6 @@ import { RiCheckLine } from '@remixicon/react';
 import { UserProfile } from '../../hooks/ProfileContext';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '../../components/dialog';
 import { Input } from '../../components/input';
-import { Label } from '../../components/label';
 import { showToast } from '../../components/Toasts';
 
 const ConnectedApps = () => {
@@ -63,11 +62,15 @@ const ConnectedApps = () => {
                               <img src={item.img} alt={item.name} className="h-12 w-12" />
                             </DialogTitle>
                             <DialogTitle>Connect with {item.name}</DialogTitle>
-                            <DialogDescription className="items-center">Share your {item.name} username</DialogDescription>
+                            <DialogDescription className="items-center">{item.url_description}</DialogDescription>
                           </DialogHeader>
                           <div>
+                            <p className="text-xs text-zinc-500 mb-1">{item.message}</p>
                             <Input id="username" placeholder="lukeSkywalker" value={userName} onChange={() => handleEditUserName(event.target.value)} />
-                            <p className="text-xs text-zinc-500 mt-2">* Kindly add username only</p>
+                            <p className="text-xs text-zinc-500 mt-2">
+                              {item.url_prefix}
+                              {userName}
+                            </p>
                           </div>
                           <DialogFooter>
                             <Button type="submit" onClick={() => handleAppUserNameSubmit(item.name)}>
