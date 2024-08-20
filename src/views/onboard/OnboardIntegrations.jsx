@@ -7,6 +7,7 @@ import { Progress } from '../../components/Progress';
 import { Button } from '../../components/button';
 import { RiArrowRightSLine, RiArrowLeftSLine } from '@remixicon/react';
 import OnboardMenu from '../../components/OnboardMenu';
+import { MarqueeIntegrations } from '../../components/MarqueeIntegrations';
 
 /************************************************************ IMPORTS ************************************************************/
 
@@ -37,6 +38,8 @@ const OnboardIntegrations = ({ decrementOnboardStep }) => {
                 <h4 className="ml-2 text-gray-900 mt-6 text-xl">Profolyo</h4>
               </div>
             </Link>
+
+            <MarqueeIntegrations />
 
             <div className="flex flex-col gap-2 m-8 mb-12">
               <p className="text-black font-semibold">Step Two</p>

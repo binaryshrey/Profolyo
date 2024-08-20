@@ -15,8 +15,8 @@ const OnboardContainer = () => {
 
   return (
     <div>
-      {onboardStep === 1 && <OnboardProfile incrementOnboardStep={incrementOnboardStep} />}
-      {onboardStep === 2 && <OnboardIntegrations decrementOnboardStep={decrementOnboardStep} />}
+      {onboardStep === 9 && <OnboardProfile incrementOnboardStep={incrementOnboardStep} />}
+      {onboardStep === 1 && <OnboardIntegrations decrementOnboardStep={decrementOnboardStep} />}
     </div>
   );
 };

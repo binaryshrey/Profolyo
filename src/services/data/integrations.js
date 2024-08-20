@@ -63,13 +63,6 @@ export const integrations = [
         'type': 'Other'
     },
     {
-        'name': 'Google',
-        'url': 'https://www.google.com/',
-        'img': 'https://raw.githubusercontent.com/binaryshrey/Profolyo/feat/onboarding/src/assets/integrations/google.svg',
-        'description': 'Google is a multinational corporation that specializes in Internet-related services and products.',
-        'type': 'Other'
-    },
-    {
         'name': 'LinkedIn',
         'url': 'https://www.linkedin.com/',
         'img': 'https://raw.githubusercontent.com/binaryshrey/Profolyo/feat/onboarding/src/assets/integrations/linkedin.svg',
@@ -121,7 +114,7 @@ export const integrations = [
     {
         'name': 'Tik Tok',
         'url': 'https://www.tiktok.com/',
-        'img': 'https://raw.githubusercontent.com/binaryshrey/Profolyo/feat/onboarding/src/assets/integrations/tiktok.svg',
+        'img': 'https://raw.githubusercontent.com/binaryshrey/Profolyo/feat/onboarding/src/assets/integrations/tik_tok.svg',
         'description': 'TikTok is a Chinese video-sharing social networking service owned by ByteDance.',
         'type': 'Social'
     },
