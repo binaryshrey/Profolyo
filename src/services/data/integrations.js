@@ -8,7 +8,7 @@ export const integrations = [
         'placeholder':'LukeSkywalker',
         'img': 'https://raw.githubusercontent.com/binaryshrey/Profolyo/feat/onboarding/src/assets/integrations/behance.svg',
         'description': 'Behance is an online platform to showcase & discover creative work.',
-        'type': ['Design','Recommended']
+        'type': ['Design']
     },
     {
         'name': 'Bitbucket',
@@ -207,7 +207,7 @@ export const integrations = [
         'placeholder':'LukeSkywalker',
         'img': 'https://raw.githubusercontent.com/binaryshrey/Profolyo/feat/onboarding/src/assets/integrations/producthunt.svg',
         'description': 'Product Hunt is a website that lets users share and discover new products.',
-        'type': ['Dev Tool','Recommended']
+        'type': ['Dev Tool']
     },
     {
         'name': 'Reddit',
@@ -262,7 +262,7 @@ export const integrations = [
         'placeholder':'LukeSkywalker',
         'img': 'https://raw.githubusercontent.com/binaryshrey/Profolyo/feat/onboarding/src/assets/integrations/spotify.svg',
         'description': 'Spotify is a digital music, podcast, and video streaming service that gives you access to millions of songs and other content from artists all over the world.',
-        'type': ['Entertainment','Recommended']
+        'type': ['Entertainment']
     },
     {
         'name': 'Substack',
