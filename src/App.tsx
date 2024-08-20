@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const Login = React.lazy(() => import('./views/login/Login'));
 const Register = React.lazy(() => import('./views/register/Register'));
+const Redirect = React.lazy(() => import('./views/redirect/Redirect'));
 const OnboardContainer = React.lazy(() => import('./views/onboard/OnboardContainer'));
 const EditorContainer = React.lazy(() => import('./views/editor/EditorContainer'));
 
@@ -45,10 +46,22 @@ const App = () => {
                 }
               />
               <Route
+                path="/redirect"
+                element={
+                  <React.Suspense fallback={<></>}>
+                    <ProtectedRoute>
+                      <Redirect />
+                    </ProtectedRoute>
+                  </React.Suspense>
+                }
+              />
+              <Route
                 path="/editor"
                 element={
                   <React.Suspense fallback={<></>}>
-                    <EditorContainer />
+                    <ProtectedRoute>
+                      <EditorContainer />
+                    </ProtectedRoute>
                   </React.Suspense>
                 }
               />

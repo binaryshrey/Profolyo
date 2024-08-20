@@ -49,6 +49,8 @@ const OnboardIntegrations = ({ decrementOnboardStep }) => {
         UserSkills: skills,
         ConnectedApps: appConnections,
         UserID: session?.id,
+        Onboarded: true,
+        ProfolyoCreated: false,
       });
       if (error) throw error;
 

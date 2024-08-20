@@ -15,7 +15,7 @@ export const AuthContextProvider = ({ children }) => {
       await supabase.auth.signInWithOAuth({
         provider: provider,
         options: {
-          redirectTo: 'http://localhost:3000/onboard',
+          redirectTo: 'http://localhost:3000/redirect',
         },
       });
       console.log(`${provider} sign-in successful!`);
