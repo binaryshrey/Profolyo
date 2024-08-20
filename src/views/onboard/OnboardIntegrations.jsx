@@ -9,7 +9,7 @@ import { Button } from '../../components/button';
 import { RiArrowLeftSLine } from '@remixicon/react';
 import OnboardMenu from '../../components/OnboardMenu';
 import { MarqueeIntegrations } from '../../components/MarqueeIntegrations';
-import ConnectedApps from './ConnectApps';
+import ConnectApps from './ConnectApps';
 import { UserProfile } from '../../hooks/ProfileContext';
 import { UserAuth } from '../../hooks/AuthContext';
 import { supabase } from '../../utils/Supabase';
@@ -109,7 +109,7 @@ const OnboardIntegrations = ({ decrementOnboardStep }) => {
             <p className="text-black text-zinc-600 mt-1">Supercharge your profolyo and connect the apps you use everyday.</p>
           </div>
 
-          <ConnectedApps />
+          <ConnectApps />
 
           <div className="fixed bottom-0 h-20 w-3/5 backdrop-blur bg-white/50 flex justify-between items-center">
             <Button className="m-8" variant="outline" onClick={decrementOnboardStep}>

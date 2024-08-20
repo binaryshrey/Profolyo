@@ -39,6 +39,24 @@ export const ProfileContextProvider = ({ children }) => {
       },
     }));
   };
+  const connectAppConnection = (appName) => {
+    setAppConnections((prevState) => ({
+      ...prevState,
+      [appName]: {
+        ...prevState[appName],
+        connected: true,
+      },
+    }));
+  };
+  const disConnectAppConnection = (appName) => {
+    setAppConnections((prevState) => ({
+      ...prevState,
+      [appName]: {
+        ...prevState[appName],
+        connected: false,
+      },
+    }));
+  };
   const handleAppUsernameChange = (appName, username) => {
     setAppConnections((prevState) => ({
       ...prevState,
@@ -49,7 +67,7 @@ export const ProfileContextProvider = ({ children }) => {
     }));
   };
 
-  return <ProfileContext.Provider value={{ avatarURL, avatarUploaded, firstName, lastName, userName, bio, profession, skills, updateAvatarURL, updateAvatarUploaded, updateFirstName, updateLastName, updateUserName, updateBio, updateProfession, setSkills, appConnections, toggleAppConnection, handleAppUsernameChange }}>{children}</ProfileContext.Provider>;
+  return <ProfileContext.Provider value={{ avatarURL, avatarUploaded, firstName, lastName, userName, bio, profession, skills, updateAvatarURL, updateAvatarUploaded, updateFirstName, updateLastName, updateUserName, updateBio, updateProfession, setSkills, appConnections, toggleAppConnection, connectAppConnection, disConnectAppConnection, handleAppUsernameChange }}>{children}</ProfileContext.Provider>;
 };
 
 export const UserProfile = () => useContext(ProfileContext);
