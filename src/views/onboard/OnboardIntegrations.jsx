@@ -1,31 +1,73 @@
 /************************************************************ IMPORTS ************************************************************/
 
 import * as React from 'react';
+import { Loader2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/profolyo-dark.svg';
 import { Progress } from '../../components/Progress';
 import { Button } from '../../components/button';
-import { RiArrowRightSLine, RiArrowLeftSLine } from '@remixicon/react';
+import { RiArrowLeftSLine } from '@remixicon/react';
 import OnboardMenu from '../../components/OnboardMenu';
 import { MarqueeIntegrations } from '../../components/MarqueeIntegrations';
 import ConnectedApps from './ConnectApps';
+import { UserProfile } from '../../hooks/ProfileContext';
+import { UserAuth } from '../../hooks/AuthContext';
+import { supabase } from '../../utils/Supabase';
+import { showToast } from '../../components/Toasts';
+import { useNavigate } from 'react-router-dom';
 
 /************************************************************ IMPORTS ************************************************************/
 
 const OnboardIntegrations = ({ decrementOnboardStep }) => {
+  const navigate = useNavigate();
+  const { session } = UserAuth();
+  const { avatarURL, firstName, lastName, userName, bio, profession, skills, appConnections } = UserProfile();
+  const VITE_SUPABASE_PROFOLYO_USERS_TABLENAME = import.meta.env.VITE_SUPABASE_PROFOLYO_USERS_TABLENAME;
+  const VITE_SUPABASE_PROFOLYO_USERNAMES_TABLENAME = import.meta.env.VITE_SUPABASE_PROFOLYO_USERNAMES_TABLENAME;
+
   const [progress, setProgress] = React.useState(0);
+  const [doneLoading, setDoneLoading] = React.useState(false);
 
   React.useEffect(() => {
     const timer = setTimeout(() => setProgress(50), 500);
     return () => clearTimeout(timer);
   }, []);
 
-  const handleDone = () => {
-    const timer = setTimeout(() => {
+  const handleDone = async () => {
+    setDoneLoading(true);
+    try {
+      const { error } = await supabase.from(VITE_SUPABASE_PROFOLYO_USERS_TABLENAME).insert({
+        Created: new Date().toLocaleString('en-US'),
+        Updated: new Date().toLocaleString('en-US'),
+        FirstName: firstName,
+        LastName: lastName,
+        UserName: userName,
+        EmailID: session?.user_metadata?.email,
+        AvatarURL: avatarURL,
+        UserBio: bio,
+        UserProfession: profession,
+        UserSkills: skills,
+        ConnectedApps: appConnections,
+        UserID: session?.id,
+      });
+      if (error) throw error;
+
+      await supabase.from(VITE_SUPABASE_PROFOLYO_USERNAMES_TABLENAME).insert({
+        Created: new Date().toLocaleString('en-US'),
+        Updated: new Date().toLocaleString('en-US'),
+        UserName: userName,
+        UserID: session?.id,
+      });
+
       setProgress(100);
-      console.log('Done');
-    }, 500);
-    return () => clearTimeout(timer);
+      showToast('Profile Updated!', 'success');
+      navigate('/editor');
+    } catch (error) {
+      console.error(error.message);
+      showToast(`Error updating profile : ${error.message}`, 'error');
+    } finally {
+      setDoneLoading(false);
+    }
   };
 
   return (
@@ -72,9 +114,17 @@ const OnboardIntegrations = ({ decrementOnboardStep }) => {
               <RiArrowLeftSLine className="h-6 w-6" />
               Previous
             </Button>
-            <Button className="m-8" onClick={handleDone}>
-              Done
-            </Button>
+            {doneLoading && (
+              <Button className="m-8" disabled>
+                <Loader2 className="h-4 w-4 animate-spin" />
+                Done
+              </Button>
+            )}
+            {!doneLoading && (
+              <Button className="m-8" onClick={handleDone}>
+                Done
+              </Button>
+            )}
           </div>
         </div>
       </div>
