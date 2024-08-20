@@ -8,6 +8,7 @@ import { Button } from '../../components/button';
 import { RiArrowRightSLine, RiArrowLeftSLine } from '@remixicon/react';
 import OnboardMenu from '../../components/OnboardMenu';
 import { MarqueeIntegrations } from '../../components/MarqueeIntegrations';
+import ConnectedApps from './ConnectApps';
 
 /************************************************************ IMPORTS ************************************************************/
 
@@ -63,6 +64,9 @@ const OnboardIntegrations = ({ decrementOnboardStep }) => {
             <p className="text-black text-2xl font-bold -mt-16">Integrations and Connected Apps</p>
             <p className="text-black text-zinc-600 mt-1">Supercharge your profolyo and connect the apps you use everyday.</p>
           </div>
+
+          <ConnectedApps />
+
           <div className="fixed bottom-0 h-20 w-3/5 backdrop-blur bg-white/50 flex justify-between items-center">
             <Button className="m-8" variant="outline" onClick={decrementOnboardStep}>
               <RiArrowLeftSLine className="h-6 w-6" />

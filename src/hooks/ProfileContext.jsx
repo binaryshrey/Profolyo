@@ -1,6 +1,7 @@
 /************************************************************ IMPORTS ************************************************************/
 
 import React, { createContext, useState, useContext } from 'react';
+import { integrations } from '../services/data/integrations';
 
 /************************************************************ IMPORTS ************************************************************/
 
@@ -15,6 +16,12 @@ export const ProfileContextProvider = ({ children }) => {
   const [bio, setBio] = React.useState('');
   const [profession, setProfession] = React.useState('Developer');
   const [skills, setSkills] = React.useState([]);
+  const [appConnections, setAppConnections] = useState(
+    integrations.reduce((acc, app) => {
+      acc[app.name] = { connected: false, username: '' };
+      return acc;
+    }, {}),
+  );
 
   const updateAvatarURL = (val) => setAvatarURL(val);
   const updateAvatarUploaded = (val) => setAvatarUploaded(val);
@@ -23,8 +30,26 @@ export const ProfileContextProvider = ({ children }) => {
   const updateUserName = (val) => setUserName(val);
   const updateBio = (val) => setBio(val);
   const updateProfession = (val) => setProfession(val);
+  const toggleAppConnection = (appName) => {
+    setAppConnections((prevState) => ({
+      ...prevState,
+      [appName]: {
+        ...prevState[appName],
+        connected: !prevState[appName].connected,
+      },
+    }));
+  };
+  const handleAppUsernameChange = (appName, username) => {
+    setAppConnections((prevState) => ({
+      ...prevState,
+      [appName]: {
+        ...prevState[appName],
+        username,
+      },
+    }));
+  };
 
-  return <ProfileContext.Provider value={{ avatarURL, avatarUploaded, firstName, lastName, userName, bio, profession, skills, updateAvatarURL, updateAvatarUploaded, updateFirstName, updateLastName, updateUserName, updateBio, updateProfession, setSkills }}>{children}</ProfileContext.Provider>;
+  return <ProfileContext.Provider value={{ avatarURL, avatarUploaded, firstName, lastName, userName, bio, profession, skills, updateAvatarURL, updateAvatarUploaded, updateFirstName, updateLastName, updateUserName, updateBio, updateProfession, setSkills, appConnections, toggleAppConnection, handleAppUsernameChange }}>{children}</ProfileContext.Provider>;
 };
 
 export const UserProfile = () => useContext(ProfileContext);

@@ -20,13 +20,7 @@ export const integrations = [
         'description': 'Dribbble is a community of designers sharing screenshots of their work, process, and projects.',
         'type': 'Design'
     },
-    {
-        'name': 'Dropbox',
-        'url': 'https://www.dropbox.com/',
-        'img': 'https://raw.githubusercontent.com/binaryshrey/Profolyo/feat/onboarding/src/assets/integrations/dropbox.svg',
-        'description': 'Dropbox is a file hosting service that offers cloud storage, file synchronization, personal cloud, and client software.',
-        'type': 'Other'
-    },
+    
     {
         'name': 'Facebook',
         'url': 'https://www.facebook.com/',
@@ -55,13 +49,7 @@ export const integrations = [
         'description': 'GitLab is a web-based DevOps lifecycle tool that provides a Git repository manager providing wiki, issue-tracking and CI/CD pipeline features, using an open-source license.',
         'type': 'Developer'
     },
-    {
-        'name': 'Google',
-        'url': 'https://www.google.com/',
-        'img': 'https://raw.githubusercontent.com/binaryshrey/Profolyo/feat/onboarding/src/assets/integrations/google.svg',
-        'description': 'Google is a multinational corporation that specializes in Internet-related services and products.',
-        'type': 'Other'
-    },
+    
     {
         'name': 'LinkedIn',
         'url': 'https://www.linkedin.com/',

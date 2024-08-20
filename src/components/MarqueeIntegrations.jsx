@@ -5,22 +5,22 @@ export const MarqueeIntegrations = () => {
   console.log(integrations);
   return (
     <div className="relative flex h-[400px] w-full flex-col items-center justify-center overflow-hidden">
-      <Marquee pauseOnHover className="[--duration:30s]">
+      <Marquee pauseOnHover className="[--duration:60s]">
         {integrations.map((item) => (
           <img key={item.name} src={item.img} alt={item.name} className="w-16 h-16" />
         ))}
       </Marquee>
-      <Marquee reverse pauseOnHover className="[--duration:25s]">
+      <Marquee reverse pauseOnHover className="[--duration:50s]">
         {integrations.map((item) => (
           <img key={item.name} src={item.img} alt={item.name} className="w-16 h-16" />
         ))}
       </Marquee>
-      <Marquee pauseOnHover className="[--duration:20s]">
+      <Marquee pauseOnHover className="[--duration:40s]">
         {integrations.map((item) => (
           <img key={item.name} src={item.img} alt={item.name} className="w-16 h-16" />
         ))}
       </Marquee>
-      <Marquee reverse pauseOnHover className="[--duration:15s]">
+      <Marquee reverse pauseOnHover className="[--duration:30s]">
         {integrations.map((item) => (
           <img key={item.name} src={item.img} alt={item.name} className="w-16 h-16" />
         ))}
