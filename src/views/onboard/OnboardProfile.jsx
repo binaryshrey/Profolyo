@@ -45,14 +45,14 @@ const OnboardProfile = ({ incrementOnboardStep }) => {
           <div className="h-screen flex flex-col justify-between">
             <Link to="/">
               <div className="flex items-center">
-                <img src={logo} alt="Profolyo" className="h-6 ml-8 mt-6" />
+                <img src={logo} alt="Profolyo" className="h-6 ml-6 mt-6" />
                 <h4 className="ml-2 text-gray-900 mt-6 text-xl">Profolyo</h4>
               </div>
             </Link>
 
             <Orbits />
 
-            <div className="flex flex-col gap-2 m-8 mb-12">
+            <div className="flex flex-col gap-2 m-6 mb-12">
               <p className="text-black font-semibold">Step One</p>
               <p className="text-black text-2xl font-bold">Create Your Account</p>
               <p className="text-black text-zinc-600">
@@ -70,13 +70,13 @@ const OnboardProfile = ({ incrementOnboardStep }) => {
           <div className="flex justify-end m-6">
             <OnboardMenu />
           </div>
-          <div className="m-8">
+          <div className="m-6">
             <p className="text-black text-2xl font-bold -mt-16">Configure and Personalize</p>
             <p className="text-black text-zinc-600 mt-1">Let's get your profolyo set up in less than a minute.</p>
           </div>
           <ProfileForm />
           <div className="fixed bottom-0 h-20 w-3/5 backdrop-blur-sm bg-white/50 flex justify-end items-center">
-            <Button className="m-8" onClick={validateProfileForm}>
+            <Button className="m-6" onClick={validateProfileForm}>
               Next
               <RiArrowRightSLine className="h-6 w-6" />
             </Button>
