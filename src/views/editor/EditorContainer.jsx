@@ -77,10 +77,10 @@ const EditorContainer = () => {
       {!loading && userData.length > 0 && (
         <div className="flex mt-4">
           <div className="w-4/5 h-screen bg-zinc-50 border border-2 rounded-xl border-zinc-200">
-            <EditorContent userData={userData} />
+            <EditorContent userData={userData[0]} />
           </div>
           <div className="w-1/5 h-screen ">
-            <EditorController userData={userData} />
+            <EditorController userData={userData[0]} />
           </div>
         </div>
       )}

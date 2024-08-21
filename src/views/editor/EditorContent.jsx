@@ -3,12 +3,13 @@ import { Button } from '../../components/button';
 import { RiMacLine, RiTabletLine } from '@remixicon/react';
 
 const EditorContent = ({ userData }) => {
+  console.log(userData);
   return (
     <div>
       <div className="flex justify-between items-center">
         <div></div>
         <div className="bg-zinc-200 rounded-md w-80 m-2 flex justify-center">
-          <p className="text-sm text-zinc-700 p-1">profolyo.me/shreyansh/</p>
+          <p className="text-sm text-zinc-700 p-1">profolyo.me/{userData?.UserName}/</p>
         </div>
         <div className="mr-2">
           <Button size="xs" variant="ghost">
