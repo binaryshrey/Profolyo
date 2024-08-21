@@ -1,6 +1,6 @@
 import React from 'react';
 
-const EditorController = () => {
+const EditorController = ({ userData }) => {
   return <div>EditorController</div>;
 };
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from '../../components/button';
 import { RiMacLine, RiTabletLine } from '@remixicon/react';
 
-const EditorContent = () => {
+const EditorContent = ({ userData }) => {
   return (
     <div>
       <div className="flex justify-between items-center">
