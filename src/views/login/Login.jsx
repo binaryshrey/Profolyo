@@ -11,12 +11,14 @@ import loginBanner from '../../assets/login-banner.png';
 import { UserAuth } from '../../hooks/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { showToast } from '../../components/Toasts';
+import { supabase } from '../../utils/Supabase';
 
 /************************************************************ IMPORTS ************************************************************/
 
 const Login = () => {
   const navigate = useNavigate();
   const { signInFlow, session } = UserAuth();
+  const VITE_SUPABASE_PROFOLYO_USERS_TABLENAME = import.meta.env.VITE_SUPABASE_PROFOLYO_USERS_TABLENAME;
 
   const handleSignInFlow = async (provider) => {
     try {
@@ -28,12 +30,23 @@ const Login = () => {
   };
 
   React.useEffect(() => {
-    if (session) {
-      if (Object.keys(session).length !== 0) {
-        localStorage.setItem('email', JSON.stringify(session.email));
-        navigate('/onboard');
+    const handleNavigate = async () => {
+      if (session) {
+        if (Object.keys(session).length !== 0) {
+          localStorage.setItem('email', JSON.stringify(session.email));
+          const { data, error } = await supabase.from(VITE_SUPABASE_PROFOLYO_USERS_TABLENAME).select().eq('EmailID', session.email);
+          if (error) {
+            showToast(error.message, 'error');
+          }
+          if (data?.length > 0) {
+            data[0].ProfolyoCreated ? navigate('/dashboard') : navigate('/editor');
+          } else {
+            navigate('/onboard');
+          }
+        }
       }
-    }
+    };
+    handleNavigate();
   }, [session]);
 
   return (

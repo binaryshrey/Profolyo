@@ -11,12 +11,14 @@ import loginBanner from '../../assets/login-banner.png';
 import { UserAuth } from '../../hooks/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { showToast } from '../../components/Toasts';
+import { supabase } from '../../utils/Supabase';
 
 /************************************************************ IMPORTS ************************************************************/
 
 const Register = () => {
   const navigate = useNavigate();
   const { signInFlow, session } = UserAuth();
+  const VITE_SUPABASE_PROFOLYO_USERS_TABLENAME = import.meta.env.VITE_SUPABASE_PROFOLYO_USERS_TABLENAME;
 
   const handleSignUpFlow = async (provider) => {
     try {
@@ -28,14 +30,24 @@ const Register = () => {
   };
 
   React.useEffect(() => {
-    if (session) {
-      if (Object.keys(session).length !== 0) {
-        localStorage.setItem('email', JSON.stringify(session.email));
-        navigate('/onboard');
+    const handleNavigate = async () => {
+      if (session) {
+        if (Object.keys(session).length !== 0) {
+          localStorage.setItem('email', JSON.stringify(session.email));
+          const { data, error } = await supabase.from(VITE_SUPABASE_PROFOLYO_USERS_TABLENAME).select().eq('EmailID', session.email);
+          if (error) {
+            showToast(error.message, 'error');
+          }
+          if (data?.length > 0) {
+            data[0].ProfolyoCreated ? navigate('/dashboard') : navigate('/editor');
+          } else {
+            navigate('/onboard');
+          }
+        }
       }
-    }
+    };
+    handleNavigate();
   }, [session]);
-
   return (
     <div className="isolate bg-white h-screen">
       <div className="absolute inset-0 -z-10 w-full bg-white bg-[radial-gradient(#e3e4e7_1px,transparent_1px)] [background-size:16px_16px]"></div>
@@ -44,8 +56,8 @@ const Register = () => {
           <div className="h-screen flex flex-col">
             <Link to="/">
               <div className="flex items-center">
-                <img src={logo} alt="Profolyo" className="h-6 ml-8 mt-7" />
-                <h4 className="ml-2 text-gray-900 mt-7 text-xl">Profolyo</h4>
+                <img src={logo} alt="Profolyo" className="h-6 ml-8 mt-6" />
+                <h4 className="ml-2 text-gray-900 mt-6 text-xl">Profolyo</h4>
               </div>
             </Link>
 
