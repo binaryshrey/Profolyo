@@ -3,7 +3,7 @@ import { Button } from '../../components/button';
 import OnboardMenu from '../../components/OnboardMenu';
 import logo from '../../assets/profolyo-dark.svg';
 import { Link } from 'react-router-dom';
-import { RiPlayLine, RiSettingsLine, RiHome6Line } from '@remixicon/react';
+import { RiPlayLine, RiSettingsLine, RiHome6Line, RiApps2Line } from '@remixicon/react';
 import EditorContent from './EditorContent';
 import { UserAuth } from '../../hooks/AuthContext';
 import EditorController from './EditorController';
@@ -59,6 +59,9 @@ const EditorContainer = () => {
             </Button>
             <Button size="xs" variant="outline">
               <RiSettingsLine className="h-4 w-4" aria-hidden="true" />
+            </Button>
+            <Button size="xs" variant="outline">
+              <RiApps2Line className="h-4 w-4" aria-hidden="true" />
             </Button>
             <Button size="xs" variant="outline">
               <RiPlayLine className="h-5 w-5" aria-hidden="true" />
