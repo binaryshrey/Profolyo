@@ -10,6 +10,8 @@ const ProfileContext = createContext();
 export const ProfileContextProvider = ({ children }) => {
   const [avatarURL, setAvatarURL] = useState('');
   const [avatarUploaded, setAvatarUploaded] = useState(false);
+  const [resumeURL, setResumeURL] = useState('');
+  const [resumeUploaded, setResumeUploaded] = useState(false);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [userName, setUserName] = React.useState('');
@@ -25,6 +27,8 @@ export const ProfileContextProvider = ({ children }) => {
 
   const updateAvatarURL = (val) => setAvatarURL(val);
   const updateAvatarUploaded = (val) => setAvatarUploaded(val);
+  const updateResumeURL = (val) => setResumeURL(val);
+  const updateResumeUploaded = (val) => setResumeUploaded(val);
   const updateFirstName = (val) => setFirstName(val);
   const updateLastName = (val) => setLastName(val);
   const updateUserName = (val) => setUserName(val);
@@ -68,7 +72,7 @@ export const ProfileContextProvider = ({ children }) => {
     }));
   };
 
-  return <ProfileContext.Provider value={{ avatarURL, avatarUploaded, firstName, lastName, userName, bio, profession, skills, updateAvatarURL, updateAvatarUploaded, updateFirstName, updateLastName, updateUserName, updateBio, updateProfession, setSkills, appConnections, toggleAppConnection, connectAppConnection, disConnectAppConnection, handleAppUsernameChange }}>{children}</ProfileContext.Provider>;
+  return <ProfileContext.Provider value={{ avatarURL, avatarUploaded, firstName, lastName, userName, bio, profession, skills, updateAvatarURL, updateAvatarUploaded, updateFirstName, updateLastName, updateUserName, updateBio, updateProfession, setSkills, appConnections, toggleAppConnection, connectAppConnection, disConnectAppConnection, handleAppUsernameChange, resumeURL, resumeUploaded, updateResumeURL, updateResumeUploaded }}>{children}</ProfileContext.Provider>;
 };
 
 export const UserProfile = () => useContext(ProfileContext);

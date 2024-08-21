@@ -15,7 +15,7 @@ import { UserProfile } from '../../hooks/ProfileContext';
 /************************************************************ IMPORTS ************************************************************/
 
 const OnboardProfile = ({ incrementOnboardStep }) => {
-  const { avatarURL, firstName, lastName, userName, bio, profession, skills } = UserProfile();
+  const { avatarURL, firstName, lastName, userName, bio, profession, skills, resumeURL } = UserProfile();
 
   const [progress, setProgress] = React.useState(0);
 
@@ -32,7 +32,7 @@ const OnboardProfile = ({ incrementOnboardStep }) => {
       showToast('Please add between 3 to 10 skills.', 'error');
       return false;
     } else {
-      console.log(avatarURL, firstName, lastName, userName, bio, profession, skills);
+      console.log(avatarURL, firstName, lastName, userName, bio, profession, skills, resumeURL);
       setProgress(100);
       incrementOnboardStep();
     }

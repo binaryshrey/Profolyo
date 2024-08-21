@@ -26,11 +26,12 @@ const ProfileForm = () => {
   const SUPABASE_STORAGE_URL = import.meta.env.VITE_SUPABASE_STORAGE_URL;
   const VITE_SUPABASE_PROFOLYO_USERNAMES_TABLENAME = import.meta.env.VITE_SUPABASE_PROFOLYO_USERNAMES_TABLENAME;
   const users = ['Developer', 'Designer', 'Marketer', 'Founder', 'Student', 'Indie Hacker', 'Data Scientist', 'Freelancer', 'Other'];
-  const { avatarURL, avatarUploaded, firstName, lastName, userName, bio, profession, skills, updateAvatarURL, updateAvatarUploaded, updateFirstName, updateLastName, updateUserName, updateBio, updateProfession, setSkills } = UserProfile();
+  const { avatarURL, avatarUploaded, firstName, lastName, userName, bio, profession, skills, updateAvatarURL, updateAvatarUploaded, updateFirstName, updateLastName, updateUserName, updateBio, updateProfession, setSkills, resumeURL, resumeUploaded, updateResumeURL, updateResumeUploaded } = UserProfile();
 
   // state
   const [loadingAIBio, setLoadingAIBio] = React.useState(false);
   const [avatarFile, setAvatarFile] = React.useState(null);
+  const [resumeFile, setResumeFile] = React.useState(null);
   const [userNameCheckLoading, setUserNameCheckLoading] = React.useState(false);
   const [showUserNameCheck, setShowUserNameCheck] = React.useState(false);
   const [userNameAvailable, setUserNameAvailable] = React.useState(false);
@@ -47,6 +48,9 @@ const ProfileForm = () => {
       const { fName, lName } = splitName(name);
       updateFirstName(fName);
       updateLastName(lName);
+    }
+    if (resumeUploaded) {
+      updateResumeURL(resumeURL);
     }
   }, [session]);
 
@@ -93,7 +97,7 @@ const ProfileForm = () => {
         upsert: false,
       });
       if (error) throw error;
-      updateAvatarURL(`${SUPABASE_STORAGE_URL}/avatars/${fileName}`);
+      updateAvatarURL(`${SUPABASE_STORAGE_URL}avatars/${fileName}`);
       updateAvatarUploaded(true);
       showToast('Avatar Uploaded Successfully!', 'success');
     } catch (error) {
@@ -133,6 +137,44 @@ const ProfileForm = () => {
     return () => clearTimeout(timer);
   }, [userName]);
 
+  const handleResumeFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+
+    if (!selectedFile) {
+      showToast('No file selected.', 'error');
+      return;
+    } else if (!selectedFile.type.startsWith('application/pdf')) {
+      showToast('Selected file is not a pdf.', 'error');
+      return;
+    } else if (selectedFile.size > 5 * 1024 * 1024) {
+      showToast('File size must be less than 5MB.', 'error');
+      return;
+    } else {
+      setResumeFile(selectedFile);
+      uploadResume(selectedFile);
+    }
+  };
+
+  const uploadResume = async (selectedFile) => {
+    if (!selectedFile) return;
+    showToast('Uploading Resume.', 'info');
+
+    try {
+      const fileName = `${session?.user_metadata?.name}-${Date.now()}-${selectedFile.name}`;
+      const { data, error } = await supabase.storage.from('resumes').upload(fileName, selectedFile, {
+        cacheControl: '3600',
+        upsert: false,
+      });
+      if (error) throw error;
+      updateResumeURL(`${SUPABASE_STORAGE_URL}resumes/${fileName}`);
+      updateResumeUploaded(true);
+      showToast('Resume Uploaded Successfully!', 'success');
+    } catch (error) {
+      console.error('Error uploading file:', error.message);
+      showToast(`Error uploading file: ${error.message}`, 'error');
+    }
+  };
+
   return (
     <ScrollArea className="h-4/5 overflow-hidden">
       <div className="p-8 overflow-hidden">
@@ -159,12 +201,14 @@ const ProfileForm = () => {
         </div>
 
         <div className="flex justify-between gap-8">
+          {/* first name */}
           <div className="w-full">
             <Label htmlFor="firstName">
               First Name<span className="text-red-700">*</span>
             </Label>
             <Input type="text" id="firstName" placeholder="Luke" maxLength="10" value={firstName} onChange={() => updateFirstName(event.target.value)} required />
           </div>
+          {/* last name */}
           <div className="w-full">
             <Label htmlFor="lastName">
               Last Name<span className="text-red-700">*</span>
@@ -172,6 +216,8 @@ const ProfileForm = () => {
             <Input type="text" id="lastName" placeholder="Skywalker" maxLength="10" value={lastName} onChange={() => updateLastName(event.target.value)} required />
           </div>
         </div>
+
+        {/* user name */}
         <div className="flex justify-between gap-8 mt-8">
           <div className="w-full">
             <Label htmlFor="userName">
@@ -196,12 +242,34 @@ const ProfileForm = () => {
             </p>
           </div>
 
+          {/* email id */}
           <div className="w-full">
             <Label htmlFor="emailID">
               Email ID<span className="text-red-700">*</span>
             </Label>
             <Input type="text" id="emailID" defaultValue={session?.user_metadata?.email} readOnly required />
           </div>
+        </div>
+
+        {/* resume */}
+
+        <div className="w-full mt-8">
+          <div className="">
+            <Label htmlFor="resume">
+              <div className="flex justify-between">
+                <span>
+                  Resume <span className="text-xs text-zinc-400">(Optional)</span>
+                </span>
+                {resumeUploaded && (
+                  <div className="flex gap-2">
+                    <span className="text-xs text-zinc-400">Resume Uploaded</span>
+                    <RiCheckboxCircleFill className="h-4 w-4 text-green-600" />
+                  </div>
+                )}
+              </div>
+            </Label>
+          </div>
+          <Input id="resume" type="file" onChange={handleResumeFileChange} />
         </div>
 
         <div className="w-full mt-8">

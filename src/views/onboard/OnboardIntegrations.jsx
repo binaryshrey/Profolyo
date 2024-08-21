@@ -21,7 +21,7 @@ import { useNavigate } from 'react-router-dom';
 const OnboardIntegrations = ({ decrementOnboardStep }) => {
   const navigate = useNavigate();
   const { session } = UserAuth();
-  const { avatarURL, firstName, lastName, userName, bio, profession, skills, appConnections } = UserProfile();
+  const { avatarURL, firstName, lastName, userName, bio, profession, skills, appConnections, resumeURL } = UserProfile();
   const VITE_SUPABASE_PROFOLYO_USERS_TABLENAME = import.meta.env.VITE_SUPABASE_PROFOLYO_USERS_TABLENAME;
   const VITE_SUPABASE_PROFOLYO_USERNAMES_TABLENAME = import.meta.env.VITE_SUPABASE_PROFOLYO_USERNAMES_TABLENAME;
 
@@ -51,6 +51,7 @@ const OnboardIntegrations = ({ decrementOnboardStep }) => {
         UserID: session?.id,
         Onboarded: true,
         ProfolyoCreated: false,
+        UserResumeURL: resumeURL,
       });
       if (error) throw error;
 
