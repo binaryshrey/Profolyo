@@ -31,7 +31,6 @@ const EditorContainer = () => {
             throw error;
           }
           setUserData(data);
-          console.log(data);
         } else {
           navigate('/login');
         }
@@ -63,9 +62,11 @@ const EditorContainer = () => {
             <Button size="xs" variant="outline">
               <RiApps2Line className="h-4 w-4" aria-hidden="true" />
             </Button>
-            <Button size="xs" variant="outline">
-              <RiPlayLine className="h-5 w-5" aria-hidden="true" />
-            </Button>
+            <Link to="/preview" target="_blank" rel="noopener noreferrer">
+              <Button size="xs" variant="outline">
+                <RiPlayLine className="h-5 w-5" aria-hidden="true" />
+              </Button>
+            </Link>
             <Button size="xs">Publish</Button>
           </div>
         </div>

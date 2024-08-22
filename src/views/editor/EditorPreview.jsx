@@ -52,7 +52,7 @@ const breakpoints = {
   lg: 1200,
 };
 
-const EditorContentLayout = () => {
+const EditorPreview = () => {
   const [isDragging, setIsDragging] = React.useState(false);
 
   const handleDragStart = () => {
@@ -86,4 +86,4 @@ const EditorContentLayout = () => {
   );
 };
 
-export default EditorContentLayout;
+export default EditorPreview;

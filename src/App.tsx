@@ -10,6 +10,7 @@ const Register = React.lazy(() => import('./views/register/Register'));
 const Redirect = React.lazy(() => import('./views/redirect/Redirect'));
 const OnboardContainer = React.lazy(() => import('./views/onboard/OnboardContainer'));
 const EditorContainer = React.lazy(() => import('./views/editor/EditorContainer'));
+const EditorPreview = React.lazy(() => import('./views/editor/EditorPreview'));
 
 const App = () => {
   return (
@@ -61,6 +62,16 @@ const App = () => {
                   <React.Suspense fallback={<></>}>
                     <ProtectedRoute>
                       <EditorContainer />
+                    </ProtectedRoute>
+                  </React.Suspense>
+                }
+              />
+              <Route
+                path="/preview"
+                element={
+                  <React.Suspense fallback={<></>}>
+                    <ProtectedRoute>
+                      <EditorPreview />
                     </ProtectedRoute>
                   </React.Suspense>
                 }
