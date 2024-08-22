@@ -88,6 +88,10 @@ export default {
         marquee: "marquee var(--duration) linear infinite",
 
       },
+      width: {
+        '70/100': '70%',
+        '30/100': '30%'
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

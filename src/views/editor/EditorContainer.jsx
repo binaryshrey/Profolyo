@@ -3,7 +3,7 @@ import { Button } from '../../components/button';
 import OnboardMenu from '../../components/OnboardMenu';
 import logo from '../../assets/profolyo-dark.svg';
 import { Link } from 'react-router-dom';
-import { RiPlayLine, RiSettingsLine, RiHome6Line, RiApps2Line } from '@remixicon/react';
+import { RiPlayLine, RiSettingsLine, RiHome6Line, RiApps2Line, RiInformationLine } from '@remixicon/react';
 import EditorContent from './EditorContent';
 import { UserAuth } from '../../hooks/AuthContext';
 import EditorController from './EditorController';
@@ -78,14 +78,21 @@ const EditorContainer = () => {
         </div>
       )}
       {!loading && userData.length > 0 && (
-        <div className="flex mt-4">
-          <div className="w-4/5 h-screen bg-zinc-50 border border-2 rounded-xl border-zinc-200">
-            <EditorContent userData={userData[0]} />
+        <>
+          <div className="p-4 text-xs flex gap-2 justify-center items-center bg-zinc-200 mt-4 rounded-xl sm:hidden">
+            <RiInformationLine className="h-6 w-6" aria-hidden="true" />
+            <p>You are currently in mobile view. Switch to tablet or desktop view to edit widgets</p>
           </div>
-          <div className="w-1/5 h-screen ">
-            <EditorController userData={userData[0]} />
+
+          <div className="flex mt-4">
+            <div className="w-full sm:w-70/100 lg:w-4/5 h-screen bg-zinc-50 border border-2 rounded-xl border-zinc-200">
+              <EditorContent userData={userData[0]} />
+            </div>
+            <div className="w-30/100 hidden sm:block lg:w-1/5 h-screen ">
+              <EditorController userData={userData[0]} />
+            </div>
           </div>
-        </div>
+        </>
       )}
       {!loading && userData.length == 0 && (
         <div className="w-screen h-screen flex justify-center items-center">
