@@ -28,7 +28,7 @@ const EditorContent = ({ userData }) => {
       </div>
       <div className="border border-zinc-200"></div>
       <div className="overflow-y-auto h-84vh">
-        <div className={`max-w-5xl mx-auto px-12 w-full ${layoutMode === 'mobile' ? `sm:px-72` : 'sm:px-8'}`}>
+        <div className={`bg-gray-200 mx-auto w-full ${layoutMode === 'desktop' ? 'max-w-6xl' : 'max-w-sm'}`}>
           <EditorContentLayout />
         </div>
       </div>

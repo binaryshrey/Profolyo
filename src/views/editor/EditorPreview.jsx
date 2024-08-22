@@ -64,8 +64,8 @@ const EditorPreview = () => {
   };
 
   return (
-    <div className="bg-gray-200">
-      <ResponsiveGridLayout className="layout" breakpoints={breakpoints} layouts={layout} cols={cols} rowHeight={160} width={120} isResizable={false} isDraggable={true} onDragStart={handleDragStart} onDragStop={handleDragStop}>
+    <div>
+      <ResponsiveGridLayout className="layout" breakpoints={breakpoints} layouts={layout} cols={cols} rowHeight={120} width={120} isResizable={false} isDraggable={true} onDragStart={handleDragStart} onDragStop={handleDragStop}>
         <div key="a" className={`bg-blue-300 rounded-lg  flex items-center justify-center h-full ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}>
           Small Square
         </div>
