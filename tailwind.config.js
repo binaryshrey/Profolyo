@@ -92,6 +92,10 @@ export default {
         '70/100': '70%',
         '30/100': '30%'
       },
+      height: {
+        '90vh': '90vh',
+        '84vh': '84vh',
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],

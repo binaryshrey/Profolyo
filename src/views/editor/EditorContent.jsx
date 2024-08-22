@@ -7,7 +7,7 @@ import { ScrollArea } from '../../components/scroll-area';
 const EditorContent = ({ userData }) => {
   console.log(userData);
   return (
-    <div>
+    <div className="">
       <div className="flex justify-between items-center">
         <div></div>
         <div className="bg-zinc-200 rounded-md w-56 sm:w-80 m-2 flex justify-center">
@@ -23,7 +23,13 @@ const EditorContent = ({ userData }) => {
         </div>
       </div>
       <div className="border border-zinc-200"></div>
-      <div className="max-w-5xl mx-auto md:px-8 px-4">{/* <EditorContentLayout /> */}</div>
+      <div className="overflow-y-auto h-84vh">
+        <div className="max-w-5xl mx-auto md:px-8 px-4 w-full">
+          <EditorContentLayout />
+          <EditorContentLayout />
+          <EditorContentLayout />
+        </div>
+      </div>
     </div>
   );
 };
