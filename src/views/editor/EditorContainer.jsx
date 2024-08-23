@@ -11,6 +11,7 @@ import { showToast } from '../../components/Toasts';
 import { supabase } from '../../utils/Supabase';
 import { useNavigate } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../../components/tooltip';
 
 const EditorContainer = () => {
   const { session } = UserAuth();
@@ -53,20 +54,60 @@ const EditorContainer = () => {
         </Link>
         <div className="mt-6">
           <div className="flex gap-2">
-            <Button size="xs" variant="outline">
-              <RiHome6Line className="h-4 w-4" aria-hidden="true" />
-            </Button>
-            <Button size="xs" variant="outline">
-              <RiSettingsLine className="h-4 w-4" aria-hidden="true" />
-            </Button>
-            <Button size="xs" variant="outline">
-              <RiApps2Line className="h-4 w-4" aria-hidden="true" />
-            </Button>
-            <Link to="/preview" target="_blank" rel="noopener noreferrer">
-              <Button size="xs" variant="outline">
-                <RiPlayLine className="h-5 w-5" aria-hidden="true" />
-              </Button>
-            </Link>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button size="xs" variant="outline">
+                    <RiHome6Line className="h-4 w-4" aria-hidden="true" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Dashboard</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button size="xs" variant="outline">
+                    <RiSettingsLine className="h-4 w-4" aria-hidden="true" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Settings</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button size="xs" variant="outline">
+                    <RiApps2Line className="h-4 w-4" aria-hidden="true" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Widgets</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Link to="/preview" target="_blank" rel="noopener noreferrer">
+                    <Button size="xs" variant="outline">
+                      <RiPlayLine className="h-5 w-5" aria-hidden="true" />
+                    </Button>
+                  </Link>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Preview</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+
             <Button size="xs">Publish</Button>
           </div>
         </div>
