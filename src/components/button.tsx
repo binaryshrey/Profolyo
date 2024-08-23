@@ -13,6 +13,7 @@ const buttonVariants = cva('inline-flex items-center justify-center whitespace-n
       secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
       ghost: '',
       link: 'text-primary underline-offset-4 hover:underline',
+      outlineDark: 'border border-zinc-800 bg-zinc-600 hover:bg-zinc-700 text-white hover:text-white',
     },
     size: {
       default: 'h-10 px-4 py-2 text-sm',

@@ -2,6 +2,8 @@ import React, { useRef, useEffect } from 'react';
 import { Responsive, WidthProvider } from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
+import { Button } from '../../components/button';
+import { ToggleGroup, ToggleGroupItem } from '../../components/toggle-group';
 
 // Wrap Responsive with WidthProvider
 const ResponsiveGridLayout = WidthProvider(Responsive);
@@ -68,11 +70,35 @@ const EditorContentLayout = () => {
     setIsDragging(false);
   };
 
+  const widgetSizeToggle = ({ defValue }) => {
+    return (
+      <div className="bg-black w-12 h-48 rounded-full absolute items-center flex flex-col justify-center -ml-12">
+        <ToggleGroup type="single" className="flex flex-col" defaultValue={defValue}>
+          <ToggleGroupItem value="small" size="xs" variant="outlineDark" className="w-8">
+            <p className="text-sm">S</p>
+          </ToggleGroupItem>
+          <ToggleGroupItem value="medium" size="xs" variant="outlineDark" className="w-8">
+            <p className="text-sm">M</p>
+          </ToggleGroupItem>
+          <ToggleGroupItem value="large" size="xs" variant="outlineDark" className="w-8">
+            <p className="text-sm">L</p>
+          </ToggleGroupItem>
+          <ToggleGroupItem value="extralarge" size="xs" variant="outlineDark" className="w-8">
+            <p className="text-sm">XL</p>
+          </ToggleGroupItem>
+        </ToggleGroup>
+      </div>
+    );
+  };
+
   return (
     <div>
       <ResponsiveGridLayout className="layout" breakpoints={breakpoints} layouts={layout} cols={cols} rowHeight={120} width={120} isResizable={false} isDraggable={true} onDragStart={handleDragStart} onDragStop={handleDragStop}>
-        <div key="a" onClick={() => handleSelectedWidget('a')} className={`bg-blue-300 rounded-lg  flex items-center justify-center h-full ${isDragging ? 'cursor-grabbing' : 'cursor-pointer'} ${selectedWidget === 'a' ? 'border-4 border-black' : ''}`}>
-          Small Square
+        <div key="a" className="relative">
+          {selectedWidget === 'a' && widgetSizeToggle('small')}
+          <div onClick={() => handleSelectedWidget('a')} className={`bg-blue-300 rounded-lg  flex items-center justify-center h-full ${isDragging ? 'cursor-grabbing' : 'cursor-pointer'} ${selectedWidget === 'a' ? 'border-4 border-black' : ''}`}>
+            Small Square
+          </div>
         </div>
         <div key="b" onClick={() => handleSelectedWidget('b')} className={`bg-green-300 rounded-lg  flex items-center justify-center h-full ${isDragging ? 'cursor-grabbing' : 'cursor-pointer'} ${selectedWidget === 'b' ? 'border-4 border-black' : ''}`}>
           Horizontal - Rectangle
