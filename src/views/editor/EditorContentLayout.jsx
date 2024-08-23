@@ -71,19 +71,19 @@ const EditorContentLayout = () => {
   return (
     <div>
       <ResponsiveGridLayout className="layout" breakpoints={breakpoints} layouts={layout} cols={cols} rowHeight={120} width={120} isResizable={false} isDraggable={true} onDragStart={handleDragStart} onDragStop={handleDragStop}>
-        <div key="a" onClick={() => handleSelectedWidget('a')} className={`bg-blue-300 rounded-lg  flex items-center justify-center h-full ${isDragging ? 'cursor-grabbing' : 'cursor-grab'} ${selectedWidget === 'a' ? 'border-4 border-black' : ''}`}>
+        <div key="a" onClick={() => handleSelectedWidget('a')} className={`bg-blue-300 rounded-lg  flex items-center justify-center h-full ${isDragging ? 'cursor-grabbing' : 'cursor-pointer'} ${selectedWidget === 'a' ? 'border-4 border-black' : ''}`}>
           Small Square
         </div>
-        <div key="b" onClick={() => handleSelectedWidget('b')} className={`bg-green-300 rounded-lg  flex items-center justify-center h-full ${isDragging ? 'cursor-grabbing' : 'cursor-grab'} ${selectedWidget === 'b' ? 'border-4 border-black' : ''}`}>
+        <div key="b" onClick={() => handleSelectedWidget('b')} className={`bg-green-300 rounded-lg  flex items-center justify-center h-full ${isDragging ? 'cursor-grabbing' : 'cursor-pointer'} ${selectedWidget === 'b' ? 'border-4 border-black' : ''}`}>
           Horizontal - Rectangle
         </div>
-        <div key="c" onClick={() => handleSelectedWidget('c')} className={`bg-rose-300 rounded-lg  flex items-center justify-center h-full ${isDragging ? 'cursor-grabbing' : 'cursor-grab'} ${selectedWidget === 'c' ? 'border-4 border-black' : ''}`}>
+        <div key="c" onClick={() => handleSelectedWidget('c')} className={`bg-rose-300 rounded-lg  flex items-center justify-center h-full ${isDragging ? 'cursor-grabbing' : 'cursor-pointer'} ${selectedWidget === 'c' ? 'border-4 border-black' : ''}`}>
           Large Square
         </div>
-        <div key="d" onClick={() => handleSelectedWidget('d')} className={`bg-orange-300 rounded-lg  flex items-center justify-center h-full ${isDragging ? 'cursor-grabbing' : 'cursor-grab'} ${selectedWidget === 'd' ? 'border-4 border-black' : ''}`}>
+        <div key="d" onClick={() => handleSelectedWidget('d')} className={`bg-orange-300 rounded-lg  flex items-center justify-center h-full ${isDragging ? 'cursor-grabbing' : 'cursor-pointer'} ${selectedWidget === 'd' ? 'border-4 border-black' : ''}`}>
           Small Square
         </div>
-        <div key="e" onClick={() => handleSelectedWidget('e')} className={`bg-green-300 rounded-lg  flex items-center justify-center h-full ${isDragging ? 'cursor-grabbing' : 'cursor-grab'} ${selectedWidget === 'e' ? 'border-4 border-black' : ''}`}>
+        <div key="e" onClick={() => handleSelectedWidget('e')} className={`bg-green-300 rounded-lg  flex items-center justify-center h-full ${isDragging ? 'cursor-grabbing' : 'cursor-pointer'} ${selectedWidget === 'e' ? 'border-4 border-black' : ''}`}>
           Vertical - Rectangle
         </div>
       </ResponsiveGridLayout>
