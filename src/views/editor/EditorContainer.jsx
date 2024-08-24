@@ -45,6 +45,23 @@ const EditorContainer = () => {
     fetchProfolyoUser();
   }, []);
 
+  const EditorNavBar = ({ children, navName }) => {
+    return (
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button size="xs" variant="outline">
+              {children}
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>{navName}</p>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
+    );
+  };
+
   return (
     <div className="bg-white h-screen pr-6 pl-6">
       {/* nav */}
@@ -54,59 +71,21 @@ const EditorContainer = () => {
         </Link>
         <div className="mt-6">
           <div className="flex gap-2">
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button size="xs" variant="outline">
-                    <RiHome6Line className="h-4 w-4" aria-hidden="true" />
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>Dashboard</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+            <EditorNavBar navName="Dashboard">
+              <RiHome6Line className="h-4 w-4" />
+            </EditorNavBar>
 
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button size="xs" variant="outline">
-                    <RiSettingsLine className="h-4 w-4" aria-hidden="true" />
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>Settings</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+            <EditorNavBar navName="Settings">
+              <RiSettingsLine className="h-4 w-4" />
+            </EditorNavBar>
 
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button size="xs" variant="outline">
-                    <RiApps2Line className="h-4 w-4" aria-hidden="true" />
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>Widgets</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+            <EditorNavBar navName="Widgets">
+              <RiApps2Line className="h-4 w-4" />
+            </EditorNavBar>
 
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Link to="/preview" target="_blank" rel="noopener noreferrer">
-                    <Button size="xs" variant="outline">
-                      <RiPlayLine className="h-5 w-5" aria-hidden="true" />
-                    </Button>
-                  </Link>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>Preview</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+            <EditorNavBar navName="Preview">
+              <RiPlayLine className="h-4 w-4" />
+            </EditorNavBar>
 
             <Button size="xs">Publish</Button>
           </div>
