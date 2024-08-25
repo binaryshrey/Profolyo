@@ -11,6 +11,7 @@ import { supabase } from '../../utils/Supabase';
 import { useNavigate } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../../components/tooltip';
+import WidgetContainer from '../widgets/WidgetContainer';
 
 const EditorContainer = () => {
   const { session } = UserAuth();
@@ -78,9 +79,7 @@ const EditorContainer = () => {
               <RiSettingsLine className="h-4 w-4" />
             </EditorNavBar>
 
-            <EditorNavBar navName="Widgets">
-              <RiApps2Line className="h-4 w-4" />
-            </EditorNavBar>
+            <WidgetContainer />
 
             <EditorNavBar navName="Preview">
               <RiPlayLine className="h-4 w-4" />
