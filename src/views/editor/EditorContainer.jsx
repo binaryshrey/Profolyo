@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Button } from '../../components/button';
-import OnboardMenu from '../../components/OnboardMenu';
 import logo from '../../assets/profolyo-dark.svg';
 import { Link } from 'react-router-dom';
 import { RiPlayLine, RiSettingsLine, RiHome6Line, RiApps2Line, RiInformationLine } from '@remixicon/react';

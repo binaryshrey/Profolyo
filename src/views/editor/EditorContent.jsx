@@ -1,14 +1,32 @@
 import React from 'react';
 import { Button } from '../../components/button';
-import { RiMacLine, RiTabletLine } from '@remixicon/react';
+import { RiMacLine, RiSmartphoneLine, RiTabletLine } from '@remixicon/react';
 import EditorContentLayout from './EditorContentLayout';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../../components/tooltip';
 
 const EditorContent = ({ userData }) => {
-  const [layoutMode, setLayoutMode] = React.useState('desktop');
+  const [layoutMode, setLayoutMode] = React.useState('md');
 
   const handleLayoutMode = (mode) => {
     setLayoutMode(mode);
   };
+
+  React.useEffect(() => {
+    const editorLayoutSize = () => {
+      if (window.innerWidth >= 1024) {
+        setLayoutMode('md');
+      } else if (window.innerWidth < 1024 && window.innerWidth >= 767) {
+        setLayoutMode('sm');
+      } else {
+        setLayoutMode('xs');
+      }
+    };
+
+    editorLayoutSize();
+
+    window.addEventListener('resize', editorLayoutSize);
+    return () => window.removeEventListener('resize', editorLayoutSize);
+  }, []);
 
   return (
     <div className="">
@@ -17,19 +35,59 @@ const EditorContent = ({ userData }) => {
         <div className="bg-zinc-200 rounded-md w-56 sm:w-80 m-2 flex justify-center">
           <p className="text-xs sm:text-sm text-zinc-700 p-1">profolyo.me/{userData?.UserName}/</p>
         </div>
-        <div className="mr-2">
-          <Button size="xs" variant="ghost" className={layoutMode === 'mobile' ? `bg-zinc-200` : ''} onClick={() => handleLayoutMode('mobile')}>
-            <RiTabletLine className="h-4 w-4" />
-          </Button>
-          <Button size="xs" variant="ghost" className={layoutMode === 'desktop' ? `bg-zinc-200` : ''} onClick={() => handleLayoutMode('desktop')}>
-            <RiMacLine className="h-4 w-4" />
-          </Button>
+        <div className="mr-2 flex">
+          <div>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button size="xs" variant="ghost" className={layoutMode === 'xs' ? `bg-zinc-200` : ''} onClick={() => handleLayoutMode('xs')}>
+                    <RiSmartphoneLine className="h-4 w-4" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Mobile</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </div>
+
+          <div className="hidden sm:block">
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button size="xs" variant="ghost" className={layoutMode === 'sm' ? `bg-zinc-200` : ''} onClick={() => handleLayoutMode('sm')}>
+                    <RiTabletLine className="h-4 w-4" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Tablet</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </div>
+
+          <div className="hidden sm:block">
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button size="xs" variant="ghost" className={layoutMode === 'md' ? `bg-zinc-200` : ''} onClick={() => handleLayoutMode('md')}>
+                    <RiMacLine className="h-4 w-4" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Desktop</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </div>
         </div>
       </div>
       <div className="border border-zinc-200"></div>
       <div className="overflow-y-auto h-84vh">
-        <div className={`bg-gray-200 mx-auto w-full ${layoutMode === 'desktop' ? 'max-w-6xl' : 'max-w-sm'}`}>
-          <EditorContentLayout />
+        <div className={`bg-gray-200 mx-auto w-full ${layoutMode === 'md' ? 'max-w-6xl' : layoutMode === 'sm' ? 'max-w-3xl' : 'max-w-sm'}`}>
+          {layoutMode === 'md' && <EditorContentLayout rowHeight={120} layoutMode={layoutMode} />}
+          {layoutMode === 'sm' && <EditorContentLayout rowHeight={160} layoutMode={layoutMode} />}
+          {layoutMode === 'xs' && <EditorContentLayout rowHeight={160} layoutMode={layoutMode} />}
         </div>
       </div>
     </div>
