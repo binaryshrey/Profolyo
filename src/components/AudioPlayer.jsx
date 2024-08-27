@@ -17,7 +17,7 @@ const AudioPlayer = ({ audio }) => {
   };
 
   return (
-    <div className="flex items-center bg-white p-1 mt-2 rounded">
+    <div className="flex items-center bg-white p-1 mt-2 rounded-lg">
       <Button className="rounded-full " variant="ghost" size="icon" onClick={onPlayPause}>
         {isPlaying ? <RiPauseLargeFill className="h-4 w-4" /> : <RiPlayLargeFill className="h-4 w-4" />}
       </Button>

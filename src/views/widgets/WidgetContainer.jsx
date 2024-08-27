@@ -7,15 +7,17 @@ import WidgetNavBar from './WidgetNavBar';
 import WidgetContent from './WidgetContent';
 
 const WidgetContainer = ({ userData }) => {
+  const [open, setOpen] = React.useState(false);
+
   return (
     <>
-      <Dialog>
+      <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <Button size="xs" variant="outline">
             <RiApps2Line className="h-4 w-4" />
           </Button>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-[1024px] h-95vh p-0">
+        <DialogContent className="sm:max-w-[1368px] h-95vh p-0">
           <DialogTitle className="hidden">Widgets</DialogTitle>
           <DialogDescription className="hidden">Widgets</DialogDescription>
           <div className="flex">
@@ -24,7 +26,7 @@ const WidgetContainer = ({ userData }) => {
             </div>
             <div className="w-4/5 p-4 rounded">
               <ScrollArea className="overflow-hidden">
-                <WidgetContent userData={userData} />
+                <WidgetContent userData={userData} closeWidgetContainer={setOpen} />
               </ScrollArea>
             </div>
           </div>

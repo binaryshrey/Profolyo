@@ -2,31 +2,14 @@ import React, { useRef, useEffect } from 'react';
 import { Responsive, WidthProvider } from 'react-grid-layout';
 import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
-import { v4 as uuidv4 } from 'uuid';
+import { EditorLayout } from '../../hooks/EditorContext';
 import { ToggleGroup, ToggleGroupItem } from '../../components/toggle-group';
+import ProfileInfo from '../widgets/Profile/ProfileInfo';
+import ProfileSmall from '../widgets/Profile/ProfileSmall';
+import ProfileMedium from '../widgets/Profile/ProfileMedium';
+import ProfileLarge from '../widgets/Profile/ProfileLarge';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
-
-const layout = {
-  xs: [
-    { i: uuidv4(), x: 0, y: 0, w: 1, h: 2, size: 'small', text: 'xs:Small' },
-    { i: uuidv4(), x: 0, y: 0, w: 1, h: 2, size: 'medium', text: 'xs:Medium' },
-    { i: uuidv4(), x: 0, y: 0, w: 1, h: 2, size: 'large', text: 'xs:Large' },
-    { i: uuidv4(), x: 0, y: 0, w: 1, h: 2, size: 'empty', text: 'xs:Empty' },
-  ],
-  sm: [
-    { i: uuidv4(), x: 0, y: 0, w: 1, h: 2, size: 'small', text: 'sm:Small' },
-    { i: uuidv4(), x: 0, y: 0, w: 2, h: 2, size: 'medium', text: 'sm:Medium' },
-    { i: uuidv4(), x: 0, y: 0, w: 4, h: 4, size: 'large', text: 'sm:Large' },
-    { i: uuidv4(), x: 0, y: 0, w: 1, h: 2, size: 'empty', text: 'sm:Empty' },
-  ],
-  md: [
-    { i: uuidv4(), x: 0, y: 0, w: 1, h: 2, size: 'small', text: 'md:Small' },
-    { i: uuidv4(), x: 0, y: 0, w: 2, h: 2, size: 'medium', text: 'md:Medium' },
-    { i: uuidv4(), x: 0, y: 0, w: 2, h: 4, size: 'large', text: 'md:Large' },
-    { i: uuidv4(), x: 0, y: 99, w: 1, h: 2, size: 'empty', text: 'md:Empty' },
-  ],
-};
 
 const layoutElementSize = {
   xs: {
@@ -58,11 +41,20 @@ const breakpoints = {
   md: 1023,
 };
 
-const EditorContentLayout = ({ rowHeight, layoutMode }) => {
-  const [editorLayout, setEditorLayout] = React.useState(layout);
+const componentMap = {
+  ProfileInfo,
+  ProfileSmall,
+  ProfileMedium,
+  ProfileLarge,
+};
+
+const EditorContentLayout = ({ userData, rowHeight, layoutMode }) => {
+  const { profolyoEditorLayout, updateProfolyoEditorLayout, updateLayoutAfterDrag } = EditorLayout();
+  console.log(profolyoEditorLayout);
+
+  const [mode, setMode] = React.useState(layoutMode);
   const [isDragging, setIsDragging] = React.useState(false);
   const [selectedWidget, setSelectedWidget] = React.useState(null);
-  const [mode, setMode] = React.useState(layoutMode);
 
   const handleSelectedWidget = (widget) => {
     setSelectedWidget(widget);
@@ -74,23 +66,27 @@ const EditorContentLayout = ({ rowHeight, layoutMode }) => {
 
   const handleDragStop = (layout, oldItem, newItem) => {
     setIsDragging(false);
+    updateLayoutAfterDrag(mode, newItem);
+    console.log('layout', layout);
+    console.log('newItem', newItem);
+    console.log(profolyoEditorLayout);
   };
 
-  const updateLayout = (widget, size) => {
-    const updatedLayout = { ...editorLayout };
+  // const updateLayout = (widget, size) => {
+  //   const updatedLayout = { ...profolyoEditorLayout };
 
-    Object.keys(updatedLayout).forEach((breakpoint) => {
-      const sizeAttributes = layoutElementSize[breakpoint][size];
-      updatedLayout[breakpoint] = updatedLayout[breakpoint].map((item) => {
-        if (item.i === widget.i) {
-          return { ...item, w: sizeAttributes.w, h: sizeAttributes.h, size };
-        }
-        return item;
-      });
-    });
+  //   Object.keys(updatedLayout).forEach((breakpoint) => {
+  //     const sizeAttributes = layoutElementSize[breakpoint][size];
+  //     updatedLayout[breakpoint] = updatedLayout[breakpoint].map((item) => {
+  //       if (item.i === widget.i) {
+  //         return { ...item, w: sizeAttributes.w, h: sizeAttributes.h, size };
+  //       }
+  //       return item;
+  //     });
+  //   });
 
-    setEditorLayout(updatedLayout);
-  };
+  //   updateProfolyoEditorLayout(updatedLayout);
+  // };
 
   const widgetSizeToggle = (widget) => {
     return (
@@ -112,19 +108,15 @@ const EditorContentLayout = ({ rowHeight, layoutMode }) => {
 
   return (
     <div>
-      <ResponsiveGridLayout className="layout" breakpoints={breakpoints} layouts={editorLayout} cols={cols} rowHeight={rowHeight} width={120} isResizable={false} isDraggable={true} onDragStart={handleDragStart} onDragStop={handleDragStop}>
-        {editorLayout[mode]?.map((item) =>
-          item?.size !== 'empty' ? (
-            <div key={item.i} className="relative" onClick={() => handleSelectedWidget(item)}>
-              {selectedWidget?.i === item.i && widgetSizeToggle(item)}
-              <div className={`bg-blue-300 rounded-lg  flex items-center justify-center h-full ${isDragging ? 'cursor-grabbing' : 'cursor-pointer'} ${selectedWidget?.i === item.i ? 'border-4 border-black z-100' : ''}`}>{item.text}</div>
+      <ResponsiveGridLayout layouts={profolyoEditorLayout} breakpoints={breakpoints} cols={cols} rowHeight={rowHeight} width={120} isResizable={false} isDraggable={true} onDragStart={handleDragStart} onDragStop={handleDragStop}>
+        {profolyoEditorLayout[mode]?.map(({ i, x, y, w, h, size, type, component }) => {
+          const Component = componentMap[component];
+          return (
+            <div key={i}>
+              <Component userData={userData} clickToAdd={false} />
             </div>
-          ) : (
-            <div key={item.i} className={`border border-2 border-dashed border-blue-300 bg-blue-100 rounded-lg  flex items-center justify-center h-full ${isDragging ? 'cursor-grabbing' : 'cursor-pointer'} ${selectedWidget?.i === item.i ? 'border-4 border-black z-100' : ''}`}>
-              Add Widget
-            </div>
-          ),
-        )}
+          );
+        })}
       </ResponsiveGridLayout>
     </div>
   );

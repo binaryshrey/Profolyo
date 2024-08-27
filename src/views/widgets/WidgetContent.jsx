@@ -50,7 +50,7 @@ const breakpoints = {
   md: 767,
 };
 
-const WidgetContent = ({ userData }) => {
+const WidgetContent = ({ userData, closeWidgetContainer }) => {
   const [widgetLayout, setWidgetLayout] = React.useState(layout);
   const [selectedWidget, setSelectedWidget] = React.useState(null);
 
@@ -60,12 +60,12 @@ const WidgetContent = ({ userData }) => {
 
   return (
     <div className="mt-8">
-      <ResponsiveGridLayout layouts={widgetLayout} breakpoints={breakpoints} cols={cols} rowHeight={95} width={100} isResizable={false} isDraggable={false}>
+      <ResponsiveGridLayout layouts={widgetLayout} breakpoints={breakpoints} cols={cols} rowHeight={120} width={120} isResizable={false} isDraggable={false}>
         {widgetLayout?.md.map(({ i, x, y, w, h, size, type, component }) => {
           const Component = componentMap[component];
           return (
             <div key={i}>
-              <Component userData={userData} />
+              <Component userData={userData} clickToAdd={true} closeWidgetContainer={closeWidgetContainer} />
             </div>
           );
         })}
