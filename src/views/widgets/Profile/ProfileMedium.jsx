@@ -4,15 +4,15 @@ import hellothere from '../../../assets/hellothere.mp3';
 import { RiUser4Line } from '@remixicon/react';
 import { EditorLayout } from '../../../hooks/EditorContext';
 
-const ProfileMedium = ({ userData, clickToAdd, closeWidgetContainer }) => {
-  const { updateProfolyoEditorLayout } = EditorLayout();
+const ProfileMedium = ({ userData, clickToAdd }) => {
+  const { updateProfolyoEditorLayout, setOpenWidgetContainer } = EditorLayout();
 
   const profile = { i: uuidv4(), x: 0, y: 1, w: 2, h: 2, size: 'large', type: 'ProfileMedium', component: 'ProfileMedium' };
 
   const handleClickToAdd = () => {
     if (clickToAdd) {
       updateProfolyoEditorLayout(profile);
-      closeWidgetContainer(false);
+      setOpenWidgetContainer(false);
     }
   };
 

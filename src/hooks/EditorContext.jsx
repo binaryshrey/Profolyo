@@ -14,6 +14,7 @@ export const EditorContextProvider = ({ children }) => {
   //   md: [{ i: uuidv4(), x: 0, y: 0, w: 1, h: 2, size: 'small', type: 'add', component: 'AddWidget' }],
   // });
 
+  const [openWidgetContainer, setOpenWidgetContainer] = useState(false);
   const [profolyoEditorLayout, setProfolyoEditorLayout] = useState({
     xs: [{ i: uuidv4(), x: 0, y: 0, w: 1, h: 2, size: 'small', type: 'ProfileSmall', component: 'ProfileSmall' }],
     sm: [{ i: uuidv4(), x: 0, y: 0, w: 1, h: 2, size: 'small', type: 'ProfileSmall', component: 'ProfileSmall' }],
@@ -41,7 +42,7 @@ export const EditorContextProvider = ({ children }) => {
     setProfolyoEditorLayout((prevState) => updateItemPosition(prevState, mode, newItem));
   };
 
-  return <EditorContext.Provider value={{ profolyoEditorLayout, updateProfolyoEditorLayout, updateLayoutAfterDrag }}>{children}</EditorContext.Provider>;
+  return <EditorContext.Provider value={{ profolyoEditorLayout, updateProfolyoEditorLayout, updateLayoutAfterDrag, openWidgetContainer, setOpenWidgetContainer }}>{children}</EditorContext.Provider>;
 };
 
 export const EditorLayout = () => {

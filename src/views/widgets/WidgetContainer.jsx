@@ -5,13 +5,14 @@ import { RiApps2Line } from '@remixicon/react';
 import { Dialog, DialogContent, DialogTrigger, DialogTitle, DialogDescription } from '../../components/dialog';
 import WidgetNavBar from './WidgetNavBar';
 import WidgetContent from './WidgetContent';
+import { EditorLayout } from '../../hooks/EditorContext';
 
 const WidgetContainer = ({ userData }) => {
-  const [open, setOpen] = React.useState(false);
+  const { openWidgetContainer, setOpenWidgetContainer } = EditorLayout();
 
   return (
     <>
-      <Dialog open={open} onOpenChange={setOpen}>
+      <Dialog open={openWidgetContainer} onOpenChange={setOpenWidgetContainer}>
         <DialogTrigger asChild>
           <Button size="xs" variant="outline">
             <RiApps2Line className="h-4 w-4" />
@@ -26,7 +27,7 @@ const WidgetContainer = ({ userData }) => {
             </div>
             <div className="w-4/5 p-4 rounded">
               <ScrollArea className="overflow-hidden">
-                <WidgetContent userData={userData} closeWidgetContainer={setOpen} />
+                <WidgetContent userData={userData} />
               </ScrollArea>
             </div>
           </div>

@@ -2,15 +2,15 @@ import { v4 as uuidv4 } from 'uuid';
 import { RiUser4Line } from '@remixicon/react';
 import { EditorLayout } from '../../../hooks/EditorContext';
 
-const ProfileSmall = ({ userData, clickToAdd, closeWidgetContainer }) => {
-  const { updateProfolyoEditorLayout } = EditorLayout();
+const ProfileSmall = ({ userData, clickToAdd }) => {
+  const { updateProfolyoEditorLayout, setOpenWidgetContainer } = EditorLayout();
 
   const profile = { i: uuidv4(), x: 0, y: 0, w: 1, h: 2, size: 'small', type: 'ProfileSmall', component: 'ProfileSmall' };
 
   const handleClickToAdd = () => {
     if (clickToAdd) {
       updateProfolyoEditorLayout(profile);
-      closeWidgetContainer(false);
+      setOpenWidgetContainer(false);
     }
   };
 

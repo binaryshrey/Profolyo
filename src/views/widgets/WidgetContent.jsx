@@ -50,7 +50,7 @@ const breakpoints = {
   md: 767,
 };
 
-const WidgetContent = ({ userData, closeWidgetContainer }) => {
+const WidgetContent = ({ userData }) => {
   const [widgetLayout, setWidgetLayout] = React.useState(layout);
   const [selectedWidget, setSelectedWidget] = React.useState(null);
 
@@ -65,7 +65,7 @@ const WidgetContent = ({ userData, closeWidgetContainer }) => {
           const Component = componentMap[component];
           return (
             <div key={i}>
-              <Component userData={userData} clickToAdd={true} closeWidgetContainer={closeWidgetContainer} />
+              <Component userData={userData} clickToAdd={true} />
             </div>
           );
         })}
