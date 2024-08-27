@@ -9,6 +9,7 @@ import ProfileSmall from '../widgets/Profile/ProfileSmall';
 import ProfileMedium from '../widgets/Profile/ProfileMedium';
 import ProfileLarge from '../widgets/Profile/ProfileLarge';
 import ProfileXLarge from '../widgets/Profile/ProfileXLarge';
+import { RiApps2Line } from '@remixicon/react';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
@@ -110,16 +111,26 @@ const EditorContentLayout = ({ userData, rowHeight, layoutMode }) => {
 
   return (
     <div>
-      <ResponsiveGridLayout layouts={profolyoEditorLayout} breakpoints={breakpoints} cols={cols} rowHeight={rowHeight} width={120} isResizable={false} isDraggable={true} onDragStart={handleDragStart} onDragStop={handleDragStop}>
-        {profolyoEditorLayout[mode]?.map(({ i, x, y, w, h, size, type, component }) => {
-          const Component = componentMap[component];
-          return (
-            <div key={i}>
-              <Component userData={userData} clickToAdd={false} />
-            </div>
-          );
-        })}
-      </ResponsiveGridLayout>
+      {profolyoEditorLayout[mode].length === 0 && (
+        <div className="flex gap-2 justify-center items-center h-80vh">
+          <span>Click </span>
+          <RiApps2Line className="h-4 w-4" />
+          <span>to add widgets</span>
+        </div>
+      )}
+
+      {profolyoEditorLayout[mode].length !== 0 && (
+        <ResponsiveGridLayout layouts={profolyoEditorLayout} breakpoints={breakpoints} cols={cols} rowHeight={rowHeight} width={120} isResizable={false} isDraggable={true} onDragStart={handleDragStart} onDragStop={handleDragStop}>
+          {profolyoEditorLayout[mode]?.map(({ i, x, y, w, h, size, type, component }) => {
+            const Component = componentMap[component];
+            return (
+              <div key={i}>
+                <Component userData={userData} clickToAdd={false} />
+              </div>
+            );
+          })}
+        </ResponsiveGridLayout>
+      )}
     </div>
   );
 };

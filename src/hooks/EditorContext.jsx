@@ -8,17 +8,11 @@ import { useContext, createContext, useEffect, useState } from 'react';
 const EditorContext = createContext();
 
 export const EditorContextProvider = ({ children }) => {
-  // const [profolyoEditorLayout, setProfolyoEditorLayout] = useState({
-  //   xs: [{ i: uuidv4(), x: 0, y: 0, w: 1, h: 2, size: 'small', type: 'add', component: 'AddWidget' }],
-  //   sm: [{ i: uuidv4(), x: 0, y: 0, w: 1, h: 2, size: 'small', type: 'add', component: 'AddWidget' }],
-  //   md: [{ i: uuidv4(), x: 0, y: 0, w: 1, h: 2, size: 'small', type: 'add', component: 'AddWidget' }],
-  // });
-
   const [openWidgetContainer, setOpenWidgetContainer] = useState(false);
   const [profolyoEditorLayout, setProfolyoEditorLayout] = useState({
-    xs: [{ i: uuidv4(), x: 0, y: 0, w: 1, h: 2, size: 'small', type: 'ProfileSmall', component: 'ProfileSmall' }],
-    sm: [{ i: uuidv4(), x: 0, y: 0, w: 1, h: 2, size: 'small', type: 'ProfileSmall', component: 'ProfileSmall' }],
-    md: [{ i: uuidv4(), x: 0, y: 0, w: 1, h: 2, size: 'small', type: 'ProfileSmall', component: 'ProfileSmall' }],
+    xs: [],
+    sm: [],
+    md: [],
   });
 
   const updateProfolyoEditorLayout = (newItem) => {

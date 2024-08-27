@@ -103,6 +103,7 @@ export default {
         '95vh': '95vh',
         '90vh': '90vh',
         '84vh': '84vh',
+        '80vh': '80vh',
       },
     },
   },
