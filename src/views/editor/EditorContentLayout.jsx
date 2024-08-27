@@ -8,6 +8,7 @@ import ProfileInfo from '../widgets/Profile/ProfileInfo';
 import ProfileSmall from '../widgets/Profile/ProfileSmall';
 import ProfileMedium from '../widgets/Profile/ProfileMedium';
 import ProfileLarge from '../widgets/Profile/ProfileLarge';
+import ProfileXLarge from '../widgets/Profile/ProfileXLarge';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
@@ -46,6 +47,7 @@ const componentMap = {
   ProfileSmall,
   ProfileMedium,
   ProfileLarge,
+  ProfileXLarge,
 };
 
 const EditorContentLayout = ({ userData, rowHeight, layoutMode }) => {

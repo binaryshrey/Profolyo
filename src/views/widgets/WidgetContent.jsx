@@ -7,6 +7,7 @@ import ProfileInfo from './Profile/ProfileInfo';
 import ProfileSmall from './Profile/ProfileSmall';
 import ProfileMedium from './Profile/ProfileMedium';
 import ProfileLarge from './Profile/ProfileLarge';
+import ProfileXLarge from './Profile/ProfileXLarge';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
@@ -28,6 +29,7 @@ const layout = {
     { i: uuidv4(), x: 1, y: 0, w: 1, h: 2, size: 'small', type: 'ProfileSmall', component: 'ProfileSmall' },
     { i: uuidv4(), x: 0, y: 1, w: 2, h: 2, size: 'medium', type: 'ProfileMedium', component: 'ProfileMedium' },
     { i: uuidv4(), x: 2, y: 0, w: 2, h: 4, size: 'large', type: 'ProfileLarge', component: 'ProfileLarge' },
+    { i: uuidv4(), x: 3, y: 1, w: 4, h: 4, size: 'xlarge', type: 'ProfileXLarge', component: 'ProfileXLarge' },
   ],
 };
 
@@ -36,6 +38,7 @@ const componentMap = {
   ProfileSmall,
   ProfileMedium,
   ProfileLarge,
+  ProfileXLarge,
 };
 
 const cols = {
