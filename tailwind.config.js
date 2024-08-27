@@ -13,6 +13,13 @@ export default {
         "2xl": "1400px",
       },
     },
+    colors: {
+      profolyo: "#f0efeb",
+      profolyoDark: "#d8d7d3",
+      profolyoExtraDark: "#c0bfbc",
+      profolyoWidget: "#f5f4f1",
+      profolyoAudio: "#fafaf9"
+    },
     extend: {
 
       colors: {

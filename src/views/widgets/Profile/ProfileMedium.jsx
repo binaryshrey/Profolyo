@@ -17,7 +17,7 @@ const ProfileMedium = ({ userData, clickToAdd }) => {
   };
 
   return (
-    <div className="border rounded-lg flex flex-col justify-between h-full p-3 shadow-md cursor-pointer bg-zinc-100" onClick={handleClickToAdd}>
+    <div className="border rounded-lg flex flex-col justify-between h-full p-3 shadow-md cursor-pointer bg-profolyoWidget" onClick={handleClickToAdd}>
       <div className="flex gap-1 items-center">
         <RiUser4Line className="h-3 w-3 text-zinc-500" />
         <p className="text-xs text-zinc-500 ">Profile</p>

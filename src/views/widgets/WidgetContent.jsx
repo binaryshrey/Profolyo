@@ -59,7 +59,7 @@ const WidgetContent = ({ userData }) => {
   };
 
   return (
-    <div className="mt-8">
+    <div className="mt-8 bg-profolyo">
       <ResponsiveGridLayout layouts={widgetLayout} breakpoints={breakpoints} cols={cols} rowHeight={120} width={120} isResizable={false} isDraggable={false}>
         {widgetLayout?.md.map(({ i, x, y, w, h, size, type, component }) => {
           const Component = componentMap[component];

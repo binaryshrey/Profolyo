@@ -104,7 +104,7 @@ const EditorContainer = () => {
           </div>
 
           <div className="flex mt-4">
-            <div className="w-full sm:w-70/100 lg:w-4/5 h-90vh bg-zinc-50 border border-2 rounded-xl border-zinc-200">
+            <div className="w-full sm:w-70/100 bg-profolyo lg:w-4/5 h-90vh border border-4 rounded-xl border-profolyoDark">
               <EditorContent userData={userData[0]} />
             </div>
             <div className="w-30/100 hidden sm:block lg:w-1/5 h-90vh ">

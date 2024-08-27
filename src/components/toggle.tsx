@@ -12,7 +12,7 @@ const toggleVariants = cva('inline-flex items-center justify-center rounded-md t
       default: 'bg-transparent',
       outline: 'border border-input bg-transparent hover:bg-accent hover:text-accent-foreground',
       outlineDark: 'text-zinc-400 hover:bg-zinc-700 hover:text-white ',
-      widget: 'text-black hover:bg-zinc-300 hover:text-black data-[state=on]:bg-zinc-300 data-[state=on]:text-black',
+      widget: 'text-black hover:bg-profolyoExtraDark hover:text-black data-[state=on]:bg-profolyoExtraDark data-[state=on]:text-black',
     },
     size: {
       default: 'h-10 px-3',

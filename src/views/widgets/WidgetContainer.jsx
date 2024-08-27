@@ -22,10 +22,10 @@ const WidgetContainer = ({ userData }) => {
           <DialogTitle className="hidden">Widgets</DialogTitle>
           <DialogDescription className="hidden">Widgets</DialogDescription>
           <div className="flex">
-            <div className="w-1/5 bg-zinc-100 p-4 rounded">
+            <div className="w-1/5 bg-profolyoDark p-4 rounded">
               <WidgetNavBar />
             </div>
-            <div className="w-4/5 p-4 rounded">
+            <div className="w-4/5 p-4 rounded bg-profolyo">
               <ScrollArea className="overflow-hidden">
                 <WidgetContent userData={userData} />
               </ScrollArea>

@@ -32,7 +32,7 @@ const EditorContent = ({ userData }) => {
     <div className="">
       <div className="flex justify-between items-center">
         <div className="w-16"></div>
-        <div className="bg-zinc-200 rounded-md w-56 sm:w-80 m-2 flex justify-center">
+        <div className="bg-profolyoDark rounded-md w-56 sm:w-80 m-2 flex justify-center">
           <p className="text-xs sm:text-sm text-zinc-700 p-1">profolyo.me/{userData?.UserName}/</p>
         </div>
         <div className="mr-2 flex">
@@ -40,7 +40,7 @@ const EditorContent = ({ userData }) => {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Button size="xs" variant="ghost" className={layoutMode === 'xs' ? `bg-zinc-200` : ''} onClick={() => handleLayoutMode('xs')}>
+                  <Button size="xs" variant="ghost" className={layoutMode === 'xs' ? `bg-profolyoDark` : ''} onClick={() => handleLayoutMode('xs')}>
                     <RiSmartphoneLine className="h-4 w-4" />
                   </Button>
                 </TooltipTrigger>
@@ -55,7 +55,7 @@ const EditorContent = ({ userData }) => {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Button size="xs" variant="ghost" className={layoutMode === 'sm' ? `bg-zinc-200` : ''} onClick={() => handleLayoutMode('sm')}>
+                  <Button size="xs" variant="ghost" className={layoutMode === 'sm' ? `bg-profolyoDark` : ''} onClick={() => handleLayoutMode('sm')}>
                     <RiTabletLine className="h-4 w-4" />
                   </Button>
                 </TooltipTrigger>
@@ -70,7 +70,7 @@ const EditorContent = ({ userData }) => {
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Button size="xs" variant="ghost" className={layoutMode === 'md' ? `bg-zinc-200` : ''} onClick={() => handleLayoutMode('md')}>
+                  <Button size="xs" variant="ghost" className={layoutMode === 'md' ? `bg-profolyoDark` : ''} onClick={() => handleLayoutMode('md')}>
                     <RiMacLine className="h-4 w-4" />
                   </Button>
                 </TooltipTrigger>
@@ -82,9 +82,9 @@ const EditorContent = ({ userData }) => {
           </div>
         </div>
       </div>
-      <div className="border border-zinc-200"></div>
+      <div className="border border-profolyoDark"></div>
       <div className="overflow-y-auto h-84vh">
-        <div className={`bg-gray-200 mx-auto w-full ${layoutMode === 'md' ? 'max-w-6xl' : layoutMode === 'sm' ? 'max-w-3xl' : 'max-w-sm'}`}>
+        <div className={`bg-profolyo mx-auto w-full ${layoutMode === 'md' ? 'max-w-6xl' : layoutMode === 'sm' ? 'max-w-3xl' : 'max-w-sm'}`}>
           {layoutMode === 'md' && <EditorContentLayout userData={userData} rowHeight={120} layoutMode={layoutMode} />}
           {layoutMode === 'sm' && <EditorContentLayout userData={userData} rowHeight={160} layoutMode={layoutMode} />}
           {layoutMode === 'xs' && <EditorContentLayout userData={userData} rowHeight={160} layoutMode={layoutMode} />}
