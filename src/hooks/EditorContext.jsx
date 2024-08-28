@@ -15,11 +15,12 @@ export const EditorContextProvider = ({ children }) => {
     md: [],
   });
 
-  const addProfolyoWidgetToEditor = (newItem) => {
+  const addProfolyoWidgetToEditor = (widgetXS, widgetSM, widgetMD) => {
+    console.log('addProfolyoWidgetToEditor', widgetXS, widgetSM, widgetMD);
     setProfolyoEditorLayout((prevLayout) => ({
-      xs: [newItem, ...prevLayout.xs],
-      sm: [newItem, ...prevLayout.sm],
-      md: [newItem, ...prevLayout.md],
+      xs: [widgetXS, ...prevLayout.xs],
+      sm: [widgetSM, ...prevLayout.sm],
+      md: [widgetMD, ...prevLayout.md],
     }));
   };
 

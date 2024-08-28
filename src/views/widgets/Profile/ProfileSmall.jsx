@@ -27,7 +27,7 @@ const ProfileSmall = ({ userData, clickToAdd }) => {
 
   const handleClickToAdd = () => {
     if (clickToAdd) {
-      addProfolyoWidgetToEditor(profile);
+      addProfolyoWidgetToEditor(profile, profile, profile);
       setOpenWidgetContainer(false);
     }
   };

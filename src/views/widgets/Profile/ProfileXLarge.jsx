@@ -25,9 +25,26 @@ const ProfileXLarge = ({ userData, clickToAdd }) => {
     },
   };
 
+  const profileXS = {
+    i: uuidv4(),
+    x: 0,
+    y: 0,
+    w: 1,
+    h: 2,
+    size: 'small',
+    type: 'ProfileSmall',
+    component: 'ProfileSmall',
+    data: {
+      title: `${userData?.FirstName} ${userData?.LastName}`,
+      description: 'Maestro @Profolyo',
+      badge: 'Profile',
+      coverImage: userData?.AvatarURL,
+      audioIntro: '',
+    },
+  };
   const handleClickToAdd = () => {
     if (clickToAdd) {
-      addProfolyoWidgetToEditor(profile);
+      addProfolyoWidgetToEditor(profileXS, profile, profile);
       setOpenWidgetContainer(false);
     }
   };
