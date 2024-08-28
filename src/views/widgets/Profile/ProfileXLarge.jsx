@@ -46,9 +46,7 @@ const ProfileXLarge = ({ userData, clickToAdd }) => {
           <p className="text-lg text-zinc-500 ">{profile?.data?.description}</p>
         </div>
       </div>
-      <AudioPlayer audio={hellothere} />
-
-      <div></div>
+      <AudioPlayer audio={hellothere} smallSize={false} />
     </div>
   );
 };
