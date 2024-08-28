@@ -11,9 +11,9 @@ const ProfileMedium = ({ userData, clickToAdd }) => {
     i: uuidv4(),
     x: 0,
     y: 0,
-    w: 1,
+    w: 2,
     h: 2,
-    size: 'small',
+    size: 'medium',
     type: 'ProfileMedium',
     component: 'ProfileMedium',
     data: {

@@ -11,9 +11,9 @@ const ProfileLarge = ({ userData, clickToAdd }) => {
     i: uuidv4(),
     x: 0,
     y: 0,
-    w: 1,
-    h: 2,
-    size: 'small',
+    w: 2,
+    h: 4,
+    size: 'large',
     type: 'ProfileLarge',
     component: 'ProfileLarge',
     data: {
