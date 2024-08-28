@@ -15,6 +15,12 @@ export const EditorContextProvider = ({ children }) => {
     md: [],
   });
   const [selectedWidget, setSelectedWidget] = useState();
+  const [profileTitle, setProfileTitle] = useState('');
+  const [profileDescription, setProfileDescription] = useState('');
+  const [profileImage, setProfileImage] = useState('');
+  const [profileImageSize, setProfileImageSize] = useState('');
+  const [profileBadge, setProfileBadge] = useState('');
+  const [profileAudio, setProfileAudio] = useState('');
 
   const addProfolyoWidgetToEditor = (widgetXS, widgetSM, widgetMD) => {
     console.log('addProfolyoWidgetToEditor', widgetXS, widgetSM, widgetMD);
@@ -51,7 +57,7 @@ export const EditorContextProvider = ({ children }) => {
     setProfolyoEditorLayout((prevState) => updateWidgetSize(prevState, w, h, size, component, mode, id));
   };
 
-  return <EditorContext.Provider value={{ selectedWidget, setSelectedWidget, profolyoEditorLayout, addProfolyoWidgetToEditor, updateLayoutAfterDrag, openWidgetContainer, setOpenWidgetContainer, updateLayoutAfterResize }}>{children}</EditorContext.Provider>;
+  return <EditorContext.Provider value={{ profileAudio, setProfileAudio, profileImageSize, setProfileImageSize, profileBadge, setProfileBadge, profileImage, setProfileImage, profileDescription, setProfileDescription, profileTitle, setProfileTitle, selectedWidget, setSelectedWidget, profolyoEditorLayout, addProfolyoWidgetToEditor, updateLayoutAfterDrag, openWidgetContainer, setOpenWidgetContainer, updateLayoutAfterResize }}>{children}</EditorContext.Provider>;
 };
 
 export const EditorLayout = () => {

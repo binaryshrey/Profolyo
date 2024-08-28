@@ -7,7 +7,7 @@ import { EditorLayout } from '../../../hooks/EditorContext';
 import { ToggleGroup, ToggleGroupItem } from '../../../components/toggle-group';
 
 const ProfileMedium = ({ userData, clickToAdd, widget, mode }) => {
-  const { setSelectedWidget, addProfolyoWidgetToEditor, setOpenWidgetContainer, updateLayoutAfterResize } = EditorLayout();
+  const { selectedWidget, setSelectedWidget, addProfolyoWidgetToEditor, setOpenWidgetContainer, updateLayoutAfterResize } = EditorLayout();
   const [showSizeToggle, setShowSizeToggle] = useState(false);
 
   const profile = {
@@ -17,6 +17,7 @@ const ProfileMedium = ({ userData, clickToAdd, widget, mode }) => {
     w: 2,
     h: 2,
     size: 'medium',
+    type: 'Profile',
     component: 'ProfileMedium',
     data: {
       title: `${userData?.FirstName} ${userData?.LastName}`,
@@ -34,7 +35,7 @@ const ProfileMedium = ({ userData, clickToAdd, widget, mode }) => {
     w: 1,
     h: 2,
     size: 'small',
-    type: 'ProfileSmall',
+    type: 'Profile',
     component: 'ProfileSmall',
     data: {
       title: `${userData?.FirstName} ${userData?.LastName}`,
@@ -47,7 +48,7 @@ const ProfileMedium = ({ userData, clickToAdd, widget, mode }) => {
 
   const handleClickToAdd = () => {
     if (clickToAdd) {
-      addProfolyoWidgetToEditor(profile, profile, profile);
+      addProfolyoWidgetToEditor(profileXS, profile, profile);
       setOpenWidgetContainer(false);
     } else {
       setSelectedWidget(widget);
@@ -82,8 +83,8 @@ const ProfileMedium = ({ userData, clickToAdd, widget, mode }) => {
 
   return (
     <>
-      <div>{showSizeToggle && widgetSizeToggleToolbar(widget)}</div>
-      <div className={`border rounded-lg flex flex-col justify-between h-full p-3 shadow-md cursor-pointer bg-profolyoWidget ${showSizeToggle ? 'border border-4 border-profolyoExtraDark' : ''}`} onClick={handleClickToAdd}>
+      <div>{showSizeToggle && selectedWidget?.i === widget.i && widgetSizeToggleToolbar(widget)}</div>
+      <div className={`border rounded-lg flex flex-col justify-between h-full p-3 shadow-md cursor-pointer bg-profolyoWidget ${selectedWidget?.i === widget.i ? 'border border-4 border-profolyoExtraDark' : ''}`} onClick={handleClickToAdd}>
         <div className="flex gap-1 items-center">
           <RiUser4Line className="h-3 w-3 text-zinc-500" />
           <p className="text-xs text-zinc-500 ">{profile?.data?.badge}</p>

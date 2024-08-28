@@ -13,24 +13,6 @@ import { RiApps2Line } from '@remixicon/react';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
-const layoutElementSize = {
-  xs: {
-    small: { w: 1, h: 2 },
-    medium: { w: 1, h: 2 },
-    large: { w: 1, h: 2 },
-  },
-  sm: {
-    small: { w: 1, h: 2 },
-    medium: { w: 2, h: 2 },
-    large: { w: 4, h: 4 },
-  },
-  md: {
-    small: { w: 1, h: 2 },
-    medium: { w: 2, h: 2 },
-    large: { w: 2, h: 4 },
-  },
-};
-
 const cols = {
   xs: 1,
   sm: 2,
@@ -53,7 +35,6 @@ const componentMap = {
 
 const EditorContentLayout = ({ userData, rowHeight, layoutMode }) => {
   const { profolyoEditorLayout, addProfolyoWidgetToEditor, updateLayoutAfterDrag } = EditorLayout();
-  console.log('profolyoEditorLayout', profolyoEditorLayout);
 
   const [mode, setMode] = React.useState(layoutMode);
   const [isDragging, setIsDragging] = React.useState(false);
@@ -71,22 +52,6 @@ const EditorContentLayout = ({ userData, rowHeight, layoutMode }) => {
     setIsDragging(false);
     updateLayoutAfterDrag(mode, newItem);
   };
-
-  // const updateLayout = (widget, size) => {
-  //   const updatedLayout = { ...profolyoEditorLayout };
-
-  //   Object.keys(updatedLayout).forEach((breakpoint) => {
-  //     const sizeAttributes = layoutElementSize[breakpoint][size];
-  //     updatedLayout[breakpoint] = updatedLayout[breakpoint].map((item) => {
-  //       if (item.i === widget.i) {
-  //         return { ...item, w: sizeAttributes.w, h: sizeAttributes.h, size };
-  //       }
-  //       return item;
-  //     });
-  //   });
-
-  //   addProfolyoWidgetToEditor(updatedLayout);
-  // };
 
   const widgetSizeToggle = (widget) => {
     return (
