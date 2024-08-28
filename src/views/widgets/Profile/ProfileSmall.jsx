@@ -5,7 +5,7 @@ import AudioPlayer from '../../../components/AudioPlayer';
 import hellothere from '../../../assets/hellothere.mp3';
 
 const ProfileSmall = ({ userData, clickToAdd }) => {
-  const { addProfolyoWidgetToEditor, setOpenWidgetContainer } = EditorLayout();
+  const { selectedWidget, setSelectedWidget, addProfolyoWidgetToEditor, setOpenWidgetContainer } = EditorLayout();
 
   const profile = {
     i: uuidv4(),
@@ -14,7 +14,6 @@ const ProfileSmall = ({ userData, clickToAdd }) => {
     w: 1,
     h: 2,
     size: 'small',
-    type: 'ProfileSmall',
     component: 'ProfileSmall',
     data: {
       title: `${userData?.FirstName} ${userData?.LastName}`,

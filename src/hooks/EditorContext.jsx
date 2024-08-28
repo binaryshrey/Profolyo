@@ -14,6 +14,7 @@ export const EditorContextProvider = ({ children }) => {
     sm: [],
     md: [],
   });
+  const [selectedWidget, setSelectedWidget] = useState();
 
   const addProfolyoWidgetToEditor = (widgetXS, widgetSM, widgetMD) => {
     console.log('addProfolyoWidgetToEditor', widgetXS, widgetSM, widgetMD);
@@ -37,7 +38,7 @@ export const EditorContextProvider = ({ children }) => {
     setProfolyoEditorLayout((prevState) => updateItemPosition(prevState, mode, newItem));
   };
 
-  return <EditorContext.Provider value={{ profolyoEditorLayout, addProfolyoWidgetToEditor, updateLayoutAfterDrag, openWidgetContainer, setOpenWidgetContainer }}>{children}</EditorContext.Provider>;
+  return <EditorContext.Provider value={{ selectedWidget, setSelectedWidget, profolyoEditorLayout, addProfolyoWidgetToEditor, updateLayoutAfterDrag, openWidgetContainer, setOpenWidgetContainer }}>{children}</EditorContext.Provider>;
 };
 
 export const EditorLayout = () => {

@@ -14,7 +14,6 @@ const ProfileLarge = ({ userData, clickToAdd }) => {
     w: 2,
     h: 4,
     size: 'large',
-    type: 'ProfileLarge',
     component: 'ProfileLarge',
     data: {
       title: `${userData?.FirstName} ${userData?.LastName}`,

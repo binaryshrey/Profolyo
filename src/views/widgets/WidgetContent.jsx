@@ -25,11 +25,11 @@ const layout = {
     { i: uuidv4(), x: 2, y: 0, w: 2, h: 4, size: 'large', text: 'sm:Large' },
   ],
   md: [
-    { i: uuidv4(), x: 0, y: 0, w: 1, h: 2, size: 'small', type: 'ProfileInfo', component: 'ProfileInfo' },
-    { i: uuidv4(), x: 1, y: 0, w: 1, h: 2, size: 'small', type: 'ProfileSmall', component: 'ProfileSmall' },
-    { i: uuidv4(), x: 0, y: 1, w: 2, h: 2, size: 'medium', type: 'ProfileMedium', component: 'ProfileMedium' },
-    { i: uuidv4(), x: 2, y: 0, w: 2, h: 4, size: 'large', type: 'ProfileLarge', component: 'ProfileLarge' },
-    { i: uuidv4(), x: 3, y: 1, w: 4, h: 4, size: 'xlarge', type: 'ProfileXLarge', component: 'ProfileXLarge' },
+    { i: uuidv4(), x: 0, y: 0, w: 1, h: 2, size: 'small', component: 'ProfileInfo' },
+    { i: uuidv4(), x: 1, y: 0, w: 1, h: 2, size: 'small', component: 'ProfileSmall' },
+    { i: uuidv4(), x: 0, y: 1, w: 2, h: 2, size: 'medium', component: 'ProfileMedium' },
+    { i: uuidv4(), x: 2, y: 0, w: 2, h: 4, size: 'large', component: 'ProfileLarge' },
+    { i: uuidv4(), x: 3, y: 1, w: 4, h: 4, size: 'xlarge', component: 'ProfileXLarge' },
   ],
 };
 
@@ -64,10 +64,10 @@ const WidgetContent = ({ userData }) => {
   return (
     <div className="mt-8 bg-profolyo">
       <ResponsiveGridLayout layouts={widgetLayout} breakpoints={breakpoints} cols={cols} rowHeight={120} width={120} isResizable={false} isDraggable={false}>
-        {widgetLayout?.md.map(({ i, x, y, w, h, size, type, component }) => {
-          const Component = componentMap[component];
+        {widgetLayout?.md.map((item) => {
+          const Component = componentMap[item.component];
           return (
-            <div key={i}>
+            <div key={item.i}>
               <Component userData={userData} clickToAdd={true} />
             </div>
           );

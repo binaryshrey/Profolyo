@@ -121,10 +121,10 @@ const EditorContentLayout = ({ userData, rowHeight, layoutMode }) => {
 
       {profolyoEditorLayout[mode].length !== 0 && (
         <ResponsiveGridLayout layouts={profolyoEditorLayout} breakpoints={breakpoints} cols={cols} rowHeight={rowHeight} width={120} isResizable={false} isDraggable={true} onDragStart={handleDragStart} onDragStop={handleDragStop}>
-          {profolyoEditorLayout[mode]?.map(({ i, x, y, w, h, size, type, component }) => {
-            const Component = componentMap[component];
+          {profolyoEditorLayout[mode]?.map((item) => {
+            const Component = componentMap[item.component];
             return (
-              <div key={i}>
+              <div key={item.i}>
                 <Component userData={userData} clickToAdd={false} />
               </div>
             );

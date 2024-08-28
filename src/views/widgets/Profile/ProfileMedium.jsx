@@ -14,7 +14,6 @@ const ProfileMedium = ({ userData, clickToAdd }) => {
     w: 2,
     h: 2,
     size: 'medium',
-    type: 'ProfileMedium',
     component: 'ProfileMedium',
     data: {
       title: `${userData?.FirstName} ${userData?.LastName}`,
