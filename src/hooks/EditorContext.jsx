@@ -38,7 +38,20 @@ export const EditorContextProvider = ({ children }) => {
     setProfolyoEditorLayout((prevState) => updateItemPosition(prevState, mode, newItem));
   };
 
-  return <EditorContext.Provider value={{ selectedWidget, setSelectedWidget, profolyoEditorLayout, addProfolyoWidgetToEditor, updateLayoutAfterDrag, openWidgetContainer, setOpenWidgetContainer }}>{children}</EditorContext.Provider>;
+  const updateWidgetSize = (layoutState, w, h, size, component, mode, id) => {
+    const updateLayout = (layout) => layout.map((item) => (item.i === id ? { ...item, w: w, h: h, size: size, component: component } : item));
+    return {
+      ...layoutState,
+      [mode]: updateLayout(layoutState[mode]),
+    };
+  };
+
+  const updateLayoutAfterResize = (w, h, size, component, mode, id) => {
+    console.log('updateLayoutAfterResize', w, h, size, component, mode, id);
+    setProfolyoEditorLayout((prevState) => updateWidgetSize(prevState, w, h, size, component, mode, id));
+  };
+
+  return <EditorContext.Provider value={{ selectedWidget, setSelectedWidget, profolyoEditorLayout, addProfolyoWidgetToEditor, updateLayoutAfterDrag, openWidgetContainer, setOpenWidgetContainer, updateLayoutAfterResize }}>{children}</EditorContext.Provider>;
 };
 
 export const EditorLayout = () => {

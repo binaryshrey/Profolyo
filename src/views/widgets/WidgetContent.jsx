@@ -68,7 +68,7 @@ const WidgetContent = ({ userData }) => {
           const Component = componentMap[item.component];
           return (
             <div key={item.i}>
-              <Component userData={userData} clickToAdd={true} />
+              <Component userData={userData} clickToAdd={true} widget={item} />
             </div>
           );
         })}

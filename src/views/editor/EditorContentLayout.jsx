@@ -53,7 +53,7 @@ const componentMap = {
 
 const EditorContentLayout = ({ userData, rowHeight, layoutMode }) => {
   const { profolyoEditorLayout, addProfolyoWidgetToEditor, updateLayoutAfterDrag } = EditorLayout();
-  console.log(profolyoEditorLayout);
+  console.log('profolyoEditorLayout', profolyoEditorLayout);
 
   const [mode, setMode] = React.useState(layoutMode);
   const [isDragging, setIsDragging] = React.useState(false);
@@ -70,9 +70,6 @@ const EditorContentLayout = ({ userData, rowHeight, layoutMode }) => {
   const handleDragStop = (layout, oldItem, newItem) => {
     setIsDragging(false);
     updateLayoutAfterDrag(mode, newItem);
-    console.log('layout', layout);
-    console.log('newItem', newItem);
-    console.log(profolyoEditorLayout);
   };
 
   // const updateLayout = (widget, size) => {
@@ -125,7 +122,7 @@ const EditorContentLayout = ({ userData, rowHeight, layoutMode }) => {
             const Component = componentMap[item.component];
             return (
               <div key={item.i}>
-                <Component userData={userData} clickToAdd={false} />
+                <Component userData={userData} clickToAdd={false} widget={item} mode={mode} />
               </div>
             );
           })}
