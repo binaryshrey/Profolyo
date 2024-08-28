@@ -7,7 +7,23 @@ import { EditorLayout } from '../../../hooks/EditorContext';
 const ProfileLarge = ({ userData, clickToAdd }) => {
   const { updateProfolyoEditorLayout, setOpenWidgetContainer } = EditorLayout();
 
-  const profile = { i: uuidv4(), x: 2, y: 0, w: 2, h: 4, size: 'large', type: 'ProfileLarge', component: 'ProfileLarge' };
+  const profile = {
+    i: uuidv4(),
+    x: 0,
+    y: 0,
+    w: 1,
+    h: 2,
+    size: 'small',
+    type: 'ProfileLarge',
+    component: 'ProfileLarge',
+    data: {
+      title: `${userData?.FirstName} ${userData?.LastName}`,
+      description: 'Maestro @Profolyo',
+      badge: 'Profile',
+      coverImage: userData?.AvatarURL,
+      audioIntro: '',
+    },
+  };
 
   const handleClickToAdd = () => {
     if (clickToAdd) {
@@ -20,14 +36,14 @@ const ProfileLarge = ({ userData, clickToAdd }) => {
     <div className="border rounded-lg flex flex-col justify-between h-full p-3 shadow-md cursor-pointer bg-profolyoWidget" onClick={handleClickToAdd}>
       <div className="flex gap-1 items-center">
         <RiUser4Line className="h-3 w-3 text-zinc-500" />
-        <p className="text-xs text-zinc-500 ">Profile</p>
+        <p className="text-xs text-zinc-500 ">{profile?.data?.badge}</p>
       </div>
-      <img src={userData?.AvatarURL} alt="profile" referrerPolicy="no-referrer" className="w-full h-64 rounded-lg mt-2 object-cover" />
+      <img src={profile?.data?.coverImage} alt="profile" referrerPolicy="no-referrer" className="w-full h-64 rounded-lg mt-2 object-cover" />
 
       <div className="flex gap-4">
         <div className="flex flex-col justify-center">
-          <p className="font-semibold text-2xl">{`${userData?.FirstName} ${userData?.LastName}`}</p>
-          <p className="text-lg text-zinc-500 ">Maestro @Profolyo</p>
+          <p className="font-semibold text-2xl">{profile?.data?.title}</p>
+          <p className="text-lg text-zinc-500 ">{profile?.data?.description}</p>
         </div>
       </div>
       <AudioPlayer audio={hellothere} />
