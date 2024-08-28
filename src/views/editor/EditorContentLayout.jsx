@@ -52,7 +52,7 @@ const componentMap = {
 };
 
 const EditorContentLayout = ({ userData, rowHeight, layoutMode }) => {
-  const { profolyoEditorLayout, updateProfolyoEditorLayout, updateLayoutAfterDrag } = EditorLayout();
+  const { profolyoEditorLayout, addProfolyoWidgetToEditor, updateLayoutAfterDrag } = EditorLayout();
   console.log(profolyoEditorLayout);
 
   const [mode, setMode] = React.useState(layoutMode);
@@ -88,7 +88,7 @@ const EditorContentLayout = ({ userData, rowHeight, layoutMode }) => {
   //     });
   //   });
 
-  //   updateProfolyoEditorLayout(updatedLayout);
+  //   addProfolyoWidgetToEditor(updatedLayout);
   // };
 
   const widgetSizeToggle = (widget) => {

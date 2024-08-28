@@ -15,7 +15,7 @@ export const EditorContextProvider = ({ children }) => {
     md: [],
   });
 
-  const updateProfolyoEditorLayout = (newItem) => {
+  const addProfolyoWidgetToEditor = (newItem) => {
     setProfolyoEditorLayout((prevLayout) => ({
       xs: [newItem, ...prevLayout.xs],
       sm: [newItem, ...prevLayout.sm],
@@ -36,7 +36,7 @@ export const EditorContextProvider = ({ children }) => {
     setProfolyoEditorLayout((prevState) => updateItemPosition(prevState, mode, newItem));
   };
 
-  return <EditorContext.Provider value={{ profolyoEditorLayout, updateProfolyoEditorLayout, updateLayoutAfterDrag, openWidgetContainer, setOpenWidgetContainer }}>{children}</EditorContext.Provider>;
+  return <EditorContext.Provider value={{ profolyoEditorLayout, addProfolyoWidgetToEditor, updateLayoutAfterDrag, openWidgetContainer, setOpenWidgetContainer }}>{children}</EditorContext.Provider>;
 };
 
 export const EditorLayout = () => {

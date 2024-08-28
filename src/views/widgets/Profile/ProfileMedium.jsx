@@ -5,7 +5,7 @@ import { RiUser4Line } from '@remixicon/react';
 import { EditorLayout } from '../../../hooks/EditorContext';
 
 const ProfileMedium = ({ userData, clickToAdd }) => {
-  const { updateProfolyoEditorLayout, setOpenWidgetContainer } = EditorLayout();
+  const { addProfolyoWidgetToEditor, setOpenWidgetContainer } = EditorLayout();
 
   const profile = {
     i: uuidv4(),
@@ -27,7 +27,7 @@ const ProfileMedium = ({ userData, clickToAdd }) => {
 
   const handleClickToAdd = () => {
     if (clickToAdd) {
-      updateProfolyoEditorLayout(profile);
+      addProfolyoWidgetToEditor(profile);
       setOpenWidgetContainer(false);
     }
   };
