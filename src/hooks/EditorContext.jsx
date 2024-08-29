@@ -18,9 +18,10 @@ export const EditorContextProvider = ({ children }) => {
   const [profileImageSize, setProfileImageSize] = useState('');
   const [profileBadge, setProfileBadge] = useState('');
   const [profileAudio, setProfileAudio] = useState('');
+  const [profileAudioURL, setProfileAudioURL] = useState('');
+  const [profileAudioVoice, setProfileAudioVoice] = useState('male');
 
   const addProfolyoWidgetToEditor = (widgetXS, widgetSM, widgetMD) => {
-    console.log('addProfolyoWidgetToEditor', widgetXS, widgetSM, widgetMD);
     setProfolyoEditorLayout((prevLayout) => ({
       xs: [widgetXS, ...prevLayout.xs],
       sm: [widgetSM, ...prevLayout.sm],
@@ -54,7 +55,38 @@ export const EditorContextProvider = ({ children }) => {
     setProfolyoEditorLayout((prevState) => updateWidgetSize(prevState, w, h, size, component, mode, id));
   };
 
-  return <EditorContext.Provider value={{ profileAudio, setProfileAudio, profileImageSize, setProfileImageSize, profileBadge, setProfileBadge, profileImage, setProfileImage, profileDescription, setProfileDescription, profileTitle, setProfileTitle, selectedWidget, setSelectedWidget, profolyoEditorLayout, addProfolyoWidgetToEditor, updateLayoutAfterDrag, openWidgetContainer, setOpenWidgetContainer, updateLayoutAfterResize }}>{children}</EditorContext.Provider>;
+  return (
+    <EditorContext.Provider
+      value={{
+        profileAudioVoice,
+        setProfileAudioVoice,
+        profileAudioURL,
+        setProfileAudioURL,
+        profileAudio,
+        setProfileAudio,
+        profileImageSize,
+        setProfileImageSize,
+        profileBadge,
+        setProfileBadge,
+        profileImage,
+        setProfileImage,
+        profileDescription,
+        setProfileDescription,
+        profileTitle,
+        setProfileTitle,
+        selectedWidget,
+        setSelectedWidget,
+        profolyoEditorLayout,
+        addProfolyoWidgetToEditor,
+        updateLayoutAfterDrag,
+        openWidgetContainer,
+        setOpenWidgetContainer,
+        updateLayoutAfterResize,
+      }}
+    >
+      {children}
+    </EditorContext.Provider>
+  );
 };
 
 export const EditorLayout = () => {

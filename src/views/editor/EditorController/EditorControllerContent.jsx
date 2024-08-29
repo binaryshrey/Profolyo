@@ -1,4 +1,5 @@
 import React from 'react';
+import { Loader2 } from 'lucide-react';
 import { ScrollArea } from '../../../components/scroll-area';
 import { EditorInput } from '../../../components/editor-input';
 import { EditorTextarea } from '../../../components/editor-textarea';
@@ -10,16 +11,24 @@ import { showToast } from '../../../components/Toasts';
 import { supabase } from '../../../utils/Supabase';
 import { UserProfile } from '../../../hooks/ProfileContext';
 import { UserAuth } from '../../../hooks/AuthContext';
+import TextToSpeech from '../../../components/TextToSpeech';
+import { RiMagicLine, RiCloseCircleFill, RiCheckboxCircleFill } from '@remixicon/react';
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '../../../components/select';
 
 const EditorControllerContent = () => {
   const { session } = UserAuth();
   const avatarUploadFileRef = React.useRef(null);
-  const { profileAudio, setProfileAudio, profileImageSize, setProfileImageSize, profileBadge, setProfileBadge, profileImage, setProfileImage, profileDescription, setProfileDescription, profileTitle, setProfileTitle, selectedWidget } = EditorLayout();
+  const { profileAudioVoice, setProfileAudioVoice, profileAudio, setProfileAudio, profileAudioURL, setProfileAudioURL, profileImageSize, setProfileImageSize, profileBadge, setProfileBadge, profileImage, setProfileImage, profileDescription, setProfileDescription, profileTitle, setProfileTitle, selectedWidget } = EditorLayout();
   const { avatarURL, avatarUploaded, firstName, lastName, userName, bio, profession, skills, updateAvatarURL, updateAvatarUploaded, updateFirstName, updateLastName, updateUserName, updateBio, updateProfession, setSkills, resumeURL, resumeUploaded, updateResumeURL, updateResumeUploaded } = UserProfile();
   const SUPABASE_STORAGE_URL = import.meta.env.VITE_SUPABASE_STORAGE_URL;
   const VITE_SUPABASE_PROFOLYO_USERS_TABLENAME = import.meta.env.VITE_SUPABASE_PROFOLYO_USERS_TABLENAME;
 
   const [avatarFile, setAvatarFile] = React.useState(null);
+  const [savingAudio, setSavingAudio] = React.useState(false);
+  const [showSavedAudio, setShowSavedAudio] = React.useState(true);
+
+  const [savingAudioVoice, setSavingAudioVoice] = React.useState(false);
+  const [showSavedAudioVoice, setShowSavedAudioVoice] = React.useState(true);
 
   const handleInputFileRef = () => {
     avatarUploadFileRef.current.click();
@@ -71,6 +80,54 @@ const EditorControllerContent = () => {
     }
   };
 
+  React.useEffect(() => {
+    const handleSaveAudioFromText = async () => {
+      setSavingAudio(true);
+      try {
+        const data = await TextToSpeech(profileAudioVoice, profileAudio);
+        const blob = new Blob([data], { type: 'audio/mpeg' });
+        const url = URL.createObjectURL(blob);
+        setProfileAudioURL(url);
+      } catch (error) {
+        console.error('Error saving audio :', error.message);
+        showToast(`Error saving audio: ${error.message}`, 'error');
+      } finally {
+        setSavingAudio(false);
+      }
+    };
+
+    const timer = setTimeout(() => {
+      if (profileAudio) {
+        handleSaveAudioFromText();
+      }
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [profileAudio]);
+
+  React.useEffect(() => {
+    const handleSaveAudioFromTextVoice = async () => {
+      setSavingAudioVoice(true);
+      try {
+        const data = await TextToSpeech(profileAudioVoice, profileAudio);
+        const blob = new Blob([data], { type: 'audio/mpeg' });
+        const url = URL.createObjectURL(blob);
+        setProfileAudioURL(url);
+      } catch (error) {
+        console.error('Error saving audio :', error.message);
+        showToast(`Error saving audio: ${error.message}`, 'error');
+      } finally {
+        setSavingAudioVoice(false);
+      }
+    };
+
+    const timer = setTimeout(() => {
+      if (profileAudio) {
+        handleSaveAudioFromTextVoice();
+      }
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [profileAudioVoice]);
+
   return (
     <div className="m-2">
       <ScrollArea className="overflow-hidden h-84vh">
@@ -108,9 +165,40 @@ const EditorControllerContent = () => {
                 <input type="file" onChange={handleFileChange} className="hidden" ref={avatarUploadFileRef} />
               </div>
 
-              <div className="pl-1 pr-1 pt-8 pb-4">
-                <Label htmlFor="audioIntro" className="mt-8">
+              <div className="pl-1 pr-1 pt-4">
+                <Label htmlFor="audioVoice" className="mt-8 flex gap-2 mb-1">
+                  Audio Voice
+                  <a href="https://elevenlabs.io/" className="text-xs text-zinc-500" target="_blank" rel="noopener noreferrer">
+                    (PoweredBy ElevenLabs)
+                  </a>
+                  <>
+                    {savingAudioVoice && <Loader2 className="h-4 w-4 animate-spin" />}
+                    {!savingAudioVoice && showSavedAudioVoice && <RiCheckboxCircleFill className="h-4 w-4 text-green-600" />}
+                  </>
+                </Label>
+                <Select defaultValue="male" onValueChange={setProfileAudioVoice}>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Select Audio Voice" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      <SelectItem value="male">Male</SelectItem>
+                      <SelectItem value="female">Female</SelectItem>
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              <div className="pl-1 pr-1 pt-4 pb-4">
+                <Label htmlFor="audioIntro" className="mt-8 flex gap-2 mb-1">
                   Audio Intro
+                  <a href="https://elevenlabs.io/" className="text-xs text-zinc-500" target="_blank" rel="noopener noreferrer">
+                    (PoweredBy ElevenLabs)
+                  </a>
+                  <>
+                    {savingAudio && <Loader2 className="h-4 w-4 animate-spin" />}
+                    {!savingAudio && showSavedAudio && <RiCheckboxCircleFill className="h-4 w-4 text-green-600" />}
+                  </>
                 </Label>
                 <EditorTextarea type="text" id="audioIntro" placeholder="Hello There!" maxLength="100" value={profileAudio} onChange={() => setProfileAudio(event.target.value)} />
               </div>

@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import AudioPlayer from '../../../components/AudioPlayer';
-import hellothere from '../../../assets/hellothere.mp3';
 import { RiUser4Line } from '@remixicon/react';
+import AudioPlayer from '../../../components/AudioPlayer';
 import { EditorLayout } from '../../../hooks/EditorContext';
 import { ToggleGroup, ToggleGroupItem } from '../../../components/toggle-group';
 
 const ProfileXLarge = ({ clickToAdd, widget, mode }) => {
-  const { profileAudio, profileBadge, profileImage, profileDescription, profileTitle, setSelectedWidget, addProfolyoWidgetToEditor, setOpenWidgetContainer, updateLayoutAfterResize, selectedWidget } = EditorLayout();
+  const { profileAudioURL, profileBadge, profileImage, profileDescription, profileTitle, setSelectedWidget, addProfolyoWidgetToEditor, setOpenWidgetContainer, updateLayoutAfterResize, selectedWidget } = EditorLayout();
   const [showSizeToggle, setShowSizeToggle] = useState(false);
 
   const profile = {
@@ -24,7 +23,7 @@ const ProfileXLarge = ({ clickToAdd, widget, mode }) => {
       description: profileDescription,
       badge: profileBadge,
       coverImage: profileImage,
-      audioIntro: profileAudio,
+      audioIntro: profileAudioURL,
     },
   };
 
@@ -42,7 +41,7 @@ const ProfileXLarge = ({ clickToAdd, widget, mode }) => {
       description: profileDescription,
       badge: profileBadge,
       coverImage: profileImage,
-      audioIntro: profileAudio,
+      audioIntro: profileAudioURL,
     },
   };
 
@@ -97,7 +96,7 @@ const ProfileXLarge = ({ clickToAdd, widget, mode }) => {
             <p className="text-lg text-zinc-500 ">{profileDescription}</p>
           </div>
         </div>
-        <AudioPlayer audio={hellothere} smallSize={false} />
+        <AudioPlayer smallSize={false} />
       </div>
     </>
   );

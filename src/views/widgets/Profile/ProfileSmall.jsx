@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { RiUser4Line } from '@remixicon/react';
-import { EditorLayout } from '../../../hooks/EditorContext';
 import AudioPlayer from '../../../components/AudioPlayer';
-import hellothere from '../../../assets/hellothere.mp3';
+import { EditorLayout } from '../../../hooks/EditorContext';
 import { ToggleGroup, ToggleGroupItem } from '../../../components/toggle-group';
 
 const ProfileSmall = ({ clickToAdd, widget, mode }) => {
-  const { profileAudio, profileBadge, profileImage, profileDescription, profileTitle, setSelectedWidget, addProfolyoWidgetToEditor, setOpenWidgetContainer, updateLayoutAfterResize, selectedWidget } = EditorLayout();
+  const { profileAudio, profileAudioURL, profileBadge, profileImage, profileDescription, profileTitle, setSelectedWidget, addProfolyoWidgetToEditor, setOpenWidgetContainer, updateLayoutAfterResize, selectedWidget } = EditorLayout();
   const [showSizeToggle, setShowSizeToggle] = useState(false);
 
   const profile = {
@@ -24,7 +23,7 @@ const ProfileSmall = ({ clickToAdd, widget, mode }) => {
       description: profileDescription,
       badge: profileBadge,
       coverImage: profileImage,
-      audioIntro: profileAudio,
+      audioIntro: profileAudioURL,
     },
   };
 
@@ -76,7 +75,7 @@ const ProfileSmall = ({ clickToAdd, widget, mode }) => {
           <p className="font-semibold text-xl ">{profileTitle}</p>
           <p className="text-sm text-zinc-500 ">{profileDescription}</p>
         </div>
-        <AudioPlayer audio={hellothere} smallSize={true} />
+        <AudioPlayer smallSize={true} />
       </div>
     </>
   );
