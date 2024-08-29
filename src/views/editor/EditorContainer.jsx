@@ -87,7 +87,7 @@ const EditorContainer = () => {
               <RiSettingsLine className="h-4 w-4" />
             </EditorNavBar>
 
-            <WidgetContainer userData={userData[0]} />
+            <WidgetContainer />
 
             <EditorNavBar navName="Preview">
               <RiPlayLine className="h-4 w-4" />
@@ -116,7 +116,7 @@ const EditorContainer = () => {
               <EditorContent userData={userData[0]} />
             </div>
             <div className="w-30/100 hidden sm:block lg:w-1/5 h-90vh ">
-              <EditorController userData={userData[0]} />
+              <EditorController />
             </div>
           </div>
         </>

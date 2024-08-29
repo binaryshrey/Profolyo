@@ -53,22 +53,15 @@ const breakpoints = {
   md: 767,
 };
 
-const WidgetContent = ({ userData }) => {
-  const [widgetLayout, setWidgetLayout] = React.useState(layout);
-  const [selectedWidget, setSelectedWidget] = React.useState(null);
-
-  const handleSelectedWidget = (widget) => {
-    setSelectedWidget(widget);
-  };
-
+const WidgetContent = () => {
   return (
     <div className="mt-8 bg-profolyo">
-      <ResponsiveGridLayout layouts={widgetLayout} breakpoints={breakpoints} cols={cols} rowHeight={120} width={120} isResizable={false} isDraggable={false}>
-        {widgetLayout?.md.map((item) => {
+      <ResponsiveGridLayout layouts={layout} breakpoints={breakpoints} cols={cols} rowHeight={120} width={120} isResizable={false} isDraggable={false}>
+        {layout?.md.map((item) => {
           const Component = componentMap[item.component];
           return (
             <div key={item.i}>
-              <Component userData={userData} clickToAdd={true} widget={item} />
+              <Component clickToAdd={true} widget={item} />
             </div>
           );
         })}

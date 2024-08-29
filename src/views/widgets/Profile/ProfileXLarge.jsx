@@ -6,7 +6,7 @@ import { RiUser4Line } from '@remixicon/react';
 import { EditorLayout } from '../../../hooks/EditorContext';
 import { ToggleGroup, ToggleGroupItem } from '../../../components/toggle-group';
 
-const ProfileXLarge = ({ userData, clickToAdd, widget, mode }) => {
+const ProfileXLarge = ({ clickToAdd, widget, mode }) => {
   const { profileAudio, profileBadge, profileImage, profileDescription, profileTitle, setSelectedWidget, addProfolyoWidgetToEditor, setOpenWidgetContainer, updateLayoutAfterResize, selectedWidget } = EditorLayout();
   const [showSizeToggle, setShowSizeToggle] = useState(false);
 

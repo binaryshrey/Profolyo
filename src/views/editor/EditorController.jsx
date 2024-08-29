@@ -2,7 +2,7 @@ import React from 'react';
 import { EditorTabs, EditorTabsContent, EditorTabsList, EditorTabsTrigger } from '../../components/editor-tabs';
 import EditorControllerContent from './EditorController/EditorControllerContent';
 
-const EditorController = ({ userData }) => {
+const EditorController = () => {
   return (
     <div className="mt-1">
       <EditorTabs defaultValue="content">

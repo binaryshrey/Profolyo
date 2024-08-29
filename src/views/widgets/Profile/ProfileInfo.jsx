@@ -1,5 +1,4 @@
-const ProfileInfo = ({ userData }) => {
-  console.log('ProfileInfo', userData);
+const ProfileInfo = () => {
   return (
     <div className="rounded-lg flex flex-col justify-center h-full p-4 ">
       <p className="font-semibold text-3xl">Profile</p>

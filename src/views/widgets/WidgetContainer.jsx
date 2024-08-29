@@ -7,7 +7,7 @@ import WidgetNavBar from './WidgetNavBar';
 import WidgetContent from './WidgetContent';
 import { EditorLayout } from '../../hooks/EditorContext';
 
-const WidgetContainer = ({ userData }) => {
+const WidgetContainer = () => {
   const { openWidgetContainer, setOpenWidgetContainer } = EditorLayout();
 
   return (
@@ -27,7 +27,7 @@ const WidgetContainer = ({ userData }) => {
             </div>
             <div className="w-4/5 p-4 rounded bg-profolyo">
               <ScrollArea className="overflow-hidden h-90vh">
-                <WidgetContent userData={userData} />
+                <WidgetContent />
               </ScrollArea>
             </div>
           </div>

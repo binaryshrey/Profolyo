@@ -85,9 +85,9 @@ const EditorContent = ({ userData }) => {
       <div className="border border-profolyoDark"></div>
       <div className="overflow-y-auto h-84vh">
         <div className={`bg-profolyo mx-auto w-full ${layoutMode === 'md' ? 'max-w-6xl' : layoutMode === 'sm' ? 'max-w-3xl' : 'max-w-sm'}`}>
-          {layoutMode === 'md' && <EditorContentLayout userData={userData} rowHeight={120} layoutMode={layoutMode} />}
-          {layoutMode === 'sm' && <EditorContentLayout userData={userData} rowHeight={160} layoutMode={layoutMode} />}
-          {layoutMode === 'xs' && <EditorContentLayout userData={userData} rowHeight={160} layoutMode={layoutMode} />}
+          {layoutMode === 'md' && <EditorContentLayout rowHeight={120} layoutMode={layoutMode} />}
+          {layoutMode === 'sm' && <EditorContentLayout rowHeight={160} layoutMode={layoutMode} />}
+          {layoutMode === 'xs' && <EditorContentLayout rowHeight={160} layoutMode={layoutMode} />}
         </div>
       </div>
     </div>

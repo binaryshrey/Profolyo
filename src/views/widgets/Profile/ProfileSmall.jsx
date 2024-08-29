@@ -6,7 +6,7 @@ import AudioPlayer from '../../../components/AudioPlayer';
 import hellothere from '../../../assets/hellothere.mp3';
 import { ToggleGroup, ToggleGroupItem } from '../../../components/toggle-group';
 
-const ProfileSmall = ({ userData, clickToAdd, widget, mode }) => {
+const ProfileSmall = ({ clickToAdd, widget, mode }) => {
   const { profileAudio, profileBadge, profileImage, profileDescription, profileTitle, setSelectedWidget, addProfolyoWidgetToEditor, setOpenWidgetContainer, updateLayoutAfterResize, selectedWidget } = EditorLayout();
   const [showSizeToggle, setShowSizeToggle] = useState(false);
 
