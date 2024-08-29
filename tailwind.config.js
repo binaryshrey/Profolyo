@@ -13,6 +13,7 @@ export default {
         "2xl": "1400px",
       },
     },
+   
     extend: {
 
       colors: {
@@ -50,7 +51,12 @@ export default {
           foreground: "hsl(var(--card-foreground))",
         },
         linkedin : '#0A66C2',
-        linkedinHover : '#0856a3'
+        linkedinHover : '#0856a3',
+        profolyo: "#f0efeb",
+        profolyoDark: "#d8d7d3",
+        profolyoExtraDark: "#c0bfbc",
+        profolyoWidget: "#f5f4f1",
+        profolyoAudio: "#fafaf9"
       },
       borderRadius: {
         lg: `var(--radius)`,
@@ -87,6 +93,16 @@ export default {
         orbit: "orbit calc(var(--duration)*1s) linear infinite",
         marquee: "marquee var(--duration) linear infinite",
 
+      },
+      width: {
+        '70/100': '70%',
+        '30/100': '30%'
+      },
+      height: {
+        '95vh': '95vh',
+        '90vh': '90vh',
+        '84vh': '84vh',
+        '80vh': '80vh',
       },
     },
   },

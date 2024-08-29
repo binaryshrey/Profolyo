@@ -2,7 +2,6 @@ import Marquee from '../components/marquee';
 import { integrations } from '../services/data/integrations';
 
 export const MarqueeIntegrations = () => {
-  console.log(integrations);
   return (
     <div className="relative flex h-[400px] w-full flex-col items-center justify-center overflow-hidden">
       <Marquee pauseOnHover className="[--duration:60s]">

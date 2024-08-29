@@ -55,8 +55,6 @@ const ConnectApps = () => {
     setUpdateUserName(appConnections[appName]['username']);
   };
 
-  console.log(appConnections);
-
   return (
     <>
       <ScrollArea className="h-4/5 overflow-hidden">
