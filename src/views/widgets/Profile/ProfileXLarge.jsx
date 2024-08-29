@@ -6,7 +6,7 @@ import { EditorLayout } from '../../../hooks/EditorContext';
 import { ToggleGroup, ToggleGroupItem } from '../../../components/toggle-group';
 
 const ProfileXLarge = ({ clickToAdd, widget, mode }) => {
-  const { profileAudioURL, profileBadge, profileImage, profileDescription, profileTitle, setSelectedWidget, addProfolyoWidgetToEditor, setOpenWidgetContainer, updateLayoutAfterResize, selectedWidget } = EditorLayout();
+  const { profileCardElevation, setProfileCardElevation, profileAudioURL, profileBadge, profileImage, profileDescription, profileTitle, setSelectedWidget, addProfolyoWidgetToEditor, setOpenWidgetContainer, updateLayoutAfterResize, selectedWidget } = EditorLayout();
   const [showSizeToggle, setShowSizeToggle] = useState(false);
 
   const profile = {
@@ -59,6 +59,18 @@ const ProfileXLarge = ({ clickToAdd, widget, mode }) => {
     updateLayoutAfterResize(w, h, size, component, mode, widget.i);
   };
 
+  const getCardElevation = () => {
+    if (profileCardElevation === 'xlarge-low') {
+      return 'shadow-md';
+    } else if (profileCardElevation === 'xlarge-medium') {
+      return 'shadow-md';
+    } else if (profileCardElevation === 'xlarge-high') {
+      return 'shadow-lg';
+    } else {
+      return 'shadow-md';
+    }
+  };
+
   const widgetSizeToggleToolbar = (widget) => {
     return (
       <div className="bg-profolyoExtraDark w-10 h-44 rounded-full absolute items-center flex flex-col justify-center -ml-11 ">
@@ -83,7 +95,7 @@ const ProfileXLarge = ({ clickToAdd, widget, mode }) => {
   return (
     <>
       <div>{showSizeToggle && selectedWidget?.i === widget.i && widgetSizeToggleToolbar(widget)}</div>
-      <div className={`border rounded-lg flex flex-col justify-between h-full p-3 shadow-md cursor-pointer bg-profolyoWidget ${showSizeToggle && selectedWidget?.i === widget.i ? 'border border-4 border-profolyoExtraDark' : ''}`} onClick={handleClickToAdd}>
+      <div className={`border rounded-lg flex flex-col justify-between h-full p-3 ${getCardElevation()} cursor-pointer bg-profolyoWidget ${showSizeToggle && selectedWidget?.i === widget.i ? 'border border-4 border-profolyoExtraDark' : ''}`} onClick={handleClickToAdd}>
         <div className="flex gap-1 items-center">
           <RiUser4Line className="h-3 w-3 text-zinc-500" />
           <p className="text-xs text-zinc-500 ">{profileBadge}</p>

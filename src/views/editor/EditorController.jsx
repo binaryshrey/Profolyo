@@ -1,6 +1,7 @@
 import React from 'react';
 import { EditorTabs, EditorTabsContent, EditorTabsList, EditorTabsTrigger } from '../../components/editor-tabs';
 import EditorControllerContent from './EditorController/EditorControllerContent';
+import EditorControllerDesign from './EditorController/EditorControllerDesign';
 
 const EditorController = () => {
   return (
@@ -17,7 +18,9 @@ const EditorController = () => {
           <EditorTabsContent value="content">
             <EditorControllerContent />
           </EditorTabsContent>
-          <EditorTabsContent value="design">Design</EditorTabsContent>
+          <EditorTabsContent value="design">
+            <EditorControllerDesign />
+          </EditorTabsContent>
         </div>
       </EditorTabs>
     </div>

@@ -30,8 +30,8 @@ const AudioPlayer = ({ smallSize }) => {
         {isPlaying ? <RiPauseLargeFill className={`${smallSize ? 'h-3 w-3' : 'h-4 w-4'}`} /> : <RiPlayLargeFill className={`${smallSize ? 'h-3 w-3' : 'h-4 w-4'}`} />}
       </Button>
       <div className="w-full">
-        {smallSize && <WavesurferPlayer cursorWidth={0} barHeight={2} barWidth={2} height={40} waveColor="gray" url={audioURL} onReady={onReady} onPlay={() => setIsPlaying(true)} onPause={() => setIsPlaying(false)} />}
-        {!smallSize && <WavesurferPlayer cursorWidth={0} barHeight={2} barWidth={2} height={50} waveColor="gray" url={audioURL} onReady={onReady} onPlay={() => setIsPlaying(true)} onPause={() => setIsPlaying(false)} />}
+        {smallSize && <WavesurferPlayer cursorWidth={0} barHeight={1} barWidth={2} height={40} waveColor="gray" url={audioURL} onReady={onReady} onPlay={() => setIsPlaying(true)} onPause={() => setIsPlaying(false)} />}
+        {!smallSize && <WavesurferPlayer cursorWidth={0} barHeight={1} barWidth={2} height={50} waveColor="gray" url={audioURL} onReady={onReady} onPlay={() => setIsPlaying(true)} onPause={() => setIsPlaying(false)} />}
       </div>
     </div>
   );

@@ -20,6 +20,7 @@ export const EditorContextProvider = ({ children }) => {
   const [profileAudio, setProfileAudio] = useState('');
   const [profileAudioURL, setProfileAudioURL] = useState('');
   const [profileAudioVoice, setProfileAudioVoice] = useState('male');
+  const [profileCardElevation, setProfileCardElevation] = useState('');
 
   const addProfolyoWidgetToEditor = (widgetXS, widgetSM, widgetMD) => {
     setProfolyoEditorLayout((prevLayout) => ({
@@ -58,6 +59,8 @@ export const EditorContextProvider = ({ children }) => {
   return (
     <EditorContext.Provider
       value={{
+        profileCardElevation,
+        setProfileCardElevation,
         profileAudioVoice,
         setProfileAudioVoice,
         profileAudioURL,

@@ -6,7 +6,7 @@ import { EditorLayout } from '../../../hooks/EditorContext';
 import { ToggleGroup, ToggleGroupItem } from '../../../components/toggle-group';
 
 const ProfileMedium = ({ clickToAdd, widget, mode }) => {
-  const { profileAudioURL, profileBadge, profileImage, profileDescription, profileTitle, setSelectedWidget, addProfolyoWidgetToEditor, setOpenWidgetContainer, updateLayoutAfterResize, selectedWidget } = EditorLayout();
+  const { profileCardElevation, setProfileCardElevation, profileAudioURL, profileBadge, profileImage, profileDescription, profileTitle, setSelectedWidget, addProfolyoWidgetToEditor, setOpenWidgetContainer, updateLayoutAfterResize, selectedWidget } = EditorLayout();
   const [showSizeToggle, setShowSizeToggle] = useState(false);
 
   const profile = {
@@ -80,10 +80,22 @@ const ProfileMedium = ({ clickToAdd, widget, mode }) => {
     );
   };
 
+  const getCardElevation = () => {
+    if (profileCardElevation === 'medium-low') {
+      return 'shadow-md';
+    } else if (profileCardElevation === 'medium-medium') {
+      return 'shadow-md';
+    } else if (profileCardElevation === 'medium-high') {
+      return 'shadow-lg';
+    } else {
+      return 'shadow-md';
+    }
+  };
+
   return (
     <>
       <div>{showSizeToggle && selectedWidget?.i === widget.i && widgetSizeToggleToolbar(widget)}</div>
-      <div className={`border rounded-lg flex flex-col justify-between h-full p-3 shadow-md cursor-pointer bg-profolyoWidget ${showSizeToggle && selectedWidget?.i === widget.i ? 'border border-4 border-profolyoExtraDark' : ''}`} onClick={handleClickToAdd}>
+      <div className={`border rounded-lg flex flex-col justify-between h-full p-3 ${getCardElevation()} cursor-pointer bg-profolyoWidget ${showSizeToggle && selectedWidget?.i === widget.i ? 'border border-4 border-profolyoExtraDark' : ''}`} onClick={handleClickToAdd}>
         <div className="flex gap-1 items-center">
           <RiUser4Line className="h-3 w-3 text-zinc-500" />
           <p className="text-xs text-zinc-500 ">{profileBadge}</p>
