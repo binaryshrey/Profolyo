@@ -7,7 +7,7 @@ import hellothere from '../../../assets/hellothere.mp3';
 import { ToggleGroup, ToggleGroupItem } from '../../../components/toggle-group';
 
 const ProfileSmall = ({ userData, clickToAdd, widget, mode }) => {
-  const { selectedWidget, profileBadge, setProfileBadge, profileImage, setProfileImage, profileDescription, setProfileDescription, profileTitle, setProfileTitle, setSelectedWidget, addProfolyoWidgetToEditor, setOpenWidgetContainer, updateLayoutAfterResize } = EditorLayout();
+  const { profileAudio, profileBadge, profileImage, profileDescription, profileTitle, setSelectedWidget, addProfolyoWidgetToEditor, setOpenWidgetContainer, updateLayoutAfterResize, selectedWidget } = EditorLayout();
   const [showSizeToggle, setShowSizeToggle] = useState(false);
 
   const profile = {
@@ -20,20 +20,13 @@ const ProfileSmall = ({ userData, clickToAdd, widget, mode }) => {
     type: 'Profile',
     component: 'ProfileSmall',
     data: {
-      title: `${userData?.FirstName} ${userData?.LastName}`,
-      description: 'Maestro @Profolyo',
-      badge: 'Profile',
-      coverImage: userData?.AvatarURL,
-      audioIntro: '',
+      title: profileTitle,
+      description: profileDescription,
+      badge: profileBadge,
+      coverImage: profileImage,
+      audioIntro: profileAudio,
     },
   };
-
-  React.useEffect(() => {
-    setProfileBadge(profile?.data?.badge);
-    setProfileImage(profile?.data?.coverImage);
-    setProfileDescription(profile?.data?.description);
-    setProfileTitle(profile?.data?.title);
-  }, []);
 
   const handleClickToAdd = () => {
     if (clickToAdd) {
@@ -51,7 +44,7 @@ const ProfileSmall = ({ userData, clickToAdd, widget, mode }) => {
 
   const widgetSizeToggleToolbar = (widget) => {
     return (
-      <div className="bg-profolyoExtraDark w-10 h-44 rounded-full absolute items-center flex flex-col justify-center -ml-11 z-10">
+      <div className="bg-profolyoExtraDark w-10 h-44 rounded-full absolute items-center flex flex-col justify-center -ml-11 ">
         <ToggleGroup type="single" className="flex flex-col" defaultValue={widget?.size}>
           <ToggleGroupItem value="small" size="xs" variant="outlineDark" className="w-8" onClick={() => updateLayout(1, 2, 'small', 'ProfileSmall')}>
             <p className="text-sm">S</p>
@@ -73,7 +66,7 @@ const ProfileSmall = ({ userData, clickToAdd, widget, mode }) => {
   return (
     <>
       <div>{showSizeToggle && selectedWidget?.i === widget.i && widgetSizeToggleToolbar(widget)}</div>
-      <div onClick={handleClickToAdd} className={`rounded-lg flex flex-col justify-between h-full p-3 shadow-md cursor-pointer bg-profolyoWidget ${selectedWidget?.i === widget.i ? 'border border-4 border-profolyoExtraDark' : ''}`}>
+      <div onClick={handleClickToAdd} className={`rounded-lg flex flex-col justify-between h-full p-3 shadow-md cursor-pointer bg-profolyoWidget ${showSizeToggle && selectedWidget?.i === widget.i ? 'border border-4 border-profolyoExtraDark' : ''}`}>
         <div className="flex gap-1 items-center">
           <RiUser4Line className="h-3 w-3 text-zinc-500" />
           <p className="text-xs text-zinc-500 ">{profileBadge}</p>

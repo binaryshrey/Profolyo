@@ -12,10 +12,12 @@ import { useNavigate } from 'react-router-dom';
 import { Loader2 } from 'lucide-react';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../../components/tooltip';
 import WidgetContainer from '../widgets/WidgetContainer';
+import { EditorLayout } from '../../hooks/EditorContext';
 
 const EditorContainer = () => {
   const { session } = UserAuth();
   const navigate = useNavigate();
+  const { setProfileAudio, setProfileBadge, setProfileImage, setProfileDescription, setProfileTitle } = EditorLayout();
 
   const [userData, setUserData] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
@@ -31,7 +33,13 @@ const EditorContainer = () => {
           if (error) {
             throw error;
           }
+          console.log('userData', data);
           setUserData(data);
+          setProfileTitle(`${data[0]?.FirstName} ${data[0]?.LastName}`);
+          setProfileDescription('Maestro @Profolyo');
+          setProfileImage(data[0]?.AvatarURL);
+          setProfileBadge('Profile');
+          setProfileAudio(`Hello There! I'm ${data[0]?.FirstName} ${data[0]?.LastName}`);
         } else {
           navigate('/login');
         }

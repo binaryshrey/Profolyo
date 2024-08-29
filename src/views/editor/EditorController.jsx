@@ -1,25 +1,25 @@
 import React from 'react';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../components/tabs';
+import { EditorTabs, EditorTabsContent, EditorTabsList, EditorTabsTrigger } from '../../components/editor-tabs';
 import EditorControllerContent from './EditorController/EditorControllerContent';
 
 const EditorController = ({ userData }) => {
   return (
     <div className="mt-1">
-      <Tabs defaultValue="content">
+      <EditorTabs defaultValue="content">
         <div className="items-center text-center">
-          <TabsList>
-            <TabsTrigger value="content">Content</TabsTrigger>
-            <TabsTrigger value="design">Design</TabsTrigger>
-          </TabsList>
+          <EditorTabsList>
+            <EditorTabsTrigger value="content">Content</EditorTabsTrigger>
+            <EditorTabsTrigger value="design">Design</EditorTabsTrigger>
+          </EditorTabsList>
         </div>
 
         <div className="pl-8">
-          <TabsContent value="content">
+          <EditorTabsContent value="content">
             <EditorControllerContent />
-          </TabsContent>
-          <TabsContent value="design">Design</TabsContent>
+          </EditorTabsContent>
+          <EditorTabsContent value="design">Design</EditorTabsContent>
         </div>
-      </Tabs>
+      </EditorTabs>
     </div>
   );
 };

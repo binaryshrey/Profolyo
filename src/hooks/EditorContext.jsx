@@ -1,6 +1,5 @@
 /************************************************************ IMPORTS ************************************************************/
 
-import { v4 as uuidv4 } from 'uuid';
 import { useContext, createContext, useEffect, useState } from 'react';
 
 /************************************************************ IMPORTS ************************************************************/
@@ -8,13 +7,11 @@ import { useContext, createContext, useEffect, useState } from 'react';
 const EditorContext = createContext();
 
 export const EditorContextProvider = ({ children }) => {
-  const [openWidgetContainer, setOpenWidgetContainer] = useState(false);
-  const [profolyoEditorLayout, setProfolyoEditorLayout] = useState({
-    xs: [],
-    sm: [],
-    md: [],
-  });
   const [selectedWidget, setSelectedWidget] = useState();
+  const [openWidgetContainer, setOpenWidgetContainer] = useState(false);
+  const [profolyoEditorLayout, setProfolyoEditorLayout] = useState({ xs: [], sm: [], md: [] });
+
+  //profile
   const [profileTitle, setProfileTitle] = useState('');
   const [profileDescription, setProfileDescription] = useState('');
   const [profileImage, setProfileImage] = useState('');

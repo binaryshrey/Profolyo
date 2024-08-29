@@ -7,7 +7,7 @@ import { EditorLayout } from '../../../hooks/EditorContext';
 import { ToggleGroup, ToggleGroupItem } from '../../../components/toggle-group';
 
 const ProfileMedium = ({ userData, clickToAdd, widget, mode }) => {
-  const { selectedWidget, setSelectedWidget, addProfolyoWidgetToEditor, setOpenWidgetContainer, updateLayoutAfterResize } = EditorLayout();
+  const { profileAudio, profileBadge, profileImage, profileDescription, profileTitle, setSelectedWidget, addProfolyoWidgetToEditor, setOpenWidgetContainer, updateLayoutAfterResize, selectedWidget } = EditorLayout();
   const [showSizeToggle, setShowSizeToggle] = useState(false);
 
   const profile = {
@@ -20,11 +20,11 @@ const ProfileMedium = ({ userData, clickToAdd, widget, mode }) => {
     type: 'Profile',
     component: 'ProfileMedium',
     data: {
-      title: `${userData?.FirstName} ${userData?.LastName}`,
-      description: 'Maestro @Profolyo',
-      badge: 'Profile',
-      coverImage: userData?.AvatarURL,
-      audioIntro: '',
+      title: profileTitle,
+      description: profileDescription,
+      badge: profileBadge,
+      coverImage: profileImage,
+      audioIntro: profileAudio,
     },
   };
 
@@ -38,11 +38,11 @@ const ProfileMedium = ({ userData, clickToAdd, widget, mode }) => {
     type: 'Profile',
     component: 'ProfileSmall',
     data: {
-      title: `${userData?.FirstName} ${userData?.LastName}`,
-      description: 'Maestro @Profolyo',
-      badge: 'Profile',
-      coverImage: userData?.AvatarURL,
-      audioIntro: '',
+      title: profileTitle,
+      description: profileDescription,
+      badge: profileBadge,
+      coverImage: profileImage,
+      audioIntro: profileAudio,
     },
   };
 
@@ -62,7 +62,7 @@ const ProfileMedium = ({ userData, clickToAdd, widget, mode }) => {
 
   const widgetSizeToggleToolbar = (widget) => {
     return (
-      <div className="bg-profolyoExtraDark w-10 h-44 rounded-full absolute items-center flex flex-col justify-center -ml-11 z-10">
+      <div className="bg-profolyoExtraDark w-10 h-44 rounded-full absolute items-center flex flex-col justify-center -ml-11">
         <ToggleGroup type="single" className="flex flex-col" defaultValue={widget?.size}>
           <ToggleGroupItem value="small" size="xs" variant="outlineDark" className="w-8" onClick={() => updateLayout(1, 2, 'small', 'ProfileSmall')}>
             <p className="text-sm">S</p>
@@ -84,16 +84,16 @@ const ProfileMedium = ({ userData, clickToAdd, widget, mode }) => {
   return (
     <>
       <div>{showSizeToggle && selectedWidget?.i === widget.i && widgetSizeToggleToolbar(widget)}</div>
-      <div className={`border rounded-lg flex flex-col justify-between h-full p-3 shadow-md cursor-pointer bg-profolyoWidget ${selectedWidget?.i === widget.i ? 'border border-4 border-profolyoExtraDark' : ''}`} onClick={handleClickToAdd}>
+      <div className={`border rounded-lg flex flex-col justify-between h-full p-3 shadow-md cursor-pointer bg-profolyoWidget ${showSizeToggle && selectedWidget?.i === widget.i ? 'border border-4 border-profolyoExtraDark' : ''}`} onClick={handleClickToAdd}>
         <div className="flex gap-1 items-center">
           <RiUser4Line className="h-3 w-3 text-zinc-500" />
-          <p className="text-xs text-zinc-500 ">{profile?.data?.badge}</p>
+          <p className="text-xs text-zinc-500 ">{profileBadge}</p>
         </div>
         <div className="flex gap-4">
-          <img src={profile?.data?.coverImage} alt="profile" referrerPolicy="no-referrer" className="w-28 h-28 rounded-lg mt-2 object-cover" />
+          <img src={profileImage} alt="profile" referrerPolicy="no-referrer" className="w-28 h-28 rounded-lg mt-2 object-cover" />
           <div className="flex flex-col mt-4">
-            <p className="font-semibold text-2xl">{profile?.data?.title}</p>
-            <p className="text-lg text-zinc-500 ">{profile?.data?.description}</p>
+            <p className="font-semibold text-2xl">{profileTitle}</p>
+            <p className="text-lg text-zinc-500 ">{profileDescription}</p>
           </div>
         </div>
         <AudioPlayer audio={hellothere} smallSize={false} />
