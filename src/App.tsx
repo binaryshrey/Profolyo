@@ -12,6 +12,7 @@ const Redirect = React.lazy(() => import('./views/redirect/Redirect'));
 const OnboardContainer = React.lazy(() => import('./views/onboard/OnboardContainer'));
 const EditorContainer = React.lazy(() => import('./views/editor/EditorContainer'));
 const EditorPreview = React.lazy(() => import('./views/editor/EditorPreview'));
+const EditorPublish = React.lazy(() => import('./views/editor/EditorPublish'));
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
             <EditorContextProvider>
               <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/:profolyoID" element={<EditorPublish />} />
                 <Route
                   path="/onboard"
                   element={
