@@ -5,7 +5,7 @@ import AudioPlayer from '../../../components/AudioPlayer';
 import { EditorLayout } from '../../../hooks/EditorContext';
 import { ToggleGroup, ToggleGroupItem } from '../../../components/toggle-group';
 
-const ProfileSmall = ({ clickToAdd, widget, mode }) => {
+const ProfileSmall = ({ clickToAdd, widget, mode, viewMode }) => {
   const { profileCardElevation, setProfileCardElevation, profileAudio, profileAudioURL, profileBadge, profileImage, profileDescription, profileTitle, setSelectedWidget, addProfolyoWidgetToEditor, setOpenWidgetContainer, updateLayoutAfterResize, selectedWidget } = EditorLayout();
   const [showSizeToggle, setShowSizeToggle] = useState(false);
 
@@ -76,18 +76,18 @@ const ProfileSmall = ({ clickToAdd, widget, mode }) => {
 
   return (
     <>
-      <div>{showSizeToggle && selectedWidget?.i === widget.i && widgetSizeToggleToolbar(widget)}</div>
-      <div onClick={handleClickToAdd} className={`rounded-lg flex flex-col justify-between h-full p-3 ${getCardElevation()} cursor-pointer bg-profolyoWidget ${showSizeToggle && selectedWidget?.i === widget.i ? 'border border-4 border-profolyoExtraDark' : ''}`}>
+      <div>{!viewMode && showSizeToggle && selectedWidget?.i === widget.i && widgetSizeToggleToolbar(widget)}</div>
+      <div onClick={handleClickToAdd} className={`rounded-lg flex flex-col justify-between h-full p-3 ${getCardElevation()} ${!viewMode ? 'cursor-pointer' : ''} bg-profolyoWidget ${!viewMode && showSizeToggle && selectedWidget?.i === widget.i ? 'border border-4 border-profolyoExtraDark' : ''}`}>
         <div className="flex gap-1 items-center">
           <RiUser4Line className="h-3 w-3 text-zinc-500" />
-          <p className="text-xs text-zinc-500 ">{profileBadge}</p>
+          <p className="text-xs text-zinc-500 ">{profileBadge || widget?.data?.badge}</p>
         </div>
-        <img src={profileImage} referrerPolicy="no-referrer" alt="ProfilePic" className="w-24 h-24 rounded-lg mt-2 object-cover" />
+        <img src={profileImage || widget?.data?.coverImage} referrerPolicy="no-referrer" alt="ProfilePic" className="w-24 h-24 rounded-lg mt-2 object-cover" />
         <div>
-          <p className="font-semibold text-xl ">{profileTitle}</p>
-          <p className="text-sm text-zinc-500 ">{profileDescription}</p>
+          <p className="font-semibold text-xl ">{profileTitle || widget?.data?.title}</p>
+          <p className="text-sm text-zinc-500 ">{profileDescription || widget?.data?.description}</p>
         </div>
-        <AudioPlayer smallSize={true} />
+        <AudioPlayer smallSize={true} audioIntro={profileAudioURL || widget?.data?.audioIntro} />
       </div>
     </>
   );

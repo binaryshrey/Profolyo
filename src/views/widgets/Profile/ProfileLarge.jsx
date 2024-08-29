@@ -5,7 +5,7 @@ import AudioPlayer from '../../../components/AudioPlayer';
 import { EditorLayout } from '../../../hooks/EditorContext';
 import { ToggleGroup, ToggleGroupItem } from '../../../components/toggle-group';
 
-const ProfileLarge = ({ clickToAdd, widget, mode }) => {
+const ProfileLarge = ({ clickToAdd, widget, mode, viewMode }) => {
   const { profileCardElevation, setProfileCardElevation, profileAudioURL, profileBadge, profileImage, profileDescription, profileTitle, setSelectedWidget, addProfolyoWidgetToEditor, setOpenWidgetContainer, updateLayoutAfterResize, selectedWidget } = EditorLayout();
   const [showSizeToggle, setShowSizeToggle] = useState(false);
 
@@ -93,21 +93,21 @@ const ProfileLarge = ({ clickToAdd, widget, mode }) => {
 
   return (
     <>
-      <div>{showSizeToggle && selectedWidget?.i === widget.i && widgetSizeToggleToolbar(widget)}</div>
-      <div className={`border rounded-lg flex flex-col justify-between h-full p-3 ${getCardElevation()} cursor-pointer bg-profolyoWidget ${showSizeToggle && selectedWidget?.i === widget.i ? 'border border-4 border-profolyoExtraDark' : ''}`} onClick={handleClickToAdd}>
+      <div>{!viewMode && showSizeToggle && selectedWidget?.i === widget.i && widgetSizeToggleToolbar(widget)}</div>
+      <div className={`border rounded-lg flex flex-col justify-between h-full p-3 ${getCardElevation()} ${!viewMode ? 'cursor-pointer' : ''} bg-profolyoWidget ${!viewMode && showSizeToggle && selectedWidget?.i === widget.i ? 'border border-4 border-profolyoExtraDark' : ''}`} onClick={handleClickToAdd}>
         <div className="flex gap-1 items-center">
           <RiUser4Line className="h-3 w-3 text-zinc-500" />
-          <p className="text-xs text-zinc-500 ">{profileBadge}</p>
+          <p className="text-xs text-zinc-500 ">{profileBadge || widget?.data?.badge}</p>
         </div>
-        <img src={profileImage} alt="profile" referrerPolicy="no-referrer" className="w-full h-64 rounded-lg mt-2 object-cover" />
+        <img src={profileImage || widget?.data?.coverImage} alt="profile" referrerPolicy="no-referrer" className="w-full h-64 rounded-lg mt-2 object-cover" />
 
         <div className="flex gap-4">
           <div className="flex flex-col justify-center">
-            <p className="font-semibold text-2xl">{profileTitle}</p>
-            <p className="text-lg text-zinc-500 ">{profileDescription}</p>
+            <p className="font-semibold text-2xl">{profileTitle || widget?.data?.title}</p>
+            <p className="text-lg text-zinc-500 ">{profileDescription || widget?.data?.description}</p>
           </div>
         </div>
-        <AudioPlayer smallSize={false} />
+        <AudioPlayer smallSize={false} audioIntro={profileAudioURL || widget?.data?.audioIntro} />
       </div>
     </>
   );

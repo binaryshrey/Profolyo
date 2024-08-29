@@ -4,12 +4,12 @@ import { Button } from '../components/button';
 import { RiPlayLargeFill, RiPauseLargeFill } from '@remixicon/react';
 import { EditorLayout } from '../hooks/EditorContext';
 
-const AudioPlayer = ({ smallSize }) => {
+const AudioPlayer = ({ smallSize, audioIntro }) => {
   const { profileAudio, profileAudioVoice, profileAudioURL } = EditorLayout();
 
   const [wavesurfer, setWavesurfer] = useState(null);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [audioURL, setAudioURL] = useState(profileAudioURL);
+  const [audioURL, setAudioURL] = useState(audioIntro);
 
   const onReady = (ws) => {
     setWavesurfer(ws);
