@@ -61,7 +61,7 @@ const WidgetContent = () => {
           const Component = componentMap[item.component];
           return (
             <div key={item.i}>
-              <Component clickToAdd={true} widget={item} />
+              <Component clickToAdd={true} widget={item} viewMode={true} />
             </div>
           );
         })}

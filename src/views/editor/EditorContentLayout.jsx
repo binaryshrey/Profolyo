@@ -63,7 +63,7 @@ const EditorContentLayout = ({ rowHeight, layoutMode }) => {
             const Component = componentMap[item.component];
             return (
               <div key={item.i}>
-                <Component clickToAdd={false} widget={item} mode={mode} />
+                <Component clickToAdd={false} widget={item} mode={mode} viewMode={true} />
               </div>
             );
           })}

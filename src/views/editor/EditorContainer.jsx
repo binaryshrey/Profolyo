@@ -17,10 +17,11 @@ import { EditorLayout } from '../../hooks/EditorContext';
 const EditorContainer = () => {
   const { session } = UserAuth();
   const navigate = useNavigate();
-  const { setProfileAudio, setProfileBadge, setProfileImage, setProfileDescription, setProfileTitle } = EditorLayout();
+  const { setProfileAudio, setProfileBadge, setProfileImage, setProfileDescription, setProfileTitle, profolyoEditorLayout } = EditorLayout();
 
   const [userData, setUserData] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
+  const [savingPreview, setSavingPreview] = React.useState(false);
 
   const VITE_SUPABASE_PROFOLYO_USERS_TABLENAME = import.meta.env.VITE_SUPABASE_PROFOLYO_USERS_TABLENAME;
 
@@ -52,6 +53,24 @@ const EditorContainer = () => {
     };
     fetchProfolyoUser();
   }, []);
+
+  const savePreview = async () => {
+    setSavingPreview(true);
+    try {
+      const { data, error } = await supabase.from(VITE_SUPABASE_PROFOLYO_USERS_TABLENAME).update({ ProfolyoLayout: profolyoEditorLayout }).eq('EmailID', session?.email);
+
+      if (error) {
+        throw error;
+      }
+      showToast('Preview Generated Successfully', 'success');
+      navigate('/preview');
+    } catch (error) {
+      showToast(`Error saving preview : ${error.message}`, 'error');
+      console.error(error.message);
+    } finally {
+      setSavingPreview(false);
+    }
+  };
 
   const EditorNavBar = ({ children, navName }) => {
     return (
@@ -89,9 +108,19 @@ const EditorContainer = () => {
 
             <WidgetContainer />
 
-            <EditorNavBar navName="Preview">
-              <RiPlayLine className="h-4 w-4" />
-            </EditorNavBar>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button size="xs" variant="outline" onClick={savePreview}>
+                    {savingPreview && <Loader2 className="h-4 w-4 animate-spin" />}
+                    {!savingPreview && <RiPlayLine className="h-4 w-4" />}
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Preview</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
 
             <Button size="xs">Publish</Button>
           </div>
