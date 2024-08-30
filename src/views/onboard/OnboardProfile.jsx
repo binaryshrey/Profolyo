@@ -41,7 +41,7 @@ const OnboardProfile = ({ incrementOnboardStep }) => {
   return (
     <div className="bg-white h-screen">
       <div className="flex">
-        <div className="w-2/5 h-screen bg-gray-100">
+        <div className="w-2/5 h-screen bg-profolyo">
           <div className="h-screen flex flex-col justify-between">
             <Link to="/">
               <div className="flex items-center">
