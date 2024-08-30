@@ -8,7 +8,7 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 import { Input } from '../../components/input';
 import { showToast } from '../../components/Toasts';
 import { Link } from 'react-router-dom';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../components/tabs';
+import { EditorTabs, EditorTabsContent, EditorTabsList, EditorTabsTrigger } from '../../components/editor-tabs';
 
 const ConnectApps = () => {
   const { appConnections, connectAppConnection, disConnectAppConnection, handleAppUsernameChange } = UserProfile();
@@ -58,14 +58,14 @@ const ConnectApps = () => {
   return (
     <>
       <ScrollArea className="h-4/5 overflow-hidden">
-        <Tabs defaultValue="all" className="">
-          <TabsList className="ml-8 mb-4">
-            <TabsTrigger value="all">All Integrations</TabsTrigger>
-            <TabsTrigger value="recommended">Recommended</TabsTrigger>
-          </TabsList>
+        <EditorTabs defaultValue="all" className="">
+          <EditorTabsList className="ml-8 mb-4">
+            <EditorTabsTrigger value="all">All Integrations</EditorTabsTrigger>
+            <EditorTabsTrigger value="recommended">Recommended</EditorTabsTrigger>
+          </EditorTabsList>
 
           {/* all apps */}
-          <TabsContent value="all">
+          <EditorTabsContent value="all">
             <div className="mb-10">
               <div className="flex flex-shrink-0 border-t border-zinc-200"></div>
               <div>
@@ -154,10 +154,10 @@ const ConnectApps = () => {
                 ))}
               </div>
             </div>
-          </TabsContent>
+          </EditorTabsContent>
 
           {/* recommended apps */}
-          <TabsContent value="recommended">
+          <EditorTabsContent value="recommended">
             <div className="mb-10">
               <div className="flex flex-shrink-0 border-t border-zinc-200"></div>
               <div>
@@ -246,8 +246,8 @@ const ConnectApps = () => {
                 ))}
               </div>
             </div>
-          </TabsContent>
-        </Tabs>
+          </EditorTabsContent>
+        </EditorTabs>
       </ScrollArea>
     </>
   );

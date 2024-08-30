@@ -41,7 +41,7 @@ const OnboardProfile = ({ incrementOnboardStep }) => {
   return (
     <div className="bg-white h-screen">
       <div className="flex">
-        <div className="w-2/5 h-screen bg-gray-100">
+        <div className="w-2/5 h-screen bg-profolyo">
           <div className="h-screen flex flex-col justify-between">
             <Link to="/">
               <div className="flex items-center">
@@ -53,9 +53,9 @@ const OnboardProfile = ({ incrementOnboardStep }) => {
             <Orbits />
 
             <div className="flex flex-col gap-2 m-6 mb-12">
-              <p className="text-black font-semibold">Step One</p>
-              <p className="text-black text-2xl font-bold">Create Your Account</p>
-              <p className="text-black text-zinc-600">
+              <p className="text-black font-semibold text-profolyo900">Step One</p>
+              <p className="text-black text-2xl font-bold text-profolyo900">Create Your Account</p>
+              <p className="text-black text-profolyo900">
                 Tell us more about yourselves, so we can provide a personalised <br />
                 experience tailored to your needs and preferences.
               </p>
@@ -71,8 +71,8 @@ const OnboardProfile = ({ incrementOnboardStep }) => {
             <OnboardMenu />
           </div>
           <div className="m-6">
-            <p className="text-black text-2xl font-bold -mt-16">Configure and Personalize</p>
-            <p className="text-black text-zinc-600 mt-1">Let's get your profolyo set up in less than a minute.</p>
+            <p className="text-profolyo900 text-2xl font-bold -mt-16">Configure and Personalize</p>
+            <p className="text-profolyo900 text-zinc-600 mt-1">Let's get your profolyo set up in less than a minute.</p>
           </div>
           <ProfileForm />
           <div className="fixed bottom-0 h-20 w-3/5 backdrop-blur-sm bg-white/50 flex justify-end items-center">

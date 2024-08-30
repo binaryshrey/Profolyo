@@ -20,7 +20,8 @@ export const EditorContextProvider = ({ children }) => {
   const [profileAudio, setProfileAudio] = useState('');
   const [profileAudioURL, setProfileAudioURL] = useState('');
   const [profileAudioVoice, setProfileAudioVoice] = useState('male');
-  const [profileCardElevation, setProfileCardElevation] = useState('');
+  const [profileCardElevation, setProfileCardElevation] = useState('default');
+  const [profileCardBackground, setProfileCardBackground] = useState('default');
 
   const addProfolyoWidgetToEditor = (widgetXS, widgetSM, widgetMD) => {
     setProfolyoEditorLayout((prevLayout) => ({
@@ -52,13 +53,14 @@ export const EditorContextProvider = ({ children }) => {
   };
 
   const updateLayoutAfterResize = (w, h, size, component, mode, id) => {
-    console.log('updateLayoutAfterResize', w, h, size, component, mode, id);
     setProfolyoEditorLayout((prevState) => updateWidgetSize(prevState, w, h, size, component, mode, id));
   };
 
   return (
     <EditorContext.Provider
       value={{
+        profileCardBackground,
+        setProfileCardBackground,
         profileCardElevation,
         setProfileCardElevation,
         profileAudioVoice,

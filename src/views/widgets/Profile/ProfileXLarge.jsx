@@ -6,8 +6,10 @@ import { EditorLayout } from '../../../hooks/EditorContext';
 import { ToggleGroup, ToggleGroupItem } from '../../../components/toggle-group';
 
 const ProfileXLarge = ({ clickToAdd, widget, mode, viewMode }) => {
-  const { profileCardElevation, setProfileCardElevation, profileAudioURL, profileBadge, profileImage, profileDescription, profileTitle, setSelectedWidget, addProfolyoWidgetToEditor, setOpenWidgetContainer, updateLayoutAfterResize, selectedWidget } = EditorLayout();
+  const { profileCardBackground, profileCardElevation, setProfileCardElevation, profileAudioURL, profileBadge, profileImage, profileDescription, profileTitle, setSelectedWidget, addProfolyoWidgetToEditor, setOpenWidgetContainer, updateLayoutAfterResize, selectedWidget } = EditorLayout();
   const [showSizeToggle, setShowSizeToggle] = useState(false);
+
+  console.log(profileCardBackground);
 
   const profile = {
     i: uuidv4(),
@@ -60,14 +62,30 @@ const ProfileXLarge = ({ clickToAdd, widget, mode, viewMode }) => {
   };
 
   const getCardElevation = () => {
-    if (profileCardElevation === 'xlarge-low') {
+    if (profileCardElevation === 'default') {
       return 'shadow-md';
+    } else if (profileCardElevation === 'xlarge-low') {
+      return 'shadow-sm';
     } else if (profileCardElevation === 'xlarge-medium') {
       return 'shadow-md';
     } else if (profileCardElevation === 'xlarge-high') {
       return 'shadow-lg';
+    } else if (profileCardElevation === 'xlarge-none') {
+      return '';
     } else {
       return 'shadow-md';
+    }
+  };
+
+  const getCardBackground = () => {
+    if (profileCardBackground === 'default') {
+      return 'bg-profolyoWidget';
+    } else if (profileCardBackground === 'xlarge-transparent') {
+      return 'bg-profolyo';
+    } else if (profileCardBackground === 'xlarge-theme') {
+      return 'bg-profolyoWidget';
+    } else {
+      return 'bg-profolyoWidget';
     }
   };
 
@@ -95,7 +113,7 @@ const ProfileXLarge = ({ clickToAdd, widget, mode, viewMode }) => {
   return (
     <>
       <div>{!viewMode && showSizeToggle && selectedWidget?.i === widget.i && widgetSizeToggleToolbar(widget)}</div>
-      <div className={`border rounded-lg flex flex-col justify-between h-full p-3 ${getCardElevation()} ${!viewMode ? 'cursor-pointer' : ''} bg-profolyoWidget ${!viewMode && showSizeToggle && selectedWidget?.i === widget.i ? 'border border-4 border-profolyoExtraDark' : ''}`} onClick={handleClickToAdd}>
+      <div className={`rounded-lg flex flex-col justify-between h-full p-3 ${getCardElevation()} ${!viewMode ? 'cursor-pointer' : ''} ${getCardBackground()} ${!viewMode && showSizeToggle && selectedWidget?.i === widget.i ? 'border border-4 border-profolyoExtraDark' : ''}`} onClick={handleClickToAdd}>
         <div className="flex gap-1 items-center">
           <RiUser4Line className="h-3 w-3 text-zinc-500" />
           <p className="text-xs text-zinc-500 ">{profileBadge || widget?.data?.badge}</p>
