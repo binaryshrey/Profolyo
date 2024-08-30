@@ -88,9 +88,9 @@ const OnboardIntegrations = ({ decrementOnboardStep }) => {
             <MarqueeIntegrations />
 
             <div className="flex flex-col gap-2 m-8 mb-12">
-              <p className="text-black font-semibold">Step Two</p>
-              <p className="text-black text-2xl font-bold">Add Integrations</p>
-              <p className="text-black text-zinc-600">
+              <p className="text-profolyo900 font-semibold">Step Two</p>
+              <p className="text-profolyo900 text-2xl font-bold">Add Integrations</p>
+              <p className="text-profolyo900">
                 Supercharge your profolyo and connect the apps <br />
                 that you use everyday to your account.
               </p>
@@ -106,8 +106,8 @@ const OnboardIntegrations = ({ decrementOnboardStep }) => {
             <OnboardMenu />
           </div>
           <div className=" m-8">
-            <p className="text-black text-2xl font-bold -mt-16">Integrations and Connected Apps</p>
-            <p className="text-black text-zinc-600 mt-1">Supercharge your profolyo and connect the apps you use everyday.</p>
+            <p className="text-2xl font-bold -mt-16 text-profolyo900">Integrations and Connected Apps</p>
+            <p className="text-profolyo900 text-zinc-600 mt-1">Supercharge your profolyo and connect the apps you use everyday.</p>
           </div>
 
           <ConnectApps />
