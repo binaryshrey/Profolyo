@@ -99,6 +99,7 @@ export default {
         '30/100': '30%'
       },
       height: {
+        '99vh': '99vh',
         '95vh': '95vh',
         '90vh': '90vh',
         '84vh': '84vh',

@@ -1,29 +1,32 @@
+import { Loader2 } from 'lucide-react';
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import EditorContent from './EditorContent';
+import { useNavigate } from 'react-router-dom';
+import { supabase } from '../../utils/Supabase';
 import { Button } from '../../components/button';
 import logo from '../../assets/profolyo-dark.svg';
-import { Link } from 'react-router-dom';
-import { RiPlayLine, RiSettingsLine, RiHome6Line, RiApps2Line, RiInformationLine } from '@remixicon/react';
-import EditorContent from './EditorContent';
-import { UserAuth } from '../../hooks/AuthContext';
 import EditorController from './EditorController';
+import { UserAuth } from '../../hooks/AuthContext';
 import { showToast } from '../../components/Toasts';
-import { supabase } from '../../utils/Supabase';
-import { useNavigate } from 'react-router-dom';
-import { Loader2 } from 'lucide-react';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../../components/tooltip';
+import EditorPublishDialog from './EditorPublishDialog';
 import WidgetContainer from '../widgets/WidgetContainer';
 import { EditorLayout } from '../../hooks/EditorContext';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../../components/tooltip';
+import { RiPlayLine, RiSettingsLine, RiHome6Line, RiApps2Line, RiInformationLine } from '@remixicon/react';
 
 const EditorContainer = () => {
-  const { session } = UserAuth();
   const navigate = useNavigate();
+  const { session } = UserAuth();
   const { setProfileAudio, setProfileBadge, setProfileImage, setProfileDescription, setProfileTitle, profolyoEditorLayout } = EditorLayout();
+  const VITE_SUPABASE_PROFOLYO_USERS_TABLENAME = import.meta.env.VITE_SUPABASE_PROFOLYO_USERS_TABLENAME;
 
   const [userData, setUserData] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
+  const [showDialogURI, setShowDialogURI] = useState(false);
   const [savingPreview, setSavingPreview] = React.useState(false);
-
-  const VITE_SUPABASE_PROFOLYO_USERS_TABLENAME = import.meta.env.VITE_SUPABASE_PROFOLYO_USERS_TABLENAME;
+  const [savingPublish, setSavingPublish] = React.useState(false);
+  const [copyToClipBoardConfirm, setCopyToClipBoardConfirm] = useState(false);
 
   React.useEffect(() => {
     const fetchProfolyoUser = async () => {
@@ -54,7 +57,35 @@ const EditorContainer = () => {
     fetchProfolyoUser();
   }, []);
 
+  const handleCopyToClipBoardConfirm = () => {
+    setCopyToClipBoardConfirm(true);
+  };
+
+  const copyToClipboard = (text) => {
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        handleCopyToClipBoardConfirm();
+      })
+      .catch((err) => {
+        console.error('Failed to copy text: ', err);
+      });
+  };
+
+  const closeDialogURI = () => {
+    setShowDialogURI(false);
+    navigate('/dashboard');
+  };
+
+  const openDialogURI = () => {
+    setShowDialogURI(true);
+  };
+
   const savePreview = async () => {
+    if (profolyoEditorLayout['md'].length === 0) {
+      showToast('Please add widgets to preview', 'error');
+      return;
+    }
     setSavingPreview(true);
     try {
       const { data, error } = await supabase.from(VITE_SUPABASE_PROFOLYO_USERS_TABLENAME).update({ ProfolyoLayout: profolyoEditorLayout }).eq('EmailID', session?.email);
@@ -62,13 +93,33 @@ const EditorContainer = () => {
       if (error) {
         throw error;
       }
-      showToast('Preview Generated Successfully', 'success');
       navigate('/preview');
     } catch (error) {
       showToast(`Error saving preview : ${error.message}`, 'error');
       console.error(error.message);
     } finally {
       setSavingPreview(false);
+    }
+  };
+
+  const savePublish = async () => {
+    if (profolyoEditorLayout['md'].length === 0) {
+      showToast('Please add widgets to publish', 'error');
+      return;
+    }
+    setSavingPublish(true);
+    try {
+      const { data, error } = await supabase.from(VITE_SUPABASE_PROFOLYO_USERS_TABLENAME).update({ ProfolyoLayout: profolyoEditorLayout }).eq('EmailID', session?.email);
+
+      if (error) {
+        throw error;
+      }
+      openDialogURI();
+    } catch (error) {
+      showToast(`Error publishing : ${error.message}`, 'error');
+      console.error(error.message);
+    } finally {
+      setSavingPublish(false);
     }
   };
 
@@ -122,7 +173,13 @@ const EditorContainer = () => {
               </Tooltip>
             </TooltipProvider>
 
-            <Button size="xs">Publish</Button>
+            <>
+              <Button size="xs" onClick={savePublish}>
+                {savingPublish && <Loader2 className="h-4 w-4 animate-spin mr-2" />}
+                Publish
+              </Button>
+              {showDialogURI && <EditorPublishDialog showDialogURI={showDialogURI} setShowDialogURI={setShowDialogURI} profolyoURI={`profolyo.me/${userData[0]?.UserName}`} copyToClipBoardConfirm={copyToClipBoardConfirm} closeDialogURI={closeDialogURI} copyToClipboard={copyToClipboard} />}
+            </>
           </div>
         </div>
       </nav>
@@ -137,7 +194,7 @@ const EditorContainer = () => {
         <>
           <div className="p-4 text-xs flex gap-2 justify-center items-center bg-zinc-200 mt-4 rounded-xl sm:hidden">
             <RiInformationLine className="h-6 w-6" aria-hidden="true" />
-            <p>You are currently in mobile view. Switch to tablet or desktop view to edit widgets</p>
+            <p>You are currently in mobile view. Switch to tablet or desktop view to edit widgets.</p>
           </div>
 
           <div className="flex mt-4">
@@ -152,7 +209,7 @@ const EditorContainer = () => {
       )}
       {!loading && userData.length == 0 && (
         <div className="w-screen h-screen flex justify-center items-center">
-          <p>Unable To Initialize Editor</p>
+          <p>Unable To Initialize Editor. Try again after sometime.</p>
         </div>
       )}
     </div>
