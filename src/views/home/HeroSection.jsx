@@ -77,7 +77,12 @@ const HeroSection = () => {
             </a>
             <h4 className="ml-2 text-gray-900 sm:text-xl">Profolyo</h4>
           </div>
-          <div className="flex lg:hidden">
+          <div className="flex lg:hidden gap-4">
+            <div className="p-1 pr-3 pl-3 bg-profolyo500 rounded-full cursor-pointer">
+              <Link to="/signup" className="text-sm font-semibold leading-6 text-gray-900">
+                Join Profolyo
+              </Link>
+            </div>
             <button type="button" className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700" onClick={() => setMobileMenuOpen(true)}>
               <span className="sr-only">Open main menu</span>
               <RiMenuLine className="h-6 w-6" aria-hidden="true" />
@@ -156,9 +161,10 @@ const HeroSection = () => {
         <div className="relative py-24 sm:py-32 lg:pb-40">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="mx-auto max-w-5xl text-center">
-              <h1 className="text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">The Fastest Way To Build</h1>
-              <h1 className="text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-                Professional Portfolios For
+              <h1 className="text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">The Fastest Way To Build</h1>
+              <h1 className="text-3xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+                Professional Portfolios <br className="sm:hidden" />
+                For
                 <FlipWords words={users} />
               </h1>
               <p className="mt-6 text-sm sm:text-lg leading-8 text-gray-600">Create Minimalistic Portfolios at Lightning Fast Speed!</p>
