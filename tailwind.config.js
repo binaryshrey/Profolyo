@@ -55,6 +55,11 @@ export default {
         profolyo: "#f0efeb",
         profolyoDark: "#d8d7d3",
         profolyoExtraDark: "#c0bfbc",
+        profolyo500: "#a8a7a4",
+        profolyo600: "#908f8d",
+        profolyo700: "#787775",
+        profolyo800: "#605f5e",
+        profolyo900: "#484746",
         profolyoWidget: "#f5f4f1",
         profolyoAudio: "#fafaf9"
       },
