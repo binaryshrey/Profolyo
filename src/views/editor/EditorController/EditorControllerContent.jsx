@@ -1,6 +1,6 @@
 import React from 'react';
 import { Loader2 } from 'lucide-react';
-import { ScrollArea } from '../../../components/scroll-area';
+import { EditorScrollArea } from '../../../components/editor-scroll-area';
 import { EditorInput } from '../../../components/editor-input';
 import { EditorTextarea } from '../../../components/editor-textarea';
 import { Label } from '../../../components/label';
@@ -130,7 +130,7 @@ const EditorControllerContent = () => {
 
   return (
     <div className="m-2">
-      <ScrollArea className="overflow-hidden h-84vh">
+      <EditorScrollArea className="overflow-hidden h-84vh">
         {selectedWidget === undefined && <p className="text-md flex justify-center items-center h-80vh">Select a widget to start customizing</p>}
         {selectedWidget?.type === 'Profile' && (
           <>
@@ -205,7 +205,7 @@ const EditorControllerContent = () => {
             </div>
           </>
         )}
-      </ScrollArea>
+      </EditorScrollArea>
     </div>
   );
 };

@@ -90,21 +90,23 @@ const EditorPublish = () => {
       )}
       {!loading && show404 && <PageNotFound profolyoID={profolyoID} />}
       <div className="bg-profolyo h-screen">
-        <div className={`bg-profolyo mx-auto w-full ${mode === 'md' ? 'max-w-6xl' : mode === 'sm' ? 'max-w-3xl' : 'max-w-sm'}`}>
-          {!loading && layout[mode]?.length === 0 && <div className="flex gap-2 justify-center items-center h-80vh">No Preview Available</div>}
-          {!loading && layout[mode]?.length !== 0 && (
-            <ResponsiveGridLayout layouts={layout} breakpoints={breakpoints} cols={cols} rowHeight={rowHeight} width={120} isResizable={false} isDraggable={false}>
-              {layout[mode]?.map((item) => {
-                const Component = componentMap[item.component];
-                return (
-                  <div key={item.i}>
-                    <Component clickToAdd={false} widget={item} mode={mode} viewMode={true} />
-                  </div>
-                );
-              })}
-            </ResponsiveGridLayout>
-          )}
-        </div>
+        <ScrollArea className=" h-99vh">
+          <div className={`bg-profolyo mx-auto w-full ${mode === 'md' ? 'max-w-6xl' : mode === 'sm' ? 'max-w-3xl' : 'max-w-sm'}`}>
+            {!loading && layout[mode]?.length === 0 && <div className="flex gap-2 justify-center items-center h-80vh">No Preview Available</div>}
+            {!loading && layout[mode]?.length !== 0 && (
+              <ResponsiveGridLayout layouts={layout} breakpoints={breakpoints} cols={cols} rowHeight={rowHeight} width={120} isResizable={false} isDraggable={false}>
+                {layout[mode]?.map((item) => {
+                  const Component = componentMap[item.component];
+                  return (
+                    <div key={item.i}>
+                      <Component clickToAdd={false} widget={item} mode={mode} viewMode={true} />
+                    </div>
+                  );
+                })}
+              </ResponsiveGridLayout>
+            )}
+          </div>
+        </ScrollArea>
       </div>
     </>
   );
