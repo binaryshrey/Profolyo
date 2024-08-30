@@ -9,6 +9,11 @@ import ProfileMedium from './Profile/ProfileMedium';
 import ProfileLarge from './Profile/ProfileLarge';
 import ProfileXLarge from './Profile/ProfileXLarge';
 
+import LinksInfo from './Links/LinksInfo';
+import LinksSmall from './Links/LinksSmall';
+import LinksMedium from './Links/LinksMedium';
+import LinksLarge from './Links/LinksLarge';
+
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
 const layout = {
@@ -30,6 +35,10 @@ const layout = {
     { i: uuidv4(), x: 0, y: 1, w: 2, h: 2, size: 'medium', component: 'ProfileMedium', type: 'Profile' },
     { i: uuidv4(), x: 2, y: 0, w: 2, h: 4, size: 'large', component: 'ProfileLarge', type: 'Profile' },
     { i: uuidv4(), x: 3, y: 1, w: 4, h: 4, size: 'xlarge', component: 'ProfileXLarge', type: 'Profile' },
+    { i: uuidv4(), x: 0, y: 2, w: 1, h: 2, size: 'small', component: 'LinksInfo', type: 'Links' },
+    { i: uuidv4(), x: 1, y: 2, w: 1, h: 2, size: 'small', component: 'LinksSmall', type: 'Links' },
+    { i: uuidv4(), x: 0, y: 3, w: 2, h: 2, size: 'medium', component: 'LinksMedium', type: 'Links' },
+    { i: uuidv4(), x: 2, y: 2, w: 2, h: 4, size: 'large', component: 'LinksLarge', type: 'Links' },
   ],
 };
 
@@ -39,6 +48,10 @@ const componentMap = {
   ProfileMedium,
   ProfileLarge,
   ProfileXLarge,
+  LinksInfo,
+  LinksSmall,
+  LinksMedium,
+  LinksLarge,
 };
 
 const cols = {

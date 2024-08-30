@@ -23,6 +23,12 @@ export const EditorContextProvider = ({ children }) => {
   const [profileCardElevation, setProfileCardElevation] = useState('default');
   const [profileCardBackground, setProfileCardBackground] = useState('default');
 
+  //links
+  const [linkTitle, setLinkTitle] = useState('');
+  const [linkDescription, setLinkDescription] = useState('');
+  const [linkImage, setLinkImage] = useState('');
+  const [linkURL, setLinkURL] = useState('');
+
   const addProfolyoWidgetToEditor = (widgetXS, widgetSM, widgetMD) => {
     setProfolyoEditorLayout((prevLayout) => ({
       xs: [widgetXS, ...prevLayout.xs],
@@ -59,6 +65,14 @@ export const EditorContextProvider = ({ children }) => {
   return (
     <EditorContext.Provider
       value={{
+        linkTitle,
+        setLinkTitle,
+        linkDescription,
+        setLinkDescription,
+        linkImage,
+        setLinkImage,
+        linkURL,
+        setLinkURL,
         profileCardBackground,
         setProfileCardBackground,
         profileCardElevation,

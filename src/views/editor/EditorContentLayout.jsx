@@ -9,6 +9,10 @@ import ProfileMedium from '../widgets/Profile/ProfileMedium';
 import ProfileLarge from '../widgets/Profile/ProfileLarge';
 import ProfileXLarge from '../widgets/Profile/ProfileXLarge';
 import { RiApps2Line } from '@remixicon/react';
+import LinksInfo from '../widgets/Links/LinksInfo';
+import LinksSmall from '../widgets/Links/LinksSmall';
+import LinksMedium from '../widgets/Links/LinksMedium';
+import LinksLarge from '../widgets/Links/LinksLarge';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
@@ -30,6 +34,10 @@ const componentMap = {
   ProfileMedium,
   ProfileLarge,
   ProfileXLarge,
+  LinksInfo,
+  LinksSmall,
+  LinksMedium,
+  LinksLarge,
 };
 
 const EditorContentLayout = ({ rowHeight, layoutMode }) => {

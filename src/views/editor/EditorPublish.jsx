@@ -10,6 +10,10 @@ import ProfileLarge from '../widgets/Profile/ProfileLarge';
 import ProfileMedium from '../widgets/Profile/ProfileMedium';
 import ProfileXLarge from '../widgets/Profile/ProfileXLarge';
 import { Responsive, WidthProvider } from 'react-grid-layout';
+import LinksInfo from '../widgets/Links/LinksInfo';
+import LinksSmall from '../widgets/Links/LinksSmall';
+import LinksMedium from '../widgets/Links/LinksMedium';
+import LinksLarge from '../widgets/Links/LinksLarge';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
@@ -29,6 +33,10 @@ const componentMap = {
   ProfileMedium,
   ProfileLarge,
   ProfileXLarge,
+  LinksInfo,
+  LinksSmall,
+  LinksMedium,
+  LinksLarge,
 };
 
 const getBreakpoint = (width) => {
