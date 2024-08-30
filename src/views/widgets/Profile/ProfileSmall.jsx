@@ -9,6 +9,8 @@ const ProfileSmall = ({ clickToAdd, widget, mode, viewMode }) => {
   const { profileCardElevation, setProfileCardElevation, profileAudio, profileAudioURL, profileBadge, profileImage, profileDescription, profileTitle, setSelectedWidget, addProfolyoWidgetToEditor, setOpenWidgetContainer, updateLayoutAfterResize, selectedWidget } = EditorLayout();
   const [showSizeToggle, setShowSizeToggle] = useState(false);
 
+  console.log(profileCardElevation);
+
   const profile = {
     i: uuidv4(),
     x: 0,
@@ -63,12 +65,16 @@ const ProfileSmall = ({ clickToAdd, widget, mode, viewMode }) => {
   };
 
   const getCardElevation = () => {
-    if (profileCardElevation === 'small-low') {
+    if (profileCardElevation === 'default') {
       return 'shadow-md';
+    } else if (profileCardElevation === 'small-low') {
+      return 'shadow-sm';
     } else if (profileCardElevation === 'small-medium') {
       return 'shadow-md';
     } else if (profileCardElevation === 'small-high') {
       return 'shadow-lg';
+    } else if (profileCardElevation === 'small-none') {
+      return '';
     } else {
       return 'shadow-md';
     }
