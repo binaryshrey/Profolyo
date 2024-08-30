@@ -6,10 +6,10 @@ import { EditorLayout } from '../../../hooks/EditorContext';
 import { ToggleGroup, ToggleGroupItem } from '../../../components/toggle-group';
 
 const ProfileSmall = ({ clickToAdd, widget, mode, viewMode }) => {
-  const { profileCardElevation, setProfileCardElevation, profileAudio, profileAudioURL, profileBadge, profileImage, profileDescription, profileTitle, setSelectedWidget, addProfolyoWidgetToEditor, setOpenWidgetContainer, updateLayoutAfterResize, selectedWidget } = EditorLayout();
+  const { profileCardBackground, setProfileCardBackground, profileCardElevation, setProfileCardElevation, profileAudio, profileAudioURL, profileBadge, profileImage, profileDescription, profileTitle, setSelectedWidget, addProfolyoWidgetToEditor, setOpenWidgetContainer, updateLayoutAfterResize, selectedWidget } = EditorLayout();
   const [showSizeToggle, setShowSizeToggle] = useState(false);
 
-  console.log(profileCardElevation);
+  console.log(profileCardBackground);
 
   const profile = {
     i: uuidv4(),
@@ -80,10 +80,22 @@ const ProfileSmall = ({ clickToAdd, widget, mode, viewMode }) => {
     }
   };
 
+  const getCardBackground = () => {
+    if (profileCardBackground === 'default') {
+      return 'bg-profolyoWidget';
+    } else if (profileCardBackground === 'small-transparent') {
+      return 'bg-profolyo';
+    } else if (profileCardBackground === 'small-theme') {
+      return 'bg-profolyoWidget';
+    } else {
+      return 'bg-profolyoWidget';
+    }
+  };
+
   return (
     <>
       <div>{!viewMode && showSizeToggle && selectedWidget?.i === widget.i && widgetSizeToggleToolbar(widget)}</div>
-      <div onClick={handleClickToAdd} className={`rounded-lg flex flex-col justify-between h-full p-3 ${getCardElevation()} ${!viewMode ? 'cursor-pointer' : ''} bg-profolyoWidget ${!viewMode && showSizeToggle && selectedWidget?.i === widget.i ? 'border border-4 border-profolyoExtraDark' : ''}`}>
+      <div onClick={handleClickToAdd} className={`rounded-lg flex flex-col justify-between h-full p-3 ${getCardElevation()} ${!viewMode ? 'cursor-pointer' : ''} ${getCardBackground()} ${!viewMode && showSizeToggle && selectedWidget?.i === widget.i ? 'border border-4 border-profolyoExtraDark' : ''}`}>
         <div className="flex gap-1 items-center">
           <RiUser4Line className="h-3 w-3 text-zinc-500" />
           <p className="text-xs text-zinc-500 ">{profileBadge || widget?.data?.badge}</p>

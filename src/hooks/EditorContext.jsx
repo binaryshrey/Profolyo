@@ -21,7 +21,7 @@ export const EditorContextProvider = ({ children }) => {
   const [profileAudioURL, setProfileAudioURL] = useState('');
   const [profileAudioVoice, setProfileAudioVoice] = useState('male');
   const [profileCardElevation, setProfileCardElevation] = useState('default');
-  const [profileCardBackground, setProfileCardBackground] = useState('');
+  const [profileCardBackground, setProfileCardBackground] = useState('default');
 
   const addProfolyoWidgetToEditor = (widgetXS, widgetSM, widgetMD) => {
     setProfolyoEditorLayout((prevLayout) => ({

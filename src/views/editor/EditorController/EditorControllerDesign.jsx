@@ -14,6 +14,10 @@ const EditorControllerDesign = () => {
     return `${selectedWidget?.size}-${value}`;
   };
 
+  const getBG = (value) => {
+    return `${selectedWidget?.size}-${value}`;
+  };
+
   return (
     <div className="m-2">
       <EditorScrollArea className="overflow-hidden h-84vh">
@@ -32,8 +36,8 @@ const EditorControllerDesign = () => {
                   <SelectContent>
                     <SelectGroup>
                       <SelectLabel>Widget Background</SelectLabel>
-                      <SelectItem value="transparent">Transparent</SelectItem>
-                      <SelectItem value="theme">Theme</SelectItem>
+                      <SelectItem value={getValue('transparent')}>Transparent</SelectItem>
+                      <SelectItem value={getValue('theme')}>Theme</SelectItem>
                     </SelectGroup>
                   </SelectContent>
                 </Select>
