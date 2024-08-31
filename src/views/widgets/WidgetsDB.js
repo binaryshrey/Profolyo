@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import linksMedia from '../../assets/linkmedia.png'
+import image1 from '../../assets/image1.webp'
 
 const infoProfile = () => {
   return{ i: uuidv4(), x: 0, y: 0, w: 1, h: 2, size: 'small', component: 'ProfileInfo' }
@@ -77,8 +78,8 @@ const generateImages = (i,x,y,w,h,size) => {
     size: size,
     component: 'Images',
     data: {
-      title: 'Profolyo',
-      coverImage: linksMedia,
+      title: '🎨 Professional Artist',
+      coverImage: image1,
       background: 'theme',
       elevation: 'medium',
     },

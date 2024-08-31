@@ -92,7 +92,7 @@ const ImagesContent = () => {
       <div className="w-full flex flex-col gap-2 ">
         <div className="pl-1 pr-1">
           <Label htmlFor="title">Title</Label>
-          <EditorInput type="text" id="title" placeholder="Profolyo" maxLength="20" value={getWidgetTitle(selectedWidget)} onChange={() => updateCardTitle(selectedWidget.i, event.target.value)} />
+          <EditorInput type="text" id="title" placeholder="Profolyo" maxLength="25" value={getWidgetTitle(selectedWidget)} onChange={() => updateCardTitle(selectedWidget.i, event.target.value)} />
         </div>
 
         <Label htmlFor="image" className="mt-8">
