@@ -12,12 +12,6 @@ export const EditorContextProvider = ({ children }) => {
   const [profolyoEditorUserData, setProfolyoEditorUserData] = React.useState([]);
   const [profolyoEditorLayout, setProfolyoEditorLayout] = useState({ xs: [], sm: [], md: [] });
 
-  //links
-  const [linkTitle, setLinkTitle] = useState('');
-  const [linkDescription, setLinkDescription] = useState('');
-  const [linkImage, setLinkImage] = useState('');
-  const [linkURL, setLinkURL] = useState('');
-
   const addProfolyoWidgetToEditor = (widgetXS, widgetSM, widgetMD) => {
     setProfolyoEditorLayout((prevLayout) => ({
       xs: [widgetXS, ...prevLayout.xs],
@@ -51,14 +45,14 @@ export const EditorContextProvider = ({ children }) => {
     setProfolyoEditorLayout((prevState) => updateWidgetSize(prevState, w, h, size, component, mode, id));
   };
 
-  const updateProfileTitle = (id, newTitle) => {
+  const updateCardTitle = (id, newTitle) => {
     setProfolyoEditorLayout((prevState) => ({
       xs: prevState.xs.map((item) => (item.i === id ? { ...item, data: { ...item.data, title: newTitle } } : item)),
       sm: prevState.sm.map((item) => (item.i === id ? { ...item, data: { ...item.data, title: newTitle } } : item)),
       md: prevState.md.map((item) => (item.i === id ? { ...item, data: { ...item.data, title: newTitle } } : item)),
     }));
   };
-  const updateProfileDescription = (id, desc) => {
+  const updateCardDescription = (id, desc) => {
     setProfolyoEditorLayout((prevState) => ({
       xs: prevState.xs.map((item) => (item.i === id ? { ...item, data: { ...item.data, description: desc } } : item)),
       sm: prevState.sm.map((item) => (item.i === id ? { ...item, data: { ...item.data, description: desc } } : item)),
@@ -72,7 +66,7 @@ export const EditorContextProvider = ({ children }) => {
       md: prevState.md.map((item) => (item.i === id ? { ...item, data: { ...item.data, badge: badge } } : item)),
     }));
   };
-  const updateProfileCoverImage = (id, image) => {
+  const updateCardCoverImage = (id, image) => {
     setProfolyoEditorLayout((prevState) => ({
       xs: prevState.xs.map((item) => (item.i === id ? { ...item, data: { ...item.data, coverImage: image } } : item)),
       sm: prevState.sm.map((item) => (item.i === id ? { ...item, data: { ...item.data, coverImage: image } } : item)),
@@ -96,7 +90,7 @@ export const EditorContextProvider = ({ children }) => {
     }));
   };
 
-  const updateProfileCardElevation = (id, elevation) => {
+  const updateCardElevation = (id, elevation) => {
     setProfolyoEditorLayout((prevState) => ({
       xs: prevState.xs.map((item) => (item.i === id ? { ...item, data: { ...item.data, elevation: elevation } } : item)),
       sm: prevState.sm.map((item) => (item.i === id ? { ...item, data: { ...item.data, elevation: elevation } } : item)),
@@ -104,7 +98,7 @@ export const EditorContextProvider = ({ children }) => {
     }));
   };
 
-  const updateProfileCardBackground = (id, bg) => {
+  const updateCardBackground = (id, bg) => {
     setProfolyoEditorLayout((prevState) => ({
       xs: prevState.xs.map((item) => (item.i === id ? { ...item, data: { ...item.data, background: bg } } : item)),
       sm: prevState.sm.map((item) => (item.i === id ? { ...item, data: { ...item.data, background: bg } } : item)),
@@ -117,22 +111,14 @@ export const EditorContextProvider = ({ children }) => {
       value={{
         profolyoEditorUserData,
         setProfolyoEditorUserData,
-        linkTitle,
-        setLinkTitle,
-        linkDescription,
-        setLinkDescription,
-        linkImage,
-        setLinkImage,
-        linkURL,
-        setLinkURL,
-        updateProfileTitle,
-        updateProfileDescription,
+        updateCardTitle,
+        updateCardDescription,
         updateProfileBadge,
-        updateProfileCoverImage,
+        updateCardCoverImage,
         updateProfileAudioIntro,
         updateProfileAudioVoice,
-        updateProfileCardElevation,
-        updateProfileCardBackground,
+        updateCardElevation,
+        updateCardBackground,
         selectedWidget,
         setSelectedWidget,
         profolyoEditorLayout,

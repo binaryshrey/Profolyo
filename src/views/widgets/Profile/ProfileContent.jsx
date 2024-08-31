@@ -21,7 +21,7 @@ const ProfileContent = () => {
   const { updateAvatarURL, updateAvatarUploaded } = UserProfile();
   const SUPABASE_STORAGE_URL = import.meta.env.VITE_SUPABASE_STORAGE_URL;
   const VITE_SUPABASE_PROFOLYO_USERS_TABLENAME = import.meta.env.VITE_SUPABASE_PROFOLYO_USERS_TABLENAME;
-  const { selectedWidget, updateProfileTitle, profolyoEditorLayout, updateProfileDescription, updateProfileBadge, updateProfileCoverImage, updateProfileAudioIntro, updateProfileAudioVoice } = EditorLayout();
+  const { selectedWidget, updateCardTitle, profolyoEditorLayout, updateCardDescription, updateProfileBadge, updateCardCoverImage, updateProfileAudioIntro, updateProfileAudioVoice } = EditorLayout();
 
   const [layoutMode, setLayoutMode] = React.useState('md');
   const [avatarFile, setAvatarFile] = React.useState(null);
@@ -100,7 +100,7 @@ const ProfileContent = () => {
 
       if (error) throw error;
       updateAvatarURL(`${SUPABASE_STORAGE_URL}avatars/${fileName}`);
-      updateProfileCoverImage(selectedWidget.i, `${SUPABASE_STORAGE_URL}avatars/${fileName}`);
+      updateCardCoverImage(selectedWidget.i, `${SUPABASE_STORAGE_URL}avatars/${fileName}`);
       updateAvatarUploaded(true);
       showToast('Cover Image Uploaded Successfully!', 'success');
     } catch (error) {
@@ -179,12 +179,12 @@ const ProfileContent = () => {
       <div className="w-full flex flex-col gap-2 ">
         <div className="pl-1 pr-1">
           <Label htmlFor="title">Title</Label>
-          <EditorInput type="text" id="title" placeholder="Luke" maxLength="20" value={getWidgetTitle(selectedWidget)} onChange={() => updateProfileTitle(selectedWidget.i, event.target.value)} />
+          <EditorInput type="text" id="title" placeholder="Luke" maxLength="20" value={getWidgetTitle(selectedWidget)} onChange={() => updateCardTitle(selectedWidget.i, event.target.value)} />
         </div>
 
         <div className="pl-1 pr-1 pt-8">
           <Label htmlFor="desc">Description</Label>
-          <EditorTextarea type="text" id="desc" placeholder="Jedi Knight" maxLength="100" value={getWidgetDescription(selectedWidget)} onChange={() => updateProfileDescription(selectedWidget.i, event.target.value)} />
+          <EditorTextarea type="text" id="desc" placeholder="Jedi Knight" maxLength="100" value={getWidgetDescription(selectedWidget)} onChange={() => updateCardDescription(selectedWidget.i, event.target.value)} />
         </div>
 
         <div className="pl-1 pr-1 pt-8">

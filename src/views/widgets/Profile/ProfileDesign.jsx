@@ -5,7 +5,7 @@ import { EditorLayout } from '../../../hooks/EditorContext';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '../../../components/select';
 
 const ProfileDesign = () => {
-  const { selectedWidget, updateProfileCardElevation, updateProfileCardBackground } = EditorLayout();
+  const { selectedWidget, updateCardElevation, updateCardBackground } = EditorLayout();
 
   return (
     <>
@@ -14,7 +14,7 @@ const ProfileDesign = () => {
           <Label htmlFor="elevation" className="mt-8">
             Widget Background
           </Label>
-          <Select onValueChange={(val) => updateProfileCardBackground(selectedWidget.i, val)}>
+          <Select onValueChange={(val) => updateCardBackground(selectedWidget.i, val)}>
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Select Widget Background" />
             </SelectTrigger>
@@ -33,7 +33,7 @@ const ProfileDesign = () => {
           <Label htmlFor="elevation" className="mt-8">
             Widget Elevation
           </Label>
-          <Select onValueChange={(val) => updateProfileCardElevation(selectedWidget.i, val)}>
+          <Select onValueChange={(val) => updateCardElevation(selectedWidget.i, val)}>
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Select Widget Elevation" />
             </SelectTrigger>
