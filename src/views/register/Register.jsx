@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import logo from '../../assets/profolyo-dark.svg';
 import register from '../../assets/register.svg';
 import google from '../../assets/google.svg';
+import loginBG from '../../assets/loginBG.webp';
 import github from '../../assets/github.svg';
 import linkedin from '../../assets/linkedin.svg';
 import loginBanner from '../../assets/login-banner.png';
@@ -100,7 +101,7 @@ const Register = () => {
           </div>
         </div>
         <div className="lg:block hidden w-3/5 h-screen bg-slate-100">
-          <img src={loginBanner} alt="Sign IN" className="object-contain h-full w-full" />
+          <img src={loginBG} alt="Sign UP" className="object-cover h-full w-full" />
         </div>
       </div>
     </div>

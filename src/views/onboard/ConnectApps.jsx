@@ -5,7 +5,7 @@ import { integrations } from '../../services/data/integrations';
 import { RiCheckLine } from '@remixicon/react';
 import { UserProfile } from '../../hooks/ProfileContext';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '../../components/dialog';
-import { Input } from '../../components/input';
+import { EditorInput } from '../../components/editor-input';
 import { showToast } from '../../components/Toasts';
 import { Link } from 'react-router-dom';
 import { EditorTabs, EditorTabsContent, EditorTabsList, EditorTabsTrigger } from '../../components/editor-tabs';
@@ -100,7 +100,7 @@ const ConnectApps = () => {
                               </DialogHeader>
                               <div>
                                 <p className="text-xs text-zinc-500 mb-1">{item.message}</p>
-                                <Input id="username" placeholder={item.placeholder} value={updateUserName} onChange={() => handleEditUpdateUserName(event.target.value)} />
+                                <EditorInput id="username" placeholder={item.placeholder} value={updateUserName} onChange={() => handleEditUpdateUserName(event.target.value)} />
                                 <p className="text-xs text-zinc-500 mt-2">
                                   {item.url_prefix}
                                   {updateUserName}
@@ -132,7 +132,7 @@ const ConnectApps = () => {
                                 </DialogHeader>
                                 <div>
                                   <p className="text-xs text-zinc-500 mb-1">{item.message}</p>
-                                  <Input id="username" placeholder={item.placeholder} value={userName} onChange={() => handleEditUserName(event.target.value)} />
+                                  <EditorInput id="username" placeholder={item.placeholder} value={userName} onChange={() => handleEditUserName(event.target.value)} />
                                   <p className="text-xs text-zinc-500 mt-2">
                                     {item.url_prefix}
                                     {userName}
@@ -192,7 +192,7 @@ const ConnectApps = () => {
                               </DialogHeader>
                               <div>
                                 <p className="text-xs text-zinc-500 mb-1">{item.message}</p>
-                                <Input id="username" placeholder={item.placeholder} value={updateUserName} onChange={() => handleEditUpdateUserName(event.target.value)} />
+                                <EditorInput id="username" placeholder={item.placeholder} value={updateUserName} onChange={() => handleEditUpdateUserName(event.target.value)} />
                                 <p className="text-xs text-zinc-500 mt-2">
                                   {item.url_prefix}
                                   {updateUserName}
@@ -224,7 +224,7 @@ const ConnectApps = () => {
                                 </DialogHeader>
                                 <div>
                                   <p className="text-xs text-zinc-500 mb-1">{item.message}</p>
-                                  <Input id="username" placeholder={item.placeholder} value={userName} onChange={() => handleEditUserName(event.target.value)} />
+                                  <EditorInput id="username" placeholder={item.placeholder} value={userName} onChange={() => handleEditUserName(event.target.value)} />
                                   <p className="text-xs text-zinc-500 mt-2">
                                     {item.url_prefix}
                                     {userName}

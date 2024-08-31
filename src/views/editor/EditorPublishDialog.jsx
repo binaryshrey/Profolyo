@@ -60,7 +60,7 @@ const EditorPublish = ({ showDialogURI, setShowDialogURI, profolyoURI, copyToCli
         </div>
         {copyToClipBoardConfirm && <p className="text-xs text-green-700">Link copied to clipboard!</p>}
         <DialogClose asChild>
-          <Button type="button" variant="default" onClick={closeDialogURI}>
+          <Button type="button" variant="profolyoDark" onClick={closeDialogURI}>
             Go To Dashboard
           </Button>
         </DialogClose>

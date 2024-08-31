@@ -26,7 +26,7 @@ const WidgetContainer = () => {
               <WidgetNavBar />
             </div>
             <div className="w-4/5 p-4 rounded bg-profolyo">
-              <ScrollArea className="overflow-hidden h-90vh">
+              <ScrollArea className=" h-90vh">
                 <WidgetContent />
               </ScrollArea>
             </div>

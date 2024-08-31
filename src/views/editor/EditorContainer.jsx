@@ -12,13 +12,14 @@ import { showToast } from '../../components/Toasts';
 import EditorPublishDialog from './EditorPublishDialog';
 import WidgetContainer from '../widgets/WidgetContainer';
 import { EditorLayout } from '../../hooks/EditorContext';
+import linksmedia from '../../assets/linkmedia.png';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '../../components/tooltip';
 import { RiPlayLine, RiSettingsLine, RiHome6Line, RiApps2Line, RiInformationLine } from '@remixicon/react';
 
 const EditorContainer = () => {
   const navigate = useNavigate();
   const { session } = UserAuth();
-  const { setProfileAudio, setProfileBadge, setProfileImage, setProfileDescription, setProfileTitle, profolyoEditorLayout } = EditorLayout();
+  const { setProfolyoEditorUserData, profolyoEditorLayout } = EditorLayout();
   const VITE_SUPABASE_PROFOLYO_USERS_TABLENAME = import.meta.env.VITE_SUPABASE_PROFOLYO_USERS_TABLENAME;
 
   const [userData, setUserData] = React.useState([]);
@@ -39,11 +40,7 @@ const EditorContainer = () => {
           }
           console.log('userData', data);
           setUserData(data);
-          setProfileTitle(`${data[0]?.FirstName} ${data[0]?.LastName}`);
-          setProfileDescription('Maestro @Profolyo');
-          setProfileImage(data[0]?.AvatarURL);
-          setProfileBadge('Profile');
-          setProfileAudio(`Hello There! I'm ${data[0]?.FirstName} ${data[0]?.LastName}`);
+          setProfolyoEditorUserData(data);
         } else {
           navigate('/login');
         }
