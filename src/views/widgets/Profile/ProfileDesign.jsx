@@ -1,7 +1,6 @@
 import React from 'react';
 import { Label } from '../../../components/label';
 import { EditorLayout } from '../../../hooks/EditorContext';
-
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '../../../components/select';
 
 const ProfileDesign = () => {

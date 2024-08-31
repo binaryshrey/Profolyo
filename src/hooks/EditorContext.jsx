@@ -106,6 +106,14 @@ export const EditorContextProvider = ({ children }) => {
     }));
   };
 
+  const updateCardLinkURL = (id, link) => {
+    setProfolyoEditorLayout((prevState) => ({
+      xs: prevState.xs.map((item) => (item.i === id ? { ...item, data: { ...item.data, link: link } } : item)),
+      sm: prevState.sm.map((item) => (item.i === id ? { ...item, data: { ...item.data, link: link } } : item)),
+      md: prevState.md.map((item) => (item.i === id ? { ...item, data: { ...item.data, link: link } } : item)),
+    }));
+  };
+
   return (
     <EditorContext.Provider
       value={{
@@ -115,6 +123,7 @@ export const EditorContextProvider = ({ children }) => {
         updateCardDescription,
         updateProfileBadge,
         updateCardCoverImage,
+        updateCardLinkURL,
         updateProfileAudioIntro,
         updateProfileAudioVoice,
         updateCardElevation,
