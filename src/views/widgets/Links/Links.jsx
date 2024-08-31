@@ -8,6 +8,7 @@ import { RiUser4Line, RiArrowRightUpLine } from '@remixicon/react';
 import { ToggleGroup, ToggleGroupItem } from '../../../components/toggle-group';
 
 const Links = ({ clickToAdd, widget, mode, viewMode }) => {
+  console.log('mode', mode);
   const id = uuidv4();
   const { setSelectedWidget, addProfolyoWidgetToEditor, setOpenWidgetContainer, updateLayoutAfterResize, selectedWidget } = EditorLayout();
   const smLinks = linksSM(id);
@@ -79,11 +80,11 @@ const Links = ({ clickToAdd, widget, mode, viewMode }) => {
       <>
         <div>{!viewMode && showSizeToggle && selectedWidget?.i === widget.i && widgetSizeToggleToolbar(widget)}</div>
         <div onClick={() => handleClickToAdd(smLinks, smLinks, smLinks)} className={`rounded-lg flex flex-col justify-between h-full p-3 ${getCardElevation()} ${!viewMode ? 'cursor-pointer' : ''} ${getCardBackground()} ${!viewMode && showSizeToggle && selectedWidget?.i === widget.i ? 'border border-4 border-profolyoExtraDark' : ''}`}>
-          <img src={widget?.data?.coverImage} referrerPolicy="no-referrer" alt="ProfilePic" className="w-full h-32 rounded-lg mt-2 object-cover" />
-          <div className="flex justify-between items-center gap-2">
+          <img src={widget?.data?.coverImage} referrerPolicy="no-referrer" alt="ProfilePic" className={`w-full ${mode === 'md' ? 'h-32' : mode === 'sm' ? 'h-56' : 'h-56'} rounded-lg mt-2 object-cover`} />
+          <div className="flex justify-between items-center gap-4">
             <div>
-              <p className="font-semibold text-lg ">{widget?.data?.title}</p>
-              <p className="text-sm text-zinc-500 ">{widget?.data?.description}</p>
+              <p className={`font-semibold ${mode === 'sm' ? 'text-sm' : 'text-lg'} `}>{widget?.data?.title}</p>
+              <p className={` ${mode === 'sm' ? 'text-xs' : 'text-sm'} text-zinc-500`}>{widget?.data?.description}</p>
             </div>
             <div className="h-10 w-10 hover:bg-profolyoDark hover:cursor-pointer rounded-full flex justify-center items-center">
               <Link to={widget?.data?.link} target="_blank" rel="noopener noreferrer">
@@ -101,20 +102,38 @@ const Links = ({ clickToAdd, widget, mode, viewMode }) => {
       <>
         <div>{!viewMode && showSizeToggle && selectedWidget?.i === widget.i && widgetSizeToggleToolbar(widget)}</div>
         <div onClick={() => handleClickToAdd(smLinks, mdLinks, mdLinks)} className={`rounded-lg flex flex-col justify-between h-full p-3 ${getCardElevation()} ${!viewMode ? 'cursor-pointer' : ''} ${getCardBackground()} ${!viewMode && showSizeToggle && selectedWidget?.i === widget.i ? 'border border-4 border-profolyoExtraDark' : ''}`}>
-          <div className="flex gap-2">
-            <div className="flex flex-col justify-between gap-2">
-              <div>
-                <p className="font-semibold text-lg ">{widget?.data?.title}</p>
-                <p className="text-sm text-zinc-500 ">{widget?.data?.description}</p>
+          {mode === 'md' && (
+            <div className="flex gap-2">
+              <div className="flex flex-col justify-between gap-2">
+                <div>
+                  <p className="font-semibold text-lg ">{widget?.data?.title}</p>
+                  <p className="text-sm text-zinc-500 ">{widget?.data?.description}</p>
+                </div>
+                <div className="h-10 w-10 hover:bg-profolyoDark hover:cursor-pointer rounded-full flex justify-center items-center">
+                  <Link to={widget?.data?.link} target="_blank" rel="noopener noreferrer">
+                    <RiArrowRightUpLine className="h-6 w-6 text-zinc-500" />
+                  </Link>
+                </div>
               </div>
-              <div className="h-10 w-10 hover:bg-profolyoDark hover:cursor-pointer rounded-full flex justify-center items-center">
-                <Link to={widget?.data?.link} target="_blank" rel="noopener noreferrer">
-                  <RiArrowRightUpLine className="h-6 w-6 text-zinc-500" />
-                </Link>
+              <img src={widget?.data?.coverImage} referrerPolicy="no-referrer" alt="ProfilePic" className={`w-full h-52 rounded-lg mt-2 object-cover`} />
+            </div>
+          )}
+          {mode === 'sm' && (
+            <div className="flex flex-col justify-between gap-2">
+              <img src={widget?.data?.coverImage} referrerPolicy="no-referrer" alt="ProfilePic" className={`w-full h-60 rounded-lg mt-2 object-cover`} />
+              <div className="flex justify-between items-center gap-2">
+                <div>
+                  <p className="font-semibold text-lg ">{widget?.data?.title}</p>
+                  <p className="text-sm text-zinc-500 ">{widget?.data?.description}</p>
+                </div>
+                <div className="h-10 w-10 hover:bg-profolyoDark hover:cursor-pointer rounded-full flex justify-center items-center">
+                  <Link to={widget?.data?.link} target="_blank" rel="noopener noreferrer">
+                    <RiArrowRightUpLine className="h-6 w-6 text-zinc-500" />
+                  </Link>
+                </div>
               </div>
             </div>
-            <img src={widget?.data?.coverImage} referrerPolicy="no-referrer" alt="ProfilePic" className="w-full h-52 rounded-lg mt-2 object-cover" />
-          </div>
+          )}
         </div>
       </>
     );
