@@ -79,7 +79,6 @@ const generateImages = (i,x,y,w,h,size) => {
     data: {
       title: 'Profolyo',
       coverImage: linksMedia,
-      link: 'https://www.profolyo.me/',
       background: 'theme',
       elevation: 'medium',
     },

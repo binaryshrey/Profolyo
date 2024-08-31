@@ -81,9 +81,11 @@ const Images = ({ clickToAdd, widget, mode, viewMode }) => {
         <div onClick={() => handleClickToAdd(smImages, smImages, smImages)} className={`rounded-lg flex flex-col justify-between h-full p-3 ${getCardElevation()} ${!viewMode ? 'cursor-pointer' : ''} ${getCardBackground()} ${!viewMode && showSizeToggle && selectedWidget?.i === widget.i ? 'border border-4 border-profolyoExtraDark' : ''}`}>
           <div className="relative">
             <img src={widget?.data?.coverImage} referrerPolicy="no-referrer" alt="ProfilePic" className={`w-full ${mode === 'md' ? 'h-56' : mode === 'sm' ? 'h-76' : 'h-76'} rounded-lg object-cover`} />
-            <div className="absolute bottom-3 left-3  h-8 bg-profolyo rounded-full  items-center flex ">
-              <p className="text-black pr-4 pl-4">{widget?.data?.title}</p>
-            </div>
+            <Link to={widget?.data?.coverImage} target="_blank" rel="noopener noreferrer">
+              <div className="absolute bottom-3 left-3  h-8 bg-profolyo rounded-full  items-center flex ">
+                <p className="text-black pr-4 pl-4">{widget?.data?.title}</p>
+              </div>
+            </Link>
           </div>
         </div>
       </>
@@ -97,9 +99,11 @@ const Images = ({ clickToAdd, widget, mode, viewMode }) => {
         <div onClick={() => handleClickToAdd(smImages, mdImages, mdImages)} className={`rounded-lg flex flex-col justify-between p-3 ${getCardElevation()} ${!viewMode ? 'cursor-pointer' : ''} ${getCardBackground()} ${!viewMode && showSizeToggle && selectedWidget?.i === widget.i ? 'border border-4 border-profolyoExtraDark' : ''}`}>
           <div className="relative">
             <img src={widget?.data?.coverImage} referrerPolicy="no-referrer" alt="ProfilePic" className={`w-full ${mode === 'md' ? 'h-56' : mode === 'sm' ? 'h-76' : 'h-76'} rounded-lg object-cover`} />
-            <div className="absolute bottom-3 left-3 h-8 bg-profolyo rounded-full  items-center flex ">
-              <p className="text-black pr-4 pl-4">{widget?.data?.title}</p>
-            </div>
+            <Link to={widget?.data?.coverImage} target="_blank" rel="noopener noreferrer">
+              <div className="absolute bottom-3 left-3 h-8 bg-profolyo rounded-full  items-center flex ">
+                <p className="text-black pr-4 pl-4">{widget?.data?.title}</p>
+              </div>
+            </Link>
           </div>
         </div>
       </>
@@ -113,9 +117,11 @@ const Images = ({ clickToAdd, widget, mode, viewMode }) => {
         <div onClick={() => handleClickToAdd(smImages, lgImages, lgImages)} className={`rounded-lg flex flex-col justify-between p-3 ${getCardElevation()} ${!viewMode ? 'cursor-pointer' : ''} ${getCardBackground()} ${!viewMode && showSizeToggle && selectedWidget?.i === widget.i ? 'border border-4 border-profolyoExtraDark' : ''}`}>
           <div className="relative">
             <img src={widget?.data?.coverImage} referrerPolicy="no-referrer" alt="ProfilePic" className={`w-full ${mode === 'md' ? 'h-128' : mode === 'sm' ? 'h-76' : 'h-76'} rounded-lg object-cover`} />
-            <div className="absolute bottom-3 left-3 h-8 bg-profolyo rounded-full  items-center flex ">
-              <p className="text-black pr-4 pl-4">{widget?.data?.title}</p>
-            </div>
+            <Link to={widget?.data?.coverImage} target="_blank" rel="noopener noreferrer">
+              <div className="absolute bottom-3 left-3 h-8 bg-profolyo rounded-full  items-center flex ">
+                <p className="text-black pr-4 pl-4">{widget?.data?.title}</p>
+              </div>
+            </Link>
           </div>
         </div>
       </>
