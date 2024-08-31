@@ -23,7 +23,7 @@ const WidgetNavBar = () => {
       </ToggleGroupItem>
       <ToggleGroupItem value="apps" className="w-full flex justify-start gap-2" variant="widget">
         <RiBubbleChartLine className="h-4 w-4" />
-        <p>Apps</p>
+        <p>Connected Apps</p>
       </ToggleGroupItem>
     </ToggleGroup>
   );
