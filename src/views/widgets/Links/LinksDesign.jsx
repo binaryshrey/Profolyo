@@ -4,7 +4,7 @@ import { EditorLayout } from '../../../hooks/EditorContext';
 
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '../../../components/select';
 
-const ProfileDesign = () => {
+const LinksDesign = () => {
   const { selectedWidget, updateCardElevation, updateCardBackground } = EditorLayout();
 
   return (
@@ -53,4 +53,4 @@ const ProfileDesign = () => {
   );
 };
 
-export default ProfileDesign;
+export default LinksDesign;
