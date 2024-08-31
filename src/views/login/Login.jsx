@@ -2,12 +2,12 @@
 
 import * as React from 'react';
 import { Link } from 'react-router-dom';
+import loginBG from '../../assets/loginBG.webp';
 import logo from '../../assets/profolyo-dark.svg';
 import login from '../../assets/login.svg';
 import google from '../../assets/google.svg';
 import github from '../../assets/github.svg';
 import linkedin from '../../assets/linkedin.svg';
-import loginBanner from '../../assets/login-banner.png';
 import { UserAuth } from '../../hooks/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { showToast } from '../../components/Toasts';
@@ -101,7 +101,7 @@ const Login = () => {
           </div>
         </div>
         <div className="lg:block hidden w-3/5 h-screen bg-slate-100">
-          <img src={loginBanner} alt="Sign IN" className="object-contain h-full w-full" />
+          <img src={loginBG} alt="Sign IN" className="object-cover h-full w-full" />
         </div>
       </div>
     </div>

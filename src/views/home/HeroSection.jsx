@@ -1,5 +1,6 @@
 import { Loader2 } from 'lucide-react';
 import React, { useState } from 'react';
+import banner from '../../assets/banner.webp';
 import { Link } from 'react-router-dom';
 import { Dialog } from '@headlessui/react';
 import { supabase } from '../../utils/Supabase';
@@ -196,7 +197,7 @@ const HeroSection = () => {
             </div>
             <div className="mt-20 flow-root sm:mt-16">
               <div className="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
-                <img src="https://raw.githubusercontent.com/binaryshrey/Chronos/feat/login/src/assets/product.png" alt="App screenshot" width={2432} height={1442} className="rounded-md shadow-2xl ring-1 ring-gray-900/10" />
+                <img src={banner} alt="App screenshot" width={2432} height={1442} className="rounded-md shadow-2xl ring-1 ring-gray-900/10" />
               </div>
             </div>
           </div>
