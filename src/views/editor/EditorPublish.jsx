@@ -10,13 +10,15 @@ import ProfileInfo from '../widgets/Profile/ProfileInfo';
 import { useParams, useLocation } from 'react-router-dom';
 import { ScrollArea } from '../../components/scroll-area';
 import { Responsive, WidthProvider } from 'react-grid-layout';
+import ImagesInfo from '../widgets/Images/ImagesInfo';
+import Images from '../widgets/Images/Images';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
 const EditorPublish = () => {
   const cols = { xs: 1, sm: 2, md: 4 };
   const breakpoints = { xs: 480, sm: 767, md: 1023 };
-  const componentMap = { ProfileInfo, Profile, LinksInfo, Links };
+  const componentMap = { ProfileInfo, Profile, LinksInfo, Links, ImagesInfo, Images };
 
   const getBreakpoint = (width) => {
     if (width <= breakpoints.xs) return 'xs';

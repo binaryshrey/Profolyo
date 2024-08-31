@@ -7,6 +7,8 @@ import { EditorLayout } from '../../hooks/EditorContext';
 import ProfileInfo from '../widgets/Profile/ProfileInfo';
 import LinksInfo from '../widgets/Links/LinksInfo';
 import Links from '../widgets/Links/Links';
+import ImagesInfo from '../widgets/Images/ImagesInfo';
+import Images from '../widgets/Images/Images';
 import { Responsive, WidthProvider } from 'react-grid-layout';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
@@ -18,7 +20,7 @@ const EditorContentLayout = ({ rowHeight, layoutMode }) => {
 
   const cols = { xs: 1, sm: 4, md: 4 };
   const breakpoints = { xs: 480, sm: 500, md: 767 };
-  const componentMap = { ProfileInfo, Profile, LinksInfo, Links };
+  const componentMap = { ProfileInfo, Profile, LinksInfo, Links, ImagesInfo, Images };
 
   const [mode, setMode] = React.useState(layoutMode);
   const [isDragging, setIsDragging] = React.useState(false);

@@ -57,8 +57,36 @@ const generateLinks = (i,x,y,w,h,size) => {
     },
   };
 }
-
 export const linksInfo = infoLinks();
 export const linksSM = ( id) => generateLinks( id, 1, 2, 1, 2, 'small');
 export const linksMD = ( id) => generateLinks( id, 0, 3, 2, 2, 'medium');
 export const linksLG = ( id) => generateLinks( id, 3, 2, 2, 4, 'large');
+
+
+const infoImages = () => {
+  return{ i: uuidv4(), x: 0, y: 4, w: 1, h: 2, size: 'small', component: 'ImagesInfo' }
+}
+
+const generateImages = (i,x,y,w,h,size) => {
+  return {
+    i: i,
+    x: x,
+    y: y,
+    w: w,
+    h: h,
+    size: size,
+    component: 'Images',
+    data: {
+      title: 'Profolyo',
+      coverImage: linksMedia,
+      link: 'https://www.profolyo.me/',
+      background: 'theme',
+      elevation: 'medium',
+    },
+  };
+}
+
+export const imagesInfo = infoImages();
+export const imagesSM = ( id) => generateImages( id, 1, 4, 1, 2, 'small');
+export const imagesMD = ( id) => generateImages( id, 0, 5, 2, 2, 'medium');
+export const imagesLG = ( id) => generateImages( id, 3, 4, 2, 4, 'large');
