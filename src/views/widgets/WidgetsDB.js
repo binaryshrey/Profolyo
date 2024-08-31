@@ -51,7 +51,9 @@ const generateLinks = (i,x,y,w,h,size) => {
       title: 'Professional Portfolio Builder',
       coverImage: linksMedia,
       description: 'profolyo.me',
-      link: 'https://www.profolyo.me/'
+      link: 'https://www.profolyo.me/',
+      background: 'theme',
+      elevation: 'medium',
     },
   };
 }
