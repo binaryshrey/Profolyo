@@ -1,5 +1,5 @@
 import React from 'react';
-import { RiApps2Line, RiUser4Line, RiInformationLine, RiEarthLine, RiBubbleChartLine } from '@remixicon/react';
+import { RiApps2Line, RiUser4Line, RiInformationLine, RiEarthLine, RiBubbleChartLine, RiImageLine } from '@remixicon/react';
 import { ToggleGroup, ToggleGroupItem } from '../../components/toggle-group';
 
 const WidgetNavBar = () => {
@@ -16,6 +16,10 @@ const WidgetNavBar = () => {
       <ToggleGroupItem value="links" className="w-full flex justify-start gap-2" variant="widget">
         <RiEarthLine className="h-4 w-4" />
         <p>Links</p>
+      </ToggleGroupItem>
+      <ToggleGroupItem value="images" className="w-full flex justify-start gap-2" variant="widget">
+        <RiImageLine className="h-4 w-4" />
+        <p>Images</p>
       </ToggleGroupItem>
       <ToggleGroupItem value="apps" className="w-full flex justify-start gap-2" variant="widget">
         <RiBubbleChartLine className="h-4 w-4" />
