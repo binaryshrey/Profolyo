@@ -3,6 +3,8 @@ import 'react-resizable/css/styles.css';
 import 'react-grid-layout/css/styles.css';
 import React, { useRef, useEffect } from 'react';
 import { supabase } from '../../utils/Supabase';
+import LinksInfo from '../widgets/Links/LinksInfo';
+import Links from '../widgets/Links/Links';
 import Profile from '../widgets/Profile/Profile';
 import { UserAuth } from '../../hooks/AuthContext';
 import { showToast } from '../../components/Toasts';
@@ -28,7 +30,7 @@ const EditorPreview = () => {
   };
   const cols = { xs: 1, sm: 2, md: 4 };
   const breakpoints = { xs: 480, sm: 767, md: 1023 };
-  const componentMap = { ProfileInfo, Profile };
+  const componentMap = { ProfileInfo, Profile, LinksInfo, Links };
 
   const [loading, setLoading] = React.useState(false);
   const [layout, setLayout] = React.useState({});

@@ -1,5 +1,7 @@
 import React from 'react';
 import { Loader2 } from 'lucide-react';
+import LinksInfo from '../widgets/Links/LinksInfo';
+import Links from '../widgets/Links/Links';
 import { supabase } from '../../utils/Supabase';
 import Profile from '../widgets/Profile/Profile';
 import { showToast } from '../../components/Toasts';
@@ -14,7 +16,7 @@ const ResponsiveGridLayout = WidthProvider(Responsive);
 const EditorPublish = () => {
   const cols = { xs: 1, sm: 2, md: 4 };
   const breakpoints = { xs: 480, sm: 767, md: 1023 };
-  const componentMap = { ProfileInfo, Profile };
+  const componentMap = { ProfileInfo, Profile, LinksInfo, Links };
 
   const getBreakpoint = (width) => {
     if (width <= breakpoints.xs) return 'xs';
