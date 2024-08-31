@@ -19,7 +19,7 @@ import { RiPlayLine, RiSettingsLine, RiHome6Line, RiApps2Line, RiInformationLine
 const EditorContainer = () => {
   const navigate = useNavigate();
   const { session } = UserAuth();
-  const { setLinkTitle, setLinkDescription, setLinkImage, setLinkURL, setProfileAudio, setProfileBadge, setProfileImage, setProfileDescription, setProfileTitle, profolyoEditorLayout } = EditorLayout();
+  const { setProfolyoEditorUserData, profolyoEditorLayout } = EditorLayout();
   const VITE_SUPABASE_PROFOLYO_USERS_TABLENAME = import.meta.env.VITE_SUPABASE_PROFOLYO_USERS_TABLENAME;
 
   const [userData, setUserData] = React.useState([]);
@@ -40,18 +40,7 @@ const EditorContainer = () => {
           }
           console.log('userData', data);
           setUserData(data);
-          //profile
-          setProfileTitle(`${data[0]?.FirstName} ${data[0]?.LastName}`);
-          setProfileDescription('Maestro @Profolyo');
-          setProfileImage(data[0]?.AvatarURL);
-          setProfileBadge('Profile');
-          setProfileAudio(`Hello There! I'm ${data[0]?.FirstName} ${data[0]?.LastName}`);
-
-          //links
-          setLinkTitle('Professional Portfolio');
-          setLinkDescription('profolyo.me');
-          setLinkImage(linksmedia);
-          setLinkURL('https://www.profolyo.me');
+          setProfolyoEditorUserData(data);
         } else {
           navigate('/login');
         }

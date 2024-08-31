@@ -1,72 +1,33 @@
-import React, { useRef, useEffect } from 'react';
-import { Responsive, WidthProvider } from 'react-grid-layout';
-import 'react-grid-layout/css/styles.css';
-import 'react-resizable/css/styles.css';
 import { v4 as uuidv4 } from 'uuid';
+import 'react-resizable/css/styles.css';
+import Profile from './Profile/Profile';
+import 'react-grid-layout/css/styles.css';
 import ProfileInfo from './Profile/ProfileInfo';
-import ProfileSmall from './Profile/ProfileSmall';
-import ProfileMedium from './Profile/ProfileMedium';
-import ProfileLarge from './Profile/ProfileLarge';
-import ProfileXLarge from './Profile/ProfileXLarge';
-
-import LinksInfo from './Links/LinksInfo';
-import LinksSmall from './Links/LinksSmall';
-import LinksMedium from './Links/LinksMedium';
-import LinksLarge from './Links/LinksLarge';
+import React, { useRef, useEffect } from 'react';
+import { EditorLayout } from '../../hooks/EditorContext';
+import { Responsive, WidthProvider } from 'react-grid-layout';
+import { profileInfo, profileSM, profileMD, profileLG, profileXL } from './WidgetsDB';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
-const layout = {
-  xs: [
-    { i: uuidv4(), x: 0, y: 0, w: 1, h: 2, size: 'content', text: 'xs:content' },
-    { i: uuidv4(), x: 1, y: 0, w: 1, h: 2, size: 'small', text: 'xs:Small' },
-    { i: uuidv4(), x: 0, y: 1, w: 2, h: 2, size: 'medium', text: 'xs:Medium' },
-    { i: uuidv4(), x: 2, y: 0, w: 2, h: 4, size: 'large', text: 'xs:Large' },
-  ],
-  sm: [
-    { i: uuidv4(), x: 0, y: 0, w: 1, h: 2, size: 'content', text: 'sm:content' },
-    { i: uuidv4(), x: 1, y: 0, w: 1, h: 2, size: 'small', text: 'sm:Small' },
-    { i: uuidv4(), x: 0, y: 1, w: 2, h: 2, size: 'medium', text: 'sm:Medium' },
-    { i: uuidv4(), x: 2, y: 0, w: 2, h: 4, size: 'large', text: 'sm:Large' },
-  ],
-  md: [
-    { i: uuidv4(), x: 0, y: 0, w: 1, h: 2, size: 'small', component: 'ProfileInfo', type: 'Profile' },
-    { i: uuidv4(), x: 1, y: 0, w: 1, h: 2, size: 'small', component: 'ProfileSmall', type: 'Profile' },
-    { i: uuidv4(), x: 0, y: 1, w: 2, h: 2, size: 'medium', component: 'ProfileMedium', type: 'Profile' },
-    { i: uuidv4(), x: 2, y: 0, w: 2, h: 4, size: 'large', component: 'ProfileLarge', type: 'Profile' },
-    { i: uuidv4(), x: 3, y: 1, w: 4, h: 4, size: 'xlarge', component: 'ProfileXLarge', type: 'Profile' },
-    { i: uuidv4(), x: 0, y: 2, w: 1, h: 2, size: 'small', component: 'LinksInfo', type: 'Links' },
-    { i: uuidv4(), x: 1, y: 2, w: 1, h: 2, size: 'small', component: 'LinksSmall', type: 'Links' },
-    { i: uuidv4(), x: 0, y: 3, w: 2, h: 2, size: 'medium', component: 'LinksMedium', type: 'Links' },
-    { i: uuidv4(), x: 2, y: 2, w: 2, h: 4, size: 'large', component: 'LinksLarge', type: 'Links' },
-  ],
-};
-
-const componentMap = {
-  ProfileInfo,
-  ProfileSmall,
-  ProfileMedium,
-  ProfileLarge,
-  ProfileXLarge,
-  LinksInfo,
-  LinksSmall,
-  LinksMedium,
-  LinksLarge,
-};
-
-const cols = {
-  xs: 1,
-  sm: 4,
-  md: 4,
-};
-
-const breakpoints = {
-  xs: 480,
-  sm: 500,
-  md: 767,
-};
-
 const WidgetContent = () => {
+  const { profolyoEditorUserData } = EditorLayout();
+
+  const cols = { xs: 1, sm: 4, md: 4 };
+  const breakpoints = { xs: 480, sm: 500, md: 767 };
+  const componentMap = { ProfileInfo, Profile };
+
+  const smProfile = profileSM(profolyoEditorUserData, uuidv4());
+  const mdProfile = profileMD(profolyoEditorUserData, uuidv4());
+  const lgProfile = profileLG(profolyoEditorUserData, uuidv4());
+  const xlProfile = profileXL(profolyoEditorUserData, uuidv4());
+
+  const layout = {
+    xs: [profileInfo, smProfile, mdProfile, lgProfile, xlProfile],
+    sm: [profileInfo, smProfile, mdProfile, lgProfile, xlProfile],
+    md: [profileInfo, smProfile, mdProfile, lgProfile, xlProfile],
+  };
+
   return (
     <div className="mt-8 bg-profolyo">
       <ResponsiveGridLayout layouts={layout} breakpoints={breakpoints} cols={cols} rowHeight={120} width={120} isResizable={false} isDraggable={false}>
@@ -74,7 +35,7 @@ const WidgetContent = () => {
           const Component = componentMap[item.component];
           return (
             <div key={item.i}>
-              <Component clickToAdd={true} widget={item} viewMode={true} />
+              <Component clickToAdd={true} widget={item} mode="md" viewMode={true} />
             </div>
           );
         })}

@@ -1,6 +1,6 @@
 /************************************************************ IMPORTS ************************************************************/
 
-import { useContext, createContext, useEffect, useState } from 'react';
+import React, { useContext, createContext, useEffect, useState } from 'react';
 
 /************************************************************ IMPORTS ************************************************************/
 
@@ -9,19 +9,8 @@ const EditorContext = createContext();
 export const EditorContextProvider = ({ children }) => {
   const [selectedWidget, setSelectedWidget] = useState();
   const [openWidgetContainer, setOpenWidgetContainer] = useState(false);
+  const [profolyoEditorUserData, setProfolyoEditorUserData] = React.useState([]);
   const [profolyoEditorLayout, setProfolyoEditorLayout] = useState({ xs: [], sm: [], md: [] });
-
-  //profile
-  const [profileTitle, setProfileTitle] = useState('');
-  const [profileDescription, setProfileDescription] = useState('');
-  const [profileImage, setProfileImage] = useState('');
-  const [profileImageSize, setProfileImageSize] = useState('');
-  const [profileBadge, setProfileBadge] = useState('');
-  const [profileAudio, setProfileAudio] = useState('');
-  const [profileAudioURL, setProfileAudioURL] = useState('');
-  const [profileAudioVoice, setProfileAudioVoice] = useState('male');
-  const [profileCardElevation, setProfileCardElevation] = useState('default');
-  const [profileCardBackground, setProfileCardBackground] = useState('default');
 
   //links
   const [linkTitle, setLinkTitle] = useState('');
@@ -62,9 +51,72 @@ export const EditorContextProvider = ({ children }) => {
     setProfolyoEditorLayout((prevState) => updateWidgetSize(prevState, w, h, size, component, mode, id));
   };
 
+  const updateProfileTitle = (id, newTitle) => {
+    setProfolyoEditorLayout((prevState) => ({
+      xs: prevState.xs.map((item) => (item.i === id ? { ...item, data: { ...item.data, title: newTitle } } : item)),
+      sm: prevState.sm.map((item) => (item.i === id ? { ...item, data: { ...item.data, title: newTitle } } : item)),
+      md: prevState.md.map((item) => (item.i === id ? { ...item, data: { ...item.data, title: newTitle } } : item)),
+    }));
+  };
+  const updateProfileDescription = (id, desc) => {
+    setProfolyoEditorLayout((prevState) => ({
+      xs: prevState.xs.map((item) => (item.i === id ? { ...item, data: { ...item.data, description: desc } } : item)),
+      sm: prevState.sm.map((item) => (item.i === id ? { ...item, data: { ...item.data, description: desc } } : item)),
+      md: prevState.md.map((item) => (item.i === id ? { ...item, data: { ...item.data, description: desc } } : item)),
+    }));
+  };
+  const updateProfileBadge = (id, badge) => {
+    setProfolyoEditorLayout((prevState) => ({
+      xs: prevState.xs.map((item) => (item.i === id ? { ...item, data: { ...item.data, badge: badge } } : item)),
+      sm: prevState.sm.map((item) => (item.i === id ? { ...item, data: { ...item.data, badge: badge } } : item)),
+      md: prevState.md.map((item) => (item.i === id ? { ...item, data: { ...item.data, badge: badge } } : item)),
+    }));
+  };
+  const updateProfileCoverImage = (id, image) => {
+    setProfolyoEditorLayout((prevState) => ({
+      xs: prevState.xs.map((item) => (item.i === id ? { ...item, data: { ...item.data, coverImage: image } } : item)),
+      sm: prevState.sm.map((item) => (item.i === id ? { ...item, data: { ...item.data, coverImage: image } } : item)),
+      md: prevState.md.map((item) => (item.i === id ? { ...item, data: { ...item.data, coverImage: image } } : item)),
+    }));
+  };
+
+  const updateProfileAudioIntro = (id, audio) => {
+    setProfolyoEditorLayout((prevState) => ({
+      xs: prevState.xs.map((item) => (item.i === id ? { ...item, data: { ...item.data, audioIntro: audio } } : item)),
+      sm: prevState.sm.map((item) => (item.i === id ? { ...item, data: { ...item.data, audioIntro: audio } } : item)),
+      md: prevState.md.map((item) => (item.i === id ? { ...item, data: { ...item.data, audioIntro: audio } } : item)),
+    }));
+  };
+
+  const updateProfileAudioVoice = (id, voice) => {
+    setProfolyoEditorLayout((prevState) => ({
+      xs: prevState.xs.map((item) => (item.i === id ? { ...item, data: { ...item.data, audioVoice: voice } } : item)),
+      sm: prevState.sm.map((item) => (item.i === id ? { ...item, data: { ...item.data, audioVoice: voice } } : item)),
+      md: prevState.md.map((item) => (item.i === id ? { ...item, data: { ...item.data, audioVoice: voice } } : item)),
+    }));
+  };
+
+  const updateProfileCardElevation = (id, elevation) => {
+    setProfolyoEditorLayout((prevState) => ({
+      xs: prevState.xs.map((item) => (item.i === id ? { ...item, data: { ...item.data, elevation: elevation } } : item)),
+      sm: prevState.sm.map((item) => (item.i === id ? { ...item, data: { ...item.data, elevation: elevation } } : item)),
+      md: prevState.md.map((item) => (item.i === id ? { ...item, data: { ...item.data, elevation: elevation } } : item)),
+    }));
+  };
+
+  const updateProfileCardBackground = (id, bg) => {
+    setProfolyoEditorLayout((prevState) => ({
+      xs: prevState.xs.map((item) => (item.i === id ? { ...item, data: { ...item.data, background: bg } } : item)),
+      sm: prevState.sm.map((item) => (item.i === id ? { ...item, data: { ...item.data, background: bg } } : item)),
+      md: prevState.md.map((item) => (item.i === id ? { ...item, data: { ...item.data, background: bg } } : item)),
+    }));
+  };
+
   return (
     <EditorContext.Provider
       value={{
+        profolyoEditorUserData,
+        setProfolyoEditorUserData,
         linkTitle,
         setLinkTitle,
         linkDescription,
@@ -73,26 +125,14 @@ export const EditorContextProvider = ({ children }) => {
         setLinkImage,
         linkURL,
         setLinkURL,
-        profileCardBackground,
-        setProfileCardBackground,
-        profileCardElevation,
-        setProfileCardElevation,
-        profileAudioVoice,
-        setProfileAudioVoice,
-        profileAudioURL,
-        setProfileAudioURL,
-        profileAudio,
-        setProfileAudio,
-        profileImageSize,
-        setProfileImageSize,
-        profileBadge,
-        setProfileBadge,
-        profileImage,
-        setProfileImage,
-        profileDescription,
-        setProfileDescription,
-        profileTitle,
-        setProfileTitle,
+        updateProfileTitle,
+        updateProfileDescription,
+        updateProfileBadge,
+        updateProfileCoverImage,
+        updateProfileAudioIntro,
+        updateProfileAudioVoice,
+        updateProfileCardElevation,
+        updateProfileCardBackground,
         selectedWidget,
         setSelectedWidget,
         profolyoEditorLayout,

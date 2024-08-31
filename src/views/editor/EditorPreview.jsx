@@ -3,58 +3,32 @@ import 'react-resizable/css/styles.css';
 import 'react-grid-layout/css/styles.css';
 import React, { useRef, useEffect } from 'react';
 import { supabase } from '../../utils/Supabase';
+import Profile from '../widgets/Profile/Profile';
 import { UserAuth } from '../../hooks/AuthContext';
 import { showToast } from '../../components/Toasts';
 import ProfileInfo from '../widgets/Profile/ProfileInfo';
-import ProfileSmall from '../widgets/Profile/ProfileSmall';
-import ProfileLarge from '../widgets/Profile/ProfileLarge';
-import ProfileMedium from '../widgets/Profile/ProfileMedium';
-import ProfileXLarge from '../widgets/Profile/ProfileXLarge';
-import { Responsive, WidthProvider } from 'react-grid-layout';
 import { ScrollArea } from '../../components/scroll-area';
-import LinksInfo from '../widgets/Links/LinksInfo';
-import LinksSmall from '../widgets/Links/LinksSmall';
-import LinksMedium from '../widgets/Links/LinksMedium';
-import LinksLarge from '../widgets/Links/LinksLarge';
+import { Responsive, WidthProvider } from 'react-grid-layout';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
-const cols = {
-  xs: 1,
-  sm: 2,
-  md: 4,
-};
-const breakpoints = {
-  xs: 480,
-  sm: 767,
-  md: 1023,
-};
-const componentMap = {
-  ProfileInfo,
-  ProfileSmall,
-  ProfileMedium,
-  ProfileLarge,
-  ProfileXLarge,
-  LinksInfo,
-  LinksSmall,
-  LinksMedium,
-  LinksLarge,
-};
-
-const getBreakpoint = (width) => {
-  if (width <= breakpoints.xs) return 'xs';
-  if (width <= breakpoints.sm) return 'sm';
-  if (width <= breakpoints.md) return 'md';
-  return 'md';
-};
-const getRowHeight = (width) => {
-  if (width <= breakpoints.xs) return 160;
-  if (width <= breakpoints.sm) return 160;
-  if (width <= breakpoints.md) return 120;
-  return 120;
-};
 
 const EditorPreview = () => {
   const { session } = UserAuth();
+  const getBreakpoint = (width) => {
+    if (width <= breakpoints.xs) return 'xs';
+    if (width <= breakpoints.sm) return 'sm';
+    if (width <= breakpoints.md) return 'md';
+    return 'md';
+  };
+  const getRowHeight = (width) => {
+    if (width <= breakpoints.xs) return 160;
+    if (width <= breakpoints.sm) return 160;
+    if (width <= breakpoints.md) return 120;
+    return 120;
+  };
+  const cols = { xs: 1, sm: 2, md: 4 };
+  const breakpoints = { xs: 480, sm: 767, md: 1023 };
+  const componentMap = { ProfileInfo, Profile };
 
   const [loading, setLoading] = React.useState(false);
   const [layout, setLayout] = React.useState({});
@@ -98,8 +72,8 @@ const EditorPreview = () => {
   }, []);
 
   return (
-    <div className="bg-profolyo h-screen">
-      <ScrollArea className=" h-99vh">
+    <div className="bg-profolyo">
+      <ScrollArea>
         <div className={`bg-profolyo mx-auto w-full ${mode === 'md' ? 'max-w-6xl' : mode === 'sm' ? 'max-w-3xl' : 'max-w-sm'}`}>
           {loading && (
             <div className="w-full h-full flex justify-center items-center text-center">

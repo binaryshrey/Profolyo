@@ -1,47 +1,22 @@
-import React, { useRef, useEffect } from 'react';
-import { Responsive, WidthProvider } from 'react-grid-layout';
-import 'react-grid-layout/css/styles.css';
 import 'react-resizable/css/styles.css';
+import 'react-grid-layout/css/styles.css';
+import { RiApps2Line } from '@remixicon/react';
+import React, { useRef, useEffect } from 'react';
+import Profile from '../widgets/Profile/Profile';
 import { EditorLayout } from '../../hooks/EditorContext';
 import ProfileInfo from '../widgets/Profile/ProfileInfo';
-import ProfileSmall from '../widgets/Profile/ProfileSmall';
-import ProfileMedium from '../widgets/Profile/ProfileMedium';
-import ProfileLarge from '../widgets/Profile/ProfileLarge';
-import ProfileXLarge from '../widgets/Profile/ProfileXLarge';
-import { RiApps2Line } from '@remixicon/react';
-import LinksInfo from '../widgets/Links/LinksInfo';
-import LinksSmall from '../widgets/Links/LinksSmall';
-import LinksMedium from '../widgets/Links/LinksMedium';
-import LinksLarge from '../widgets/Links/LinksLarge';
+import { Responsive, WidthProvider } from 'react-grid-layout';
 
 const ResponsiveGridLayout = WidthProvider(Responsive);
 
-const cols = {
-  xs: 1,
-  sm: 2,
-  md: 4,
-};
-
-const breakpoints = {
-  xs: 480,
-  sm: 767,
-  md: 1023,
-};
-
-const componentMap = {
-  ProfileInfo,
-  ProfileSmall,
-  ProfileMedium,
-  ProfileLarge,
-  ProfileXLarge,
-  LinksInfo,
-  LinksSmall,
-  LinksMedium,
-  LinksLarge,
-};
-
 const EditorContentLayout = ({ rowHeight, layoutMode }) => {
   const { profolyoEditorLayout, addProfolyoWidgetToEditor, updateLayoutAfterDrag } = EditorLayout();
+
+  console.log('profolyoEditorLayout', profolyoEditorLayout);
+
+  const cols = { xs: 1, sm: 4, md: 4 };
+  const breakpoints = { xs: 480, sm: 500, md: 767 };
+  const componentMap = { ProfileInfo, Profile };
 
   const [mode, setMode] = React.useState(layoutMode);
   const [isDragging, setIsDragging] = React.useState(false);
