@@ -117,7 +117,7 @@ const Container = ({ Component, board, integrations, settings }) => {
           <main className="flex-1">
             <div className="py-6">
               <div className="mx-auto max-w-7xl">
-                <div className="py-16 hidden lg:block">
+                <div className="py-4 hidden lg:block">
                   <Component />
                 </div>
                 <div className="py-2 overflow-y-auto lg:hidden">

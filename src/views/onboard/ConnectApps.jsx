@@ -1,20 +1,24 @@
 import React from 'react';
-import { Button } from '../../components/button';
-import { ScrollArea } from '../../components/scroll-area';
-import { integrations } from '../../services/data/integrations';
-import { RiCheckLine } from '@remixicon/react';
-import { UserProfile } from '../../hooks/ProfileContext';
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '../../components/dialog';
-import { EditorInput } from '../../components/editor-input';
-import { showToast } from '../../components/Toasts';
 import { Link } from 'react-router-dom';
+import { RiCheckLine } from '@remixicon/react';
+import { supabase } from '../../utils/Supabase';
+import { Button } from '../../components/button';
+import { UserAuth } from '../../hooks/AuthContext';
+import { showToast } from '../../components/Toasts';
+import { UserProfile } from '../../hooks/ProfileContext';
+import { ScrollArea } from '../../components/scroll-area';
+import { EditorInput } from '../../components/editor-input';
+import { integrations } from '../../services/data/integrations';
 import { EditorTabs, EditorTabsContent, EditorTabsList, EditorTabsTrigger } from '../../components/editor-tabs';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '../../components/dialog';
 
-const ConnectApps = () => {
+const ConnectApps = ({ container }) => {
+  const { session } = UserAuth();
   const { appConnections, connectAppConnection, disConnectAppConnection, handleAppUsernameChange } = UserProfile();
   const [userName, setUserName] = React.useState('');
   const [updateUserName, setUpdateUserName] = React.useState('');
   const recommendedApps = integrations.filter((app) => app.type.includes('Recommended'));
+  const VITE_SUPABASE_PROFOLYO_USERS_TABLENAME = import.meta.env.VITE_SUPABASE_PROFOLYO_USERS_TABLENAME;
 
   const handleEditUserName = (val) => {
     setUserName(val);
@@ -54,6 +58,23 @@ const ConnectApps = () => {
   const setUpConnectedApp = (appName) => {
     setUpdateUserName(appConnections[appName]['username']);
   };
+
+  React.useEffect(() => {
+    const updateConnectionInDB = async () => {
+      try {
+        const { data, error } = await supabase.from(VITE_SUPABASE_PROFOLYO_USERS_TABLENAME).update({ ConnectedApps: appConnections }).eq('EmailID', session?.email);
+        if (error) {
+          throw error;
+        }
+      } catch (error) {
+        showToast(`Error updating app connection : ${error.message}`, 'error');
+        console.error(error.message);
+      }
+    };
+    if (container) {
+      updateConnectionInDB();
+    }
+  }, [appConnections]);
 
   return (
     <>
