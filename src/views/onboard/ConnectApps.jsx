@@ -106,7 +106,7 @@ const ConnectApps = ({ container }) => {
                         {appConnections[item.name]['connected'] ? (
                           <Dialog>
                             <DialogTrigger asChild>
-                              <Button onClick={() => setUpConnectedApp(item.name)}>
+                              <Button onClick={() => setUpConnectedApp(item.name)} variant="profolyo">
                                 <RiCheckLine className="h-4 w-4 mr-2" />
                                 Connected
                               </Button>
@@ -128,10 +128,10 @@ const ConnectApps = ({ container }) => {
                                 </p>
                               </div>
                               <DialogFooter>
-                                <Button type="submit" variant="outline" onClick={() => handleAppDisconnect(item.name)}>
+                                <Button type="submit" variant="profolyoThemeOutline" onClick={() => handleAppDisconnect(item.name)}>
                                   Disconnect
                                 </Button>
-                                <Button type="submit" onClick={() => handleAppUserNameUpdateSubmit(item.name, item.url_prefix)}>
+                                <Button variant="profolyo" type="submit" onClick={() => handleAppUserNameUpdateSubmit(item.name, item.url_prefix)}>
                                   Update
                                 </Button>
                               </DialogFooter>
@@ -141,7 +141,7 @@ const ConnectApps = ({ container }) => {
                           <>
                             <Dialog>
                               <DialogTrigger asChild>
-                                <Button variant="outline">Connect</Button>
+                                <Button variant="profolyoThemeOutline">Connect</Button>
                               </DialogTrigger>
                               <DialogContent className="sm:max-w-[425px]">
                                 <DialogHeader className="items-center">
@@ -160,7 +160,7 @@ const ConnectApps = ({ container }) => {
                                   </p>
                                 </div>
                                 <DialogFooter>
-                                  <Button type="submit" onClick={() => handleAppUserNameSubmit(item.name, item.url_prefix)}>
+                                  <Button variant="profolyo" type="submit" onClick={() => handleAppUserNameSubmit(item.name, item.url_prefix)}>
                                     Connect
                                   </Button>
                                 </DialogFooter>
@@ -198,7 +198,7 @@ const ConnectApps = ({ container }) => {
                         {appConnections[item.name]['connected'] ? (
                           <Dialog>
                             <DialogTrigger asChild>
-                              <Button onClick={() => setUpConnectedApp(item.name)}>
+                              <Button onClick={() => setUpConnectedApp(item.name)} variant="profolyo">
                                 <RiCheckLine className="h-4 w-4 mr-2" />
                                 Connected
                               </Button>
