@@ -90,7 +90,7 @@ const EditorContainer = () => {
       if (error) {
         throw error;
       }
-      navigate('/preview');
+      window.open('https://www.profolyo.me/preview', '_blank');
     } catch (error) {
       showToast(`Error saving preview : ${error.message}`, 'error');
       console.error(error.message);
@@ -120,23 +120,6 @@ const EditorContainer = () => {
     }
   };
 
-  const EditorNavBar = ({ children, navName }) => {
-    return (
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button size="xs" variant="outline">
-              {children}
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>
-            <p>{navName}</p>
-          </TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
-    );
-  };
-
   return (
     <div className="bg-white h-screen pr-6 pl-6">
       {/* nav */}
@@ -146,13 +129,43 @@ const EditorContainer = () => {
         </Link>
         <div className="mt-6">
           <div className="flex gap-2">
-            <EditorNavBar navName="Dashboard">
-              <RiHome6Line className="h-4 w-4" />
-            </EditorNavBar>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    size="xs"
+                    variant="outline"
+                    onClick={() => {
+                      window.open('https://www.profolyo.me/dashboard', '_blank');
+                    }}
+                  >
+                    <RiHome6Line className="h-4 w-4" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Dashboard</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
 
-            <EditorNavBar navName="Settings">
-              <RiSettingsLine className="h-4 w-4" />
-            </EditorNavBar>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    size="xs"
+                    variant="outline"
+                    onClick={() => {
+                      window.open('https://www.profolyo.me/settings', '_blank');
+                    }}
+                  >
+                    <RiSettingsLine className="h-4 w-4" />
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Settings</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
 
             <WidgetContainer />
 
