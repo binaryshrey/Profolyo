@@ -47,7 +47,7 @@ const Integrations = () => {
       <div className="mb-8">
         <p className="text-2xl font-bold mx-8 text-profolyo900">Integrations and Connected Apps</p>
         <p className="text-profolyo900  mx-8">
-          Supercharge your profolyo and connect the apps you use everyday<span className="text-xs text-profolyo900"> (widgets coming soon)</span>
+          Supercharge your profolyo and connect the apps you use everyday<span className="text-xs text-profolyo900"> (*widgets coming soon)</span>
         </p>
       </div>
 

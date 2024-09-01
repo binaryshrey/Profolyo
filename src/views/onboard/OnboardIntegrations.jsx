@@ -108,7 +108,7 @@ const OnboardIntegrations = ({ decrementOnboardStep }) => {
           <div className=" m-8">
             <p className="text-2xl font-bold -mt-16 text-profolyo900">Integrations and Connected Apps</p>
             <p className="text-profolyo900 mt-1">
-              Supercharge your profolyo and connect the apps you use everyday <span className="text-xs text-profolyo900"> (widgets coming soon)</span>
+              Supercharge your profolyo and connect the apps you use everyday <span className="text-xs text-profolyo900"> (*widgets coming soon)</span>
             </p>
           </div>
 

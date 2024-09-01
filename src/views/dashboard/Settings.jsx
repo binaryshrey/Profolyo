@@ -71,10 +71,10 @@ const Settings = () => {
   };
 
   return (
-    <div className="bg-white">
+    <div className="bg-white px-8">
       <p className="text-profolyo900 font-semibold text-xl md:text-2xl mb-4">Settings</p>
       <div className="flex flex-shrink-0 border-t border-profolyoDark mt-4 mb-4"></div>
-      <div className="bg-profolyo border border-profolyoDark rounded-md p-5 w-full flex justify-between items-center">
+      <div className="bg-profolyo border border-profolyoDark rounded-md p-5 w-full flex justify-between gap-4 items-center">
         <p className="text-sm">Update Your Profolyo UserName</p>
         <Dialog open={openDialogUserName} onOpenChange={setOpenDialogUserName}>
           <DialogTrigger asChild>
