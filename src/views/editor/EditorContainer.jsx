@@ -106,7 +106,7 @@ const EditorContainer = () => {
     }
     setSavingPublish(true);
     try {
-      const { data, error } = await supabase.from(VITE_SUPABASE_PROFOLYO_USERS_TABLENAME).update({ ProfolyoLayout: profolyoEditorLayout }).eq('EmailID', session?.email);
+      const { data, error } = await supabase.from(VITE_SUPABASE_PROFOLYO_USERS_TABLENAME).update({ ProfolyoLayout: profolyoEditorLayout, ProfolyoCreated: true }).eq('EmailID', session?.email);
 
       if (error) {
         throw error;
