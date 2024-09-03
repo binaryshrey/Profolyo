@@ -108,11 +108,11 @@ const HeroSection = () => {
               <Link to="/login" className="text-sm font-semibold leading-6 text-gray-900">
                 Log in
               </Link>
-              <div className="p-1 pr-3 pl-3 bg-profolyo500 rounded-full cursor-pointer">
-                <Link to="/signup" className="text-sm font-semibold leading-6 text-gray-900">
-                  Join Profolyo
-                </Link>
-              </div>
+              <Link to="/signup">
+                <div className="p-1 pr-3 pl-3 bg-profolyo500 rounded-full cursor-pointer">
+                  <p className="text-sm font-semibold leading-6 text-gray-900 ">Join Profolyo</p>
+                </div>
+              </Link>
             </div>
           </div>
         </nav>
