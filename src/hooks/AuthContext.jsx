@@ -15,7 +15,7 @@ export const AuthContextProvider = ({ children }) => {
       await supabase.auth.signInWithOAuth({
         provider: provider,
         options: {
-          redirectTo: 'https://profolyo.vercel.app/redirect/',
+          redirectTo: 'https://profolyo.vercel.app/auth/callback',
         },
       });
       console.log(`${provider} sign-in successful!`);
