@@ -1,20 +1,24 @@
 import React from 'react';
-import { Button } from '../../components/button';
-import { ScrollArea } from '../../components/scroll-area';
-import { integrations } from '../../services/data/integrations';
-import { RiCheckLine } from '@remixicon/react';
-import { UserProfile } from '../../hooks/ProfileContext';
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '../../components/dialog';
-import { EditorInput } from '../../components/editor-input';
-import { showToast } from '../../components/Toasts';
 import { Link } from 'react-router-dom';
+import { RiCheckLine } from '@remixicon/react';
+import { supabase } from '../../utils/Supabase';
+import { Button } from '../../components/button';
+import { UserAuth } from '../../hooks/AuthContext';
+import { showToast } from '../../components/Toasts';
+import { UserProfile } from '../../hooks/ProfileContext';
+import { ScrollArea } from '../../components/scroll-area';
+import { EditorInput } from '../../components/editor-input';
+import { integrations } from '../../services/data/integrations';
 import { EditorTabs, EditorTabsContent, EditorTabsList, EditorTabsTrigger } from '../../components/editor-tabs';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '../../components/dialog';
 
-const ConnectApps = () => {
+const ConnectApps = ({ container }) => {
+  const { session } = UserAuth();
   const { appConnections, connectAppConnection, disConnectAppConnection, handleAppUsernameChange } = UserProfile();
   const [userName, setUserName] = React.useState('');
   const [updateUserName, setUpdateUserName] = React.useState('');
   const recommendedApps = integrations.filter((app) => app.type.includes('Recommended'));
+  const VITE_SUPABASE_PROFOLYO_USERS_TABLENAME = import.meta.env.VITE_SUPABASE_PROFOLYO_USERS_TABLENAME;
 
   const handleEditUserName = (val) => {
     setUserName(val);
@@ -55,6 +59,23 @@ const ConnectApps = () => {
     setUpdateUserName(appConnections[appName]['username']);
   };
 
+  React.useEffect(() => {
+    const updateConnectionInDB = async () => {
+      try {
+        const { data, error } = await supabase.from(VITE_SUPABASE_PROFOLYO_USERS_TABLENAME).update({ ConnectedApps: appConnections }).eq('EmailID', session?.email);
+        if (error) {
+          throw error;
+        }
+      } catch (error) {
+        showToast(`Error updating app connection : ${error.message}`, 'error');
+        console.error(error.message);
+      }
+    };
+    if (container) {
+      updateConnectionInDB();
+    }
+  }, [appConnections]);
+
   return (
     <>
       <ScrollArea className="h-4/5 overflow-hidden">
@@ -85,7 +106,7 @@ const ConnectApps = () => {
                         {appConnections[item.name]['connected'] ? (
                           <Dialog>
                             <DialogTrigger asChild>
-                              <Button onClick={() => setUpConnectedApp(item.name)}>
+                              <Button onClick={() => setUpConnectedApp(item.name)} variant="profolyo">
                                 <RiCheckLine className="h-4 w-4 mr-2" />
                                 Connected
                               </Button>
@@ -107,10 +128,10 @@ const ConnectApps = () => {
                                 </p>
                               </div>
                               <DialogFooter>
-                                <Button type="submit" variant="outline" onClick={() => handleAppDisconnect(item.name)}>
+                                <Button type="submit" variant="profolyoThemeOutline" onClick={() => handleAppDisconnect(item.name)}>
                                   Disconnect
                                 </Button>
-                                <Button type="submit" onClick={() => handleAppUserNameUpdateSubmit(item.name, item.url_prefix)}>
+                                <Button variant="profolyo" type="submit" onClick={() => handleAppUserNameUpdateSubmit(item.name, item.url_prefix)}>
                                   Update
                                 </Button>
                               </DialogFooter>
@@ -120,7 +141,7 @@ const ConnectApps = () => {
                           <>
                             <Dialog>
                               <DialogTrigger asChild>
-                                <Button variant="outline">Connect</Button>
+                                <Button variant="profolyoThemeOutline">Connect</Button>
                               </DialogTrigger>
                               <DialogContent className="sm:max-w-[425px]">
                                 <DialogHeader className="items-center">
@@ -139,7 +160,7 @@ const ConnectApps = () => {
                                   </p>
                                 </div>
                                 <DialogFooter>
-                                  <Button type="submit" onClick={() => handleAppUserNameSubmit(item.name, item.url_prefix)}>
+                                  <Button variant="profolyo" type="submit" onClick={() => handleAppUserNameSubmit(item.name, item.url_prefix)}>
                                     Connect
                                   </Button>
                                 </DialogFooter>
@@ -177,7 +198,7 @@ const ConnectApps = () => {
                         {appConnections[item.name]['connected'] ? (
                           <Dialog>
                             <DialogTrigger asChild>
-                              <Button onClick={() => setUpConnectedApp(item.name)}>
+                              <Button onClick={() => setUpConnectedApp(item.name)} variant="profolyo">
                                 <RiCheckLine className="h-4 w-4 mr-2" />
                                 Connected
                               </Button>

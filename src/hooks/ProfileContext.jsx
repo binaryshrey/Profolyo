@@ -72,7 +72,7 @@ export const ProfileContextProvider = ({ children }) => {
     }));
   };
 
-  return <ProfileContext.Provider value={{ avatarURL, avatarUploaded, firstName, lastName, userName, bio, profession, skills, updateAvatarURL, updateAvatarUploaded, updateFirstName, updateLastName, updateUserName, updateBio, updateProfession, setSkills, appConnections, toggleAppConnection, connectAppConnection, disConnectAppConnection, handleAppUsernameChange, resumeURL, resumeUploaded, updateResumeURL, updateResumeUploaded }}>{children}</ProfileContext.Provider>;
+  return <ProfileContext.Provider value={{ avatarURL, avatarUploaded, firstName, lastName, userName, bio, profession, skills, updateAvatarURL, updateAvatarUploaded, updateFirstName, updateLastName, updateUserName, updateBio, updateProfession, setSkills, appConnections, toggleAppConnection, connectAppConnection, disConnectAppConnection, handleAppUsernameChange, resumeURL, resumeUploaded, updateResumeURL, updateResumeUploaded, setAppConnections }}>{children}</ProfileContext.Provider>;
 };
 
 export const UserProfile = () => useContext(ProfileContext);

@@ -16,6 +16,7 @@ const buttonVariants = cva('inline-flex items-center justify-center whitespace-n
       profolyo: 'bg-profolyoExtraDark text-black hover:bg-profolyoExtraDark/90',
       profolyoDark: 'bg-profolyo500 text-black hover:bg-profolyo500/90',
       profolyoOutline: 'backdrop-blur bg-white/50 text-black',
+      profolyoThemeOutline: 'border border-profolyoDark text-profolyo900 bg-background hover:bg-profolyoDark hover:text-profolyo900',
       outlineDark: 'border border-zinc-800 bg-zinc-600 hover:bg-zinc-700 text-white hover:text-white',
     },
     size: {

@@ -107,10 +107,12 @@ const OnboardIntegrations = ({ decrementOnboardStep }) => {
           </div>
           <div className=" m-8">
             <p className="text-2xl font-bold -mt-16 text-profolyo900">Integrations and Connected Apps</p>
-            <p className="text-profolyo900 text-zinc-600 mt-1">Supercharge your profolyo and connect the apps you use everyday.</p>
+            <p className="text-profolyo900 mt-1">
+              Supercharge your profolyo and connect the apps you use everyday <span className="text-xs text-profolyo900"> (*widgets coming soon)</span>
+            </p>
           </div>
 
-          <ConnectApps />
+          <ConnectApps container={false} />
 
           <div className="fixed bottom-0 h-20 w-3/5 backdrop-blur bg-white/50 flex justify-between items-center">
             <Button className="m-8" variant="outline" onClick={decrementOnboardStep}>

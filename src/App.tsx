@@ -13,6 +13,11 @@ const OnboardContainer = React.lazy(() => import('./views/onboard/OnboardContain
 const EditorContainer = React.lazy(() => import('./views/editor/EditorContainer'));
 const EditorPreview = React.lazy(() => import('./views/editor/EditorPreview'));
 const EditorPublish = React.lazy(() => import('./views/editor/EditorPublish'));
+const Container = React.lazy(() => import('./views/dashboard/Container'));
+const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'));
+const Integrations = React.lazy(() => import('./views/dashboard/Integrations'));
+const Settings = React.lazy(() => import('./views/dashboard/Settings'));
+const Profile = React.lazy(() => import('./views/dashboard/Profile'));
 
 const App = () => {
   return (
@@ -76,6 +81,46 @@ const App = () => {
                     <React.Suspense fallback={<></>}>
                       <ProtectedRoute>
                         <EditorPreview />
+                      </ProtectedRoute>
+                    </React.Suspense>
+                  }
+                />
+                <Route
+                  path="/dashboard"
+                  element={
+                    <React.Suspense fallback={<></>}>
+                      <ProtectedRoute>
+                        <Container Component={Dashboard} board={true} integrations={false} settings={false} />
+                      </ProtectedRoute>
+                    </React.Suspense>
+                  }
+                />
+                <Route
+                  path="/integrations"
+                  element={
+                    <React.Suspense fallback={<></>}>
+                      <ProtectedRoute>
+                        <Container Component={Integrations} board={false} integrations={true} settings={false} />
+                      </ProtectedRoute>
+                    </React.Suspense>
+                  }
+                />
+                <Route
+                  path="/settings"
+                  element={
+                    <React.Suspense fallback={<></>}>
+                      <ProtectedRoute>
+                        <Container Component={Settings} board={false} integrations={false} settings={true} />
+                      </ProtectedRoute>
+                    </React.Suspense>
+                  }
+                />
+                <Route
+                  path="/profile"
+                  element={
+                    <React.Suspense fallback={<></>}>
+                      <ProtectedRoute>
+                        <Container Component={Profile} board={false} integrations={false} settings={false} />
                       </ProtectedRoute>
                     </React.Suspense>
                   }
