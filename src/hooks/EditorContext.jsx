@@ -136,6 +136,7 @@ export const EditorContextProvider = ({ children }) => {
         openWidgetContainer,
         setOpenWidgetContainer,
         updateLayoutAfterResize,
+        setProfolyoEditorLayout,
       }}
     >
       {children}
