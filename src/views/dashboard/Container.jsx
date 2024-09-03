@@ -3,7 +3,7 @@ import { Dialog, Transition } from '@headlessui/react';
 import logo from '../../assets/profolyo-dark.svg';
 import { UserAuth } from '../../hooks/AuthContext';
 import { Link } from 'react-router-dom';
-import { RiSettingsLine, RiHome6Line, RiApps2Line, RiCloseLine, RiMenuFill } from '@remixicon/react';
+import { RiSettingsLine, RiHome6Line, RiApps2Line, RiCloseLine, RiMenuFill, RiQuestionLine } from '@remixicon/react';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ');
@@ -18,6 +18,7 @@ const Container = ({ Component, board, integrations, settings }) => {
     { name: 'Dashboard', href: '/dashboard', icon: RiHome6Line, current: board },
     { name: 'Integrations', href: '/integrations', icon: RiApps2Line, current: integrations },
     { name: 'Settings', href: '/settings', icon: RiSettingsLine, current: settings },
+    { name: 'Support', href: 'https://github.com/binaryshrey/Profolyo/issues', icon: RiQuestionLine },
   ];
 
   return (
