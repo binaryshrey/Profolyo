@@ -56,7 +56,7 @@ const App = () => {
                   }
                 />
                 <Route
-                  path="/redirect/"
+                  path="/redirect"
                   element={
                     <React.Suspense fallback={<></>}>
                       <ProtectedRoute>
